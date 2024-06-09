@@ -7,7 +7,7 @@ const Hero = () => {
     <section id='hero'>
       <div className="slider">
         <div className="image">
-          <img src="https://cms-assets.webediamovies.pro/cdn-cgi/image/dpr=1,fit=scale-down,gravity=auto,metadata=none,quality=85,width=2000/production/241/f0b74118c732a5e6188119c8b5fef2bb.jpg" alt="" />
+          <img src="https://cinepoligulf-1.s3.ap-south-1.amazonaws.com/uploads/images/movies/1712210346686blob" alt="" />
           <FontAwesomeIcon className='arrow leftArr' icon={faAngleLeft} />
         <FontAwesomeIcon className='arrow rightArr' icon={faChevronRight} />
         </div>
