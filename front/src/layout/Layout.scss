@@ -1,0 +1,133 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.topNav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color:#1A1A1A;
+
+    .topIcons{
+        max-width: max-content;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .topIcon{
+            color: #D6D6D6;
+            cursor: pointer;
+        }
+    }
+    .topSign{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .signIcon{
+            color: #D6D6D6;
+            cursor: pointer;
+
+        }
+        .Sign{
+            text-decoration: none;
+            color: #D6D6D6;
+
+        }
+    }
+}
+
+@media (max-width:600px)  {
+
+    .topNav{
+        display: none;
+    }
+
+}
+
+.navbarBody{
+    background-color: #222222;
+    .navbar{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 0;
+        gap: 20px;
+        ul{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            li{
+                list-style: none;
+
+                .navLink{
+                    position: relative;
+                    color: #D6D6D6;
+                    text-decoration: none;
+                    transition: 0.5s;
+                    .ticketNum{
+                        position: absolute;
+                        font-size: 8px;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        background-color: red;
+                        right: 0;
+                        top: 0;
+                    }
+                }
+            }
+        }
+        .hamburger{
+            display: none;
+            .hambur{
+                color: #D6D6D6;
+                font-size: 24px;
+            }
+        }
+    }
+}
+
+@media (max-width:600px )  {
+
+    .navbarBody{
+        .logo{
+            img{
+                width: 50%;
+            }
+        }
+        .navbar{
+            ul{
+                gap: 10px;
+            }
+    
+        }
+    }
+    
+    }
+
+@media (max-width:420px )  {
+
+.navbarBody{
+    .navbar{
+        ul{
+            display: none;
+        }
+        .hamburger{
+            display: block;
+        }
+
+    }
+}
+
+}
