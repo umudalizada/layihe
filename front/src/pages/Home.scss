@@ -50,3 +50,94 @@
     }
 }
 
+#movieDays{
+    background-color:  #222222;
+    .movieDays{
+        padding-top: 20px;
+        display: flex;
+        .allMovies{
+            width: 80%;
+            .days{
+                display: flex;
+                align-items: center;
+                button{
+                    font-size: 28px;
+                    color:#D6D6D6;
+                    font-weight: 700;
+                    border: none;
+                    padding: 10px;
+                    background-color: transparent;
+                }
+
+            }
+            .filters{
+                padding: 10px;
+                .search-box {
+                    display: flex;
+                    align-items: center;
+                    width: 45px;
+                    height: 35px;
+                    border: 1px solid #D6D6D6;
+                    border-radius: 15px;
+                    overflow: hidden;
+                    transition: width .75s ease;
+
+                    input{
+                        height: 100%;
+                        font-size: 1.2rem;
+                        width: 0;
+                        overflow: hidden;
+                        transition: all .75s ease ;
+                        border: none;
+                        outline: none;
+                    }
+                    button{
+                        width: 75px;
+                        height: 100%;
+                        background-color: #163C45;
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
+                        transition: background-color 0.3s ease;
+                    }
+                    .searchIcon{
+                        color: #fff;
+                        font-size: 1.5rem;
+                    }
+                }
+                .search-box:hover{
+                    width: 100%;
+                }
+                .search-box:hover input{
+                    width: 100%;
+                    padding-inline: 1.5rem;
+                }
+                .search-box button:hover {
+                    background-color: #163C45;
+                }
+
+            }
+            .alllCards{
+                .card{
+
+                }
+            }
+        }
+    }
+}
+
+
+.advert{
+    padding-top: 10px;
+    width: 20%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    .reklam{
+
+        img{
+            width: 90%;
+        }
+    }
+}
+
