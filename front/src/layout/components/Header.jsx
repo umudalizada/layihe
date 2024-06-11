@@ -14,7 +14,7 @@ const Header = () => {
       </div>
       <div className="topSign">
       <FontAwesomeIcon className='signIcon' icon={faArrowRightToBracket} />
-        <Link className='Sign'>Sign</Link>
+        <Link className='Sign'>Sign In</Link>
       </div>
     </header>
   )
