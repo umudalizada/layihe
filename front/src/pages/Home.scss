@@ -352,7 +352,7 @@
 
 @media (max-width:600px )  {
     .allCards{
-        padding: 10px;
+        padding: 30px 10px;
         grid-template-columns: 1fr 1fr;
         gap: 20px;
     }
@@ -360,7 +360,7 @@
     
 @media (max-width:420px )  {
     .allCards{
-        padding: 0;
+        padding: 25px 0;
         grid-template-columns: 1fr;
         gap: 0;
         .card{
