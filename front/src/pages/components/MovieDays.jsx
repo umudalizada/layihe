@@ -2,6 +2,7 @@ import React from 'react'
 import HomeAsside from './HomeAsside'
 import SearchBox from './SearchBox'
 import FilterComp from './FilterComp'
+import AllCards from './AllCards'
 
 
 const MovieDays = () => {
@@ -15,14 +16,11 @@ const MovieDays = () => {
             <button>Table</button>
           </div>
           <div className="filters">
-            <SearchBox/>
-            <FilterComp/>
-          </div>
-          <div className="allCards">
-            <div className="card">
+          <FilterComp/>
 
-            </div>
+            <SearchBox/>
           </div>
+          <AllCards/>
         </div>
         <HomeAsside />
       </div>

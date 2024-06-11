@@ -9,7 +9,7 @@ const Navbar = () => {
     <>
       <Header />
       <nav className='navbarBody'>
-        <div className="conatiner navbar">
+        <div className="container navbar">
           <div className="logo">
             <h5 className='h5'>
             <FontAwesomeIcon icon={faArrowRightToBracket} />

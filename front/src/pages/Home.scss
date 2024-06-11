@@ -1,33 +1,79 @@
-#hero{
-    .slider{
-        .image{
-            position: relative;
-            img{
-                width: 100%;
-            }
-            .arrow{
-                position: absolute;
-                top: 50%;
-                color:#D6D6D6 ;
-                font-size: 34px;
-            }
-            .leftArr{
-                left: 0;
-            }
-            .rightArr{
-                right: 0;
-            }
+#hero {
+    .slider {
+      position: relative;
+      overflow: hidden; // Slaytların taşmasını önlemek için
+      .image {
+        position: relative;
+        img {
+          width: 100%;
+          height: 800px;
+          display: block;
+          transition: opacity 0.5s ease-in-out; // Geçiş animasyonu
+          opacity: 0; // Başlangıçta görünmez
+          position: absolute; // Mutlak konumlandırma
+          top: 0;
+          left: 0;
         }
+        img.active {
+          opacity: 1; // Aktif slayt görünür
+          position: relative; // Aktif slayt yerinde kalır
+        }
+        .arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #D6D6D6;
+          font-size: 34px;
+          cursor: pointer;
+          z-index: 1;
+        }
+        .leftArr {
+          left: 10px;
+        }
+        .rightArr {
+          right: 10px;
+        }
+      }
+      .dots {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        .dot {
+          width: 12px;
+          height: 12px;
+          background-color: #D6D6D6;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+        .dot.active {
+          background-color: #333;
+        }
+      }
     }
-}
-
+  }
+  
 @media (max-width:600px )  {
 #hero{
     .slider{
         .image{
+            img{
+                height: 450px;
+            }
             .arrow{
                 font-size: 24px;
             }
+  
+        }
+        .dots{
+            .dot{
+                width: 10px;
+                height: 10px;
+            }
+
         }
 
     }
@@ -41,9 +87,19 @@
     #hero{
         .slider{
             .image{
+                img{
+                    height: 200px;
+                }
                 .arrow{
                     font-size: 24px;
                 }
+            }
+            .dots{
+                .dot{
+                    width: 8px;
+                    height: 8px;
+                }
+
             }
     
         }
@@ -60,6 +116,7 @@
             .days{
                 display: flex;
                 align-items: center;
+                padding: 0 10px ;
                 button{
                     font-size: 28px;
                     color:#D6D6D6;
@@ -90,18 +147,19 @@
                         transition: all .75s ease ;
                         border: none;
                         outline: none;
+                        background-color: transparent;
                     }
                     button{
                         width: 75px;
                         height: 100%;
-                        background-color: #163C45;
+                        background-color: #D6D6D6;
                         border: none;
                         outline: none;
                         cursor: pointer;
                         transition: background-color 0.3s ease;
                     }
                     .searchIcon{
-                        color: #fff;
+                        color: #222222;
                         font-size: 1.5rem;
                     }
                 }
@@ -113,25 +171,21 @@
                     padding-inline: 1.5rem;
                 }
                 .search-box button:hover {
-                    background-color: #163C45;
+                    background-color: #D6D6D6;
                 }
 
             }
-            .alllCards{
-                .card{
 
-                }
-            }
         }
     }
 }
 
 
 .advert{
-    padding-top: 10px;
+    padding: 10px 20px;
     width: 20%;
-    display: grid;
-    grid-template-columns: 1fr;
+    display:flex;
+    flex-direction: column;
     gap: 10px;
     .reklam{
 
@@ -141,3 +195,177 @@
     }
 }
 
+@media (max-width:600px )  {
+    #movieDays{
+        .movieDays{
+            .allMovies{
+                width: 100%;
+                .filters{
+                    .search-box{
+                        width: 35px;
+                        height: 25px;
+    
+                        input{
+                            height: 100%;
+                            font-size: 1.2rem;
+                            width: 0;
+                            overflow: hidden;
+                            transition: all .75s ease ;
+                            border: none;
+                            outline: none;
+                        }
+                        button{
+                            width: 75px;
+                            height: 100%;
+                            background-color: #163C45;
+                            border: none;
+                            outline: none;
+                            cursor: pointer;
+                            transition: background-color 0.3s ease;
+                            .searchIcon{
+                                color: #fff;
+                                font-size: 1rem;
+                            }
+                        }
+
+                    }
+                    .search-box:hover{
+                        width: 100%;
+                    }
+                    .search-box:hover input{
+                        width: 100%;
+                        padding-inline: 1.5rem;
+                    }
+                    .search-box button:hover {
+                        background-color: #163C45;
+                    }
+    
+                }
+  
+            }
+        }
+    }
+.advert{
+    display: none;
+}       
+}
+    
+@media (max-width:420px )  {
+    
+    #movieDays{
+        .movieDays{
+            .allMovies{
+                width: 100%;
+                .days{
+                    button{
+                        font-size: 12px;
+                        padding: 10px 1px;
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+    }
+.advert{
+    display: none;
+}  
+
+}
+
+.filterButtons{
+    padding: 20px 0;
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    .filterButton{
+        transition: 0.5s;
+        width: 60px;
+        padding: 5px;
+        background-color: transparent;
+        color: #D6D6D6;
+        border: 1px solid #D6D6D6;
+        border-radius: 4px;
+    }
+    .filterButton:hover{
+        background-color: #D6D6D6;
+        color: black;
+    }
+}
+
+@media (max-width:420px )  {
+    .filters{
+        .filterButtons{
+            gap: 10px;
+            .filterButton{
+                width: 40px;
+                padding: 0;
+                font-size: 10px;
+            }
+        }
+    }
+
+}
+
+
+.allCards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 20px 10px;
+    gap: 30px;
+    transition: 0.5s;
+
+    .card{
+        width: 100%;
+        position: relative;
+        transition: 0.5s;
+        border-radius: 8px;
+        .infoIcon{
+            position: absolute;
+            right: 2%;
+            top: 2%;
+            font-size: 28px;
+            color: rgb(71, 71, 161);
+            cursor: pointer;
+        }
+        .buyIcon{
+            position: absolute;
+            left: 2%;
+            bottom: 2%;
+            font-size: 28px;
+            color: #A00D0E;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        border-radius: 8px;
+
+        }
+    }
+    .card:hover{
+        transform: scale(1.1, 1.1);
+    }
+}
+.allCards:hover > .card:not(:hover){
+    filter: blur(10px);
+    transform: scale(0.9,0.9);
+}
+
+@media (max-width:600px )  {
+    .allCards{
+        padding: 10px;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
+    
+@media (max-width:420px )  {
+    .allCards{
+        padding: 0;
+        grid-template-columns: 1fr;
+        gap: 0;
+        .card{
+            padding: 0;
+        }
+
+    }
+}
