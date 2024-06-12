@@ -29,12 +29,14 @@ const Detail = () => {
         )}
         <div className="backVideo">
           <iframe
-            src="https://www.youtube.com/embed/eH7HtDuxCo0?autoplay=1&mute=1&loop=1&playlist=qWvbOmT7rTw"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/a6VVrAZUnsc?si=OGT_MCGTKYCotf_E&autoplay=1"
+            title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
-            title="Background Video"
           ></iframe>
         </div>
       </div>

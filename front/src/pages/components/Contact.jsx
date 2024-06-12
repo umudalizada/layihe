@@ -14,11 +14,11 @@ const Contact = () => {
                 <Link className='asistanLink'>Click: <FontAwesomeIcon icon={faRightLong} />Assistant</Link>
                 <div className="conatctNumber">
                 <h2>Our address</h2>
-                <p>Azerbaijan,Nizami,Khalglar M/s, Bahruz Nuriyev</p>
+                <i>Azerbaijan,Nizami,Khalglar M/s, Bahruz Nuriyev</i>
                 <h2>Order tickets</h2>
-                <p>+994 55 555 55 55</p>
-                <p>To place an ad :</p>
-                <p>+994707800023, +994502552023, <span>umudalizadadev@gmail.com</span></p>
+                <i>+994 55 555 55 55</i>
+                <i>To place an ad :</i>
+                <i>+994707800023, +994502552023, <span>umudalizadadev@gmail.com</span></i>
                 </div>
             </div>
 

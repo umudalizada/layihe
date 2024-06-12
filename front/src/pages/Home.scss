@@ -843,7 +843,17 @@
             img {
                 width: 100%;
                 height: 100%;
+                transition: transform 1s ease-in-out;
+                animation: pulse 2s infinite alternate;
             }
+            @keyframes pulse {
+                0% {
+                  transform: scale(0.5);
+                }
+                100% {
+                  transform: scale(0.9);
+                }
+              }
         }
 
         .aboutRight {
@@ -856,9 +866,10 @@
                 color: #A00D0E;
             }
 
-            p {
+            i {
                 color: #D6D6D6;
                 font-size: 18px;
+                font-weight: 300;
             }
         }
     }
@@ -879,7 +890,7 @@
                     font-size: 26px;
                 }
 
-                p {
+                i{
                     font-size: 14px;
                 }
             }
@@ -911,7 +922,7 @@
                     font-size: 20px;
                 }
 
-                p {
+                i {
                     font-size: 12px;
                 }
             }
@@ -963,7 +974,7 @@
                     color: #A00D0E;
                 }
 
-                p {
+                i {
                     color: #D6D6D6;
                 }
             }
@@ -977,7 +988,18 @@
             img {
                 width: 100%;
                 height: 100%;
+                transition: transform 1s ease-in-out;
+                animation: pulse 2s infinite alternate;
             }
+            @keyframes pulse {
+                0% {
+                  transform: scale(0.5);
+                }
+                100% {
+                  transform: scale(0.9);
+                }
+              }
+              
         }
     }
 }
