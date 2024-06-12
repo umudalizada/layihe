@@ -22,7 +22,7 @@ const Navbar = () => {
           </div>
           <ul>
             <li>
-              <Link to="home" className='navLink' smooth={true} duration={500}>Home</Link>
+              <Link to="/" className='navLink' smooth={true} duration={500}>Home</Link>
             </li>
             <li>
               <Link to="movies" className='navLink' smooth={true} duration={500}>Movies</Link>

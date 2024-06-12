@@ -1,0 +1,117 @@
+#detail {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  
+    .detail {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #000; // Video yüklenirken siyah arka plan
+  
+      .backVideo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+  
+        iframe {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 100vw;
+          height: 56.25vw; // 16:9 Aspect Ratio
+          min-height: 100vh;
+          min-width: 177.78vh; // 16:9 Aspect Ratio
+          pointer-events: none;
+          border: none;
+        }
+      }
+
+      .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        color: white;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.7); // İçeriği arka plandan ayırmak için yarı saydam arka plan
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 800px;
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .close-btn {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 20px;
+          cursor: pointer;
+          border: none;
+          background: transparent;
+          color: white;
+          padding: 5px;
+        }
+
+        .info {
+          text-align: left;
+  
+          h1 {
+            margin-bottom: 15px;
+          }
+  
+          p {
+            margin: 5px 0;
+            line-height: 1.5;
+  
+            strong {
+              font-weight: bold;
+            }
+          }
+        }
+  
+        @media (max-width: 600px) {
+          padding: 15px;
+          .info {
+            h1 {
+              font-size: 24px;
+            }
+            p {
+              font-size: 14px;
+            }
+          }
+        }
+  
+        @media (max-width: 420px) {
+          padding: 10px;
+          .info {
+            h1 {
+              font-size: 20px;
+            }
+            p {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  
+    .hide .content {
+      display: none;
+    }
+}
