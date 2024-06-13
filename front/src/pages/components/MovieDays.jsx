@@ -17,7 +17,6 @@ const MovieDays = () => {
           </div>
           <div className="filters">
           <FilterComp/>
-
             <SearchBox/>
           </div>
           <AllCards/>

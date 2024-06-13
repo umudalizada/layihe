@@ -41,7 +41,7 @@ const Navbar = () => {
               <ScrollLink to="bar" className='navLink' smooth={true} duration={500}>Bar</ScrollLink>
             </li>
             <li>
-              <Link to="ticket" className='navLink' smooth={true} duration={500}>
+              <Link to="./basket" className='navLink' smooth={true} duration={500}>
                 <FontAwesomeIcon icon={faTicket} />
                 <p className="ticketNum">
                   1
