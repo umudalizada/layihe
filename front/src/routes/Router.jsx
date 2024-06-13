@@ -1,6 +1,7 @@
 import Layout from "../layout/Layout";
 import Detail from "../pages/Detail";
 import Home from "../pages/Home";
+import ShowTimes from "../pages/ShowTimes";
 
 export const routers = [
   {
@@ -14,6 +15,10 @@ export const routers = [
       {
         path: '/detail',
         element: <Detail />
+      },
+      {
+        path: '/showTime',
+        element: <ShowTimes />
       },
     ]
   },
