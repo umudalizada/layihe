@@ -135,6 +135,7 @@
                 padding: 0 10px;
 
                 button {
+                    cursor: pointer;
                     font-size: 28px;
                     color: #D6D6D6;
                     font-weight: 700;
@@ -157,7 +158,6 @@
                     border-radius: 15px;
                     overflow: hidden;
                     transition: width .75s ease;
-
                     input {
                         height: 100%;
                         font-size: 1.2rem;
@@ -167,15 +167,16 @@
                         border: none;
                         outline: none;
                         background-color: transparent;
+                        color: white;
                     }
 
                     button {
+                        cursor: pointer;
                         width: 75px;
                         height: 100%;
                         background-color: #D6D6D6;
                         border: none;
                         outline: none;
-                        cursor: pointer;
                         transition: background-color 0.3s ease;
                     }
 
@@ -313,6 +314,8 @@
     width: 100%;
 
     .filterButton {
+    cursor: pointer;
+
         transition: 0.5s;
         width: 60px;
         padding: 5px;
@@ -352,6 +355,7 @@
     transition: 0.5s;
 
     .card {
+        cursor: pointer;
         width: 100%;
         position: relative;
         transition: 0.5s;

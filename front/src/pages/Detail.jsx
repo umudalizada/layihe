@@ -1,47 +1,51 @@
 import React, { useState } from 'react';
 import "./assets/scss/Detail.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const Detail = () => {
-  const [showContent, setShowContent] = useState(true);
-
-  const toggleContent = () => {
-    setShowContent(!showContent);
-  };
+  
 
   return (
     <section id="detail">
-      <div className={`detail ${showContent ? 'show' : 'hide'}`}>
-        {showContent && (
-          <div className="content">
-            <button className="close-btn" onClick={toggleContent}>X</button>
-            <div className="info">
-              <h1>Avatar (2009)</h1>
-              <p><strong>Director:</strong> James Cameron</p>
-              <p><strong>Cast:</strong> Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang</p>
-              <p><strong>Genre:</strong> Action, Adventure, Fantasy</p>
-              <p><strong>Release Date:</strong> December 18, 2009</p>
-              <p>
-                <strong>Description:</strong> 
-                Avatar depicts a story where humans interact with the Na'vi, the indigenous inhabitants of the planet Pandora. Jake Sully, a paraplegic former Marine, becomes a part of this new world using an Avatar, a genetically engineered Na'vi body.
-              </p>
+      <div className="container info">
+        <div className="card">
+          <div className="card-inner">
+            <div className="card-front">
+              <div className="img">
+                <img 
+                  src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-poster-template-design-21a1c803fe4ff4b858de24f5c91ec57f_screen.jpg?ts=1636996180" 
+                  alt="Movie Poster" 
+                />
+              </div>
+              <h2>Detail</h2>
+            </div>
+            <div className="card-back">
+              <div className="name">
+                <h2>Movie :</h2>
+                <p>Alpha</p>
+              </div>
+              <div className="genre">
+                <h2>Genre :</h2>
+                <p>Drama, Action, 3D, IMAX</p>
+              </div>
+              <div className="director">
+                <h2>Director :</h2>
+                <p>Kelsey Man</p>
+              </div>
+              <div className="play">
+                <h2>Trailer</h2>
+                <Link to="https://youtu.be/MBTlfH1YIgs?si=nt-C_Z60FeIKOj-k" target='_blank' className="button" >
+                  <FontAwesomeIcon className="svg" icon={faPlay} />
+                </Link>
+              </div>
             </div>
           </div>
-        )}
-        <div className="backVideo">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/a6VVrAZUnsc?si=OGT_MCGTKYCotf_E&autoplay=1"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default Detail;

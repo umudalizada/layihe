@@ -1,6 +1,5 @@
 import React from 'react'
 import Header from './Header'
-import { Link as ScrollLink } from 'react-scroll'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightToBracket, faBars, faUser } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'

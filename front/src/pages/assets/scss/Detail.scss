@@ -1,117 +1,199 @@
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+@keyframes pulse {
+  100% {
+    box-shadow: 0 0 0 45px rgba(193, 244, 246, 0);
+  }
+}
+
+$color_1: #fff;
+$background-color_1: #6A2C70;
+$background-color_2: #F08A5D;
+
 #detail {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Dark mode colors and gradient */
+  background: #121212;
+  /* Fallback for browsers that don't support gradients */
+  background: linear-gradient(135deg,
+      #121212 25%,
+      #1a1a1a 25%,
+      #1a1a1a 50%,
+      #121212 50%,
+      #121212 75%,
+      #1a1a1a 75%,
+      #1a1a1a);
+  background-size: 40px 40px;
+
+  /* Animation */
+  animation: move 4s linear infinite;
+
+  .iframe-container {
     position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-  
-    .detail {
-      position: relative;
-      width: 100%;
-      height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    .close-button {
+      position: absolute;
+      top: -10px;
+      /* Adjust to position properly */
+      right: -10px;
+      /* Adjust to position properly */
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      background: #000; // Video yüklenirken siyah arka plan
-  
-      .backVideo {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        overflow: hidden;
-  
-        iframe {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 100vw;
-          height: 56.25vw; // 16:9 Aspect Ratio
-          min-height: 100vh;
-          min-width: 177.78vh; // 16:9 Aspect Ratio
-          pointer-events: none;
-          border: none;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+    }
+  }
+
+  .info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .card {
+      width: 300px;
+      height: 300px;
+      perspective: 1000px;
+
+      &:hover {
+        .card-inner {
+          transform: rotateY(180deg);
         }
       }
 
-      .content {
+      .card-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.999s;
+      }
+
+      .card-front {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1;
-        color: white;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.7); // İçeriği arka plandan ayırmak için yarı saydam arka plan
-        padding: 20px;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        font-size: 24px;
         border-radius: 10px;
-        max-width: 800px;
-        width: 90%;
-        margin: 0 auto;
+        color: $color_1;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-between;
+        padding: 20px;
 
-        .close-btn {
-          position: absolute;
-          top: 10px;
-          right: 10px;
+        .img {
+          box-shadow: rgba(201, 198, 198, 0.35) 0px 5px 15px;
+          height: 80%;
+          border-radius: 8px;
+
+          img {
+            height: 100%;
+            border-radius: 8px;
+          }
+        }
+
+        h2 {
           font-size: 20px;
-          cursor: pointer;
-          border: none;
-          background: transparent;
-          color: white;
-          padding: 5px;
+        }
+      }
+
+      .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        font-size: 24px;
+        border-radius: 10px;
+        color: $color_1;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .name h2,
+        .genre h2,
+        .director h2 {
+          font-size: 22px;
         }
 
-        .info {
-          text-align: left;
-  
-          h1 {
-            margin-bottom: 15px;
-          }
-  
-          p {
-            margin: 5px 0;
-            line-height: 1.5;
-  
-            strong {
-              font-weight: bold;
-            }
-          }
+        .name p,
+        .genre p,
+        .director p {
+          font-size: 16px;
         }
-  
-        @media (max-width: 600px) {
-          padding: 15px;
-          .info {
-            h1 {
-              font-size: 24px;
-            }
-            p {
-              font-size: 14px;
-            }
-          }
-        }
-  
-        @media (max-width: 420px) {
-          padding: 10px;
-          .info {
-            h1 {
-              font-size: 20px;
-            }
-            p {
-              font-size: 12px;
-            }
+
+        .play .button {
+          display: flex;
+          justify-content: center;
+          color: $color_1;
+          width: 40px;
+          height: 40px;
+          border-radius: 100%;
+          background: linear-gradient(30deg, rgb(255, 130, 0) 20%, rgb(255, 38, 0) 80%);
+          transition: all 0.3s ease-in-out;
+          box-shadow: rgba(193, 244, 246, 0.698) 0px 0px 0px 0px;
+          animation: 1.2s cubic-bezier(0.8, 0, 0, 1) infinite pulse;
+          align-items: center;
+          border: 0;
+
+          &:hover,
+          &:focus {
+            transform: scale(1.2);
           }
         }
       }
+
+      .card-front {
+        background-color: #1a1a1a;
+        border: 3px solid $background-color_1;
+        transform: rotateY(0deg);
+      }
+
+      .card-back {
+        background-color: #1a1a1a;
+        border: 3px solid orangered;
+        transform: rotateY(180deg);
+      }
     }
-  
-    .hide .content {
-      display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  #detail {
+    .info {
+      flex-direction: column;
+      .card {
+        width: 250px;
+      }
     }
+  }
 }
