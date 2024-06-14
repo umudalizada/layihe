@@ -2,7 +2,7 @@ import React from 'react'
 import Header from './Header'
 import { Link as ScrollLink } from 'react-scroll'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRightToBracket, faBars, faTicket, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRightToBracket, faBars, faUser } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
@@ -34,7 +34,7 @@ const Navbar = () => {
               <Link to="./contact" className='navLink' smooth={true} duration={500}>Contact</Link>
             </li>
             <li>
-              <ScrollLink to="" className='navLink' smooth={true} duration={500}>About</ScrollLink>
+              <Link to="./about" className='navLink' smooth={true} duration={500}>About</Link>
             </li>
 
             {/* <li>

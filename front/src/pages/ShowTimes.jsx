@@ -64,29 +64,131 @@ const ShowTimes = () => {
                                     </p>
                                 </div>
                             </div>
-                        </div>
-                        <div className="reklams">
-                            <div className="form-container">
-                                <form className="form">
-                                    <div className="form-group">
-                                        <label htmlFor="email">Your Email</label>
-                                        <input type="text" id="email" name="email" required="" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="textarea">How Can We Help You?</label>
-                                        <textarea
-                                            name="textarea"
-                                            id="textarea"
-                                            rows={10}
-                                            cols={50}
-                                            required=""
-                                            defaultValue={"          "}
-                                        />
-                                    </div>
-                                    <button className="form-submit-btn" type="submit">
-                                        Submit
-                                    </button>
-                                </form>
+                            <div className="card">
+                                <b />
+                                <img src="https://cdn.musebycl.io/2021-05/moonlight_0.jpg" alt="Film Poster" className="film-poster" />
+                                <div className="content">
+                                    <p className="title">
+                                        Film Name
+                                        <br />
+                                        <p>Dram,3D,IMAX</p>
+                                        <p>12:00</p>
+                                        <span>
+
+                                        </span>
+                                        <button className="btn-cart">
+                                            <FontAwesomeIcon className="icon-cart" icon={faTicket} />
+                                        </button>
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="card">
+                                <b />
+                                <img src="https://cdn.musebycl.io/2021-05/moonlight_0.jpg" alt="Film Poster" className="film-poster" />
+                                <div className="content">
+                                    <p className="title">
+                                        Film Name
+                                        <br />
+                                        <p>Dram,3D,IMAX</p>
+                                        <p>12:00</p>
+                                        <span>
+
+                                        </span>
+                                        <button className="btn-cart">
+                                            <FontAwesomeIcon className="icon-cart" icon={faTicket} />
+                                        </button>
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="card">
+                                <b />
+                                <img src="https://cdn.musebycl.io/2021-05/moonlight_0.jpg" alt="Film Poster" className="film-poster" />
+                                <div className="content">
+                                    <p className="title">
+                                        Film Name
+                                        <br />
+                                        <p>Dram,3D,IMAX</p>
+                                        <p>12:00</p>
+                                        <span>
+
+                                        </span>
+                                        <button className="btn-cart">
+                                            <FontAwesomeIcon className="icon-cart" icon={faTicket} />
+                                        </button>
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="card">
+                                <b />
+                                <img src="https://cdn.musebycl.io/2021-05/moonlight_0.jpg" alt="Film Poster" className="film-poster" />
+                                <div className="content">
+                                    <p className="title">
+                                        Film Name
+                                        <br />
+                                        <p>Dram,3D,IMAX</p>
+                                        <p>12:00</p>
+                                        <span>
+
+                                        </span>
+                                        <button className="btn-cart">
+                                            <FontAwesomeIcon className="icon-cart" icon={faTicket} />
+                                        </button>
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="card">
+                                <b />
+                                <img src="https://cdn.musebycl.io/2021-05/moonlight_0.jpg" alt="Film Poster" className="film-poster" />
+                                <div className="content">
+                                    <p className="title">
+                                        Film Name
+                                        <br />
+                                        <p>Dram,3D,IMAX</p>
+                                        <p>12:00</p>
+                                        <span>
+
+                                        </span>
+                                        <button className="btn-cart">
+                                            <FontAwesomeIcon className="icon-cart" icon={faTicket} />
+                                        </button>
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="card">
+                                <b />
+                                <img src="https://cdn.musebycl.io/2021-05/moonlight_0.jpg" alt="Film Poster" className="film-poster" />
+                                <div className="content">
+                                    <p className="title">
+                                        Film Name
+                                        <br />
+                                        <p>Dram,3D,IMAX</p>
+                                        <p>12:00</p>
+                                        <span>
+
+                                        </span>
+                                        <button className="btn-cart">
+                                            <FontAwesomeIcon className="icon-cart" icon={faTicket} />
+                                        </button>
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="card">
+                                <b />
+                                <img src="https://cdn.musebycl.io/2021-05/moonlight_0.jpg" alt="Film Poster" className="film-poster" />
+                                <div className="content">
+                                    <p className="title">
+                                        Film Name
+                                        <br />
+                                        <p>Dram,3D,IMAX</p>
+                                        <p>12:00</p>
+                                        <span>
+
+                                        </span>
+                                        <button className="btn-cart">
+                                            <FontAwesomeIcon className="icon-cart" icon={faTicket} />
+                                        </button>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>

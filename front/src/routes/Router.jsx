@@ -1,4 +1,5 @@
 import Layout from "../layout/Layout";
+import About from "../pages/About";
 import Basket from "../pages/Basket";
 import Contact from "../pages/Contact";
 import Detail from "../pages/Detail";
@@ -32,6 +33,11 @@ export const routers = [
       {
         path: '/basket',
         element: <Basket/>
+      },
+      
+      {
+        path: '/about',
+        element: <About/>
       },
     ]
   },
