@@ -26,28 +26,24 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link to="./showTime" className='navLink' smooth={true} duration={500}>Showtimes</Link>
+              <Link to="./showtime" className='navLink' smooth={true} duration={500}>
+                Buy
+              </Link>
             </li>
             <li>
-              <ScrollLink to="about" className='navLink' smooth={true} duration={500}>About</ScrollLink>
+              <Link to="./contact" className='navLink' smooth={true} duration={500}>Contact</Link>
             </li>
             <li>
-              <ScrollLink to="contact" className='navLink' smooth={true} duration={500}>Contact</ScrollLink>
+              <ScrollLink to="" className='navLink' smooth={true} duration={500}>About</ScrollLink>
             </li>
-            <li>
+
+            {/* <li>
               <ScrollLink to="hall" className='navLink' smooth={true} duration={500}>Hall</ScrollLink>
             </li>
             <li>
               <ScrollLink to="bar" className='navLink' smooth={true} duration={500}>Bar</ScrollLink>
-            </li>
-            <li>
-              <Link to="./basket" className='navLink' smooth={true} duration={500}>
-                <FontAwesomeIcon icon={faTicket} />
-                <p className="ticketNum">
-                  1
-                </p>
-              </Link>
-            </li>
+            </li> */}
+
             <li>
               <Link to="user" className='navLink' smooth={true} duration={500}>
                 <FontAwesomeIcon icon={faUser} />

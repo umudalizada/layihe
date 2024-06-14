@@ -1,0 +1,517 @@
+$color_1: #64ffda;
+$color_2: white;
+$color_3: #ccd6f6;
+$color_4: #000;
+$font-family_1: inherit;
+$background-color_1: #171717;
+$background-color_2: transparent;
+$background-color_3: #64ffda;
+
+
+
+#contact {
+    width: 100%;
+    height: 100%;
+    --color: rgba(114, 114, 114, 0.3);
+    background-color: #191a1a;
+    background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+    background-size: 55px 55px;
+
+    .contact {
+        padding: 20px 10px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        .left {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            gap: 30px;
+
+            .boxes {
+
+                .card {
+                    width: 150px;
+                    height: 150px;
+                    background: rgb(103, 225, 255);
+                    transition: all 0.4s;
+                    border-radius: 10px;
+                    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+                    font-size: 30px;
+                    font-weight: 900;
+
+                    &:hover {
+                        border-radius: 15px;
+                        cursor: pointer;
+                        transform: scale(1.2);
+                        box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+                        background: rgb(103, 151, 255);
+
+                        .first-content {
+                            height: 0px;
+                            opacity: 0;
+                        }
+
+                        .second-content {
+                            opacity: 1;
+                            height: 100%;
+                            font-size: 1.2rem;
+                            transform: rotate(0deg);
+                        }
+                    }
+                }
+
+                .first-content {
+                    height: 100%;
+                    width: 100%;
+                    transition: all 0.4s;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    opacity: 1;
+                    border-radius: 15px;
+                }
+
+                .second-content {
+                    height: 0%;
+                    width: 100%;
+                    opacity: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 15px;
+                    transition: all 0.4s;
+                    font-size: 0px;
+                    transform: rotate(90deg) scale(-1);
+                }
+
+                .outer {
+                    width: 100%;
+                    height: 150px;
+                    border-radius: 10px;
+                    padding: 1px;
+                    background: radial-gradient(circle 230px at 0% 0%, #ffffff, #0c0d0d);
+                    position: relative;
+                }
+
+                .dot {
+                    width: 5px;
+                    aspect-ratio: 1;
+                    position: absolute;
+                    background-color: $background-color_1;
+                    box-shadow: 0 0 10px #ffffff;
+                    border-radius: 100px;
+                    z-index: 2;
+                    right: 10%;
+                    top: 10%;
+                    animation: moveDot 6s linear infinite;
+                }
+
+
+                .ray {
+                    width: 220px;
+                    height: 45px;
+                    border-radius: 100px;
+                    position: absolute;
+                    background-color: $background-color_2;
+                    opacity: 0.4;
+                    box-shadow: 0 0 50px #fff;
+                    filter: blur(10px);
+                    transform-origin: 10%;
+                    top: 0%;
+                    left: 0;
+                    transform: rotate(40deg);
+                }
+
+                .line {
+                    width: 100%;
+                    height: 1px;
+                    position: absolute;
+                    background-color: $background-color_3;
+                }
+
+                .topl {
+                    top: 10%;
+                    background: linear-gradient(90deg, #888888 30%, #1d1f1f 70%);
+                }
+
+                .bottoml {
+                    bottom: 10%;
+                }
+
+                .leftl {
+                    left: 10%;
+                    width: 1px;
+                    height: 100%;
+                    background: linear-gradient(180deg, #747474 30%, #222424 70%);
+                }
+
+                .rightl {
+                    right: 10%;
+                    width: 1px;
+                    height: 100%;
+                }
+
+            }
+        }
+
+        .conatctBox {
+
+
+            .form {
+                display: flex;
+                flex-direction: column;
+                align-self: center;
+                font-family: $font-family_1;
+                gap: 10px;
+                padding-inline: 2em;
+                padding-bottom: 0.4em;
+                background-color: $background-color_1;
+                //background-color: #0a192f;
+                border-radius: 20px;
+            }
+
+            .form-heading {
+                text-align: center;
+                margin: 2em;
+                color: $color_1;
+                font-size: 1.2em;
+                background-color: $background-color_2;
+                align-self: center;
+            }
+
+            .form-field {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5em;
+                border-radius: 10px;
+                padding: 0.6em;
+                border: none;
+                outline: none;
+                color: $color_2;
+                background-color: $background-color_1;
+                box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+            }
+
+            .input-field {
+                background: none;
+                border: none;
+                outline: none;
+                width: 100%;
+                color: $color_3;
+                padding-inline: 1em;
+            }
+
+            .sendMessage-btn {
+                cursor: pointer;
+                margin-bottom: 3em;
+                padding: 1em;
+                border-radius: 10px;
+                border: none;
+                outline: none;
+                background-color: $background-color_2;
+                color: $color_1;
+                font-weight: bold;
+                outline: 1px solid #64ffda;
+                transition: all ease-in-out 0.3s;
+
+                &:hover {
+                    transition: all ease-in-out 0.3s;
+                    background-color: $background-color_3;
+                    color: $color_4;
+                    cursor: pointer;
+                    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+                }
+            }
+
+            .form-card1 {
+                background-image: linear-gradient(163deg, #64ffda 0%, #64ffda 100%);
+                border-radius: 22px;
+                transition: all 0.3s;
+
+                &:hover {
+                    box-shadow: 0px 0px 30px 1px rgba(100, 255, 218, 0.3);
+                }
+            }
+
+            .form-card2 {
+                border-radius: 0;
+                transition: all 0.2s;
+
+                &:hover {
+                    transform: scale(0.98);
+                    border-radius: 20px;
+                }
+            }
+
+
+        }
+
+        .right {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+            gap: 30px;
+
+            .boxes {
+
+                .card {
+                    width: 150px;
+                    height: 150px;
+                    background: rgb(103, 225, 255);
+                    transition: all 0.4s;
+                    border-radius: 10px;
+                    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+                    font-size: 30px;
+                    font-weight: 900;
+
+                    &:hover {
+                        border-radius: 15px;
+                        cursor: pointer;
+                        transform: scale(1.2);
+                        box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+                        background: rgb(103, 151, 255);
+
+                        .first-content {
+                            height: 0px;
+                            opacity: 0;
+                        }
+
+                        .second-content {
+                            opacity: 1;
+                            height: 100%;
+                            font-size: 1.2rem;
+                            transform: rotate(0deg);
+                        }
+                    }
+                }
+
+                .first-content {
+                    height: 100%;
+                    width: 100%;
+                    transition: all 0.4s;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    opacity: 1;
+                    border-radius: 15px;
+                }
+
+                .second-content {
+                    height: 0%;
+                    width: 100%;
+                    opacity: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 15px;
+                    transition: all 0.4s;
+                    font-size: 0px;
+                    transform: rotate(90deg) scale(-1);
+                }
+
+
+                .first-content {
+                    height: 100%;
+                    width: 100%;
+                    transition: all 0.4s;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    opacity: 1;
+                    border-radius: 15px;
+                }
+
+                .second-content {
+                    height: 0%;
+                    width: 100%;
+                    opacity: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 15px;
+                    transition: all 0.4s;
+                    font-size: 0px;
+                    transform: rotate(90deg) scale(-1);
+                }
+
+
+                .outer {
+                    width: 100%;
+                    height: 150px;
+                    border-radius: 10px;
+                    padding: 1px;
+                    background: radial-gradient(circle 230px at 0% 0%, #ffffff, #0c0d0d);
+                    position: relative;
+                }
+
+                .dot {
+                    width: 5px;
+                    aspect-ratio: 1;
+                    position: absolute;
+                    background-color: $background-color_1;
+                    box-shadow: 0 0 10px #ffffff;
+                    border-radius: 100px;
+                    z-index: 2;
+                    right: 10%;
+                    top: 10%;
+                    animation: moveDot 6s linear infinite;
+                }
+
+
+                .ray {
+                    width: 220px;
+                    height: 45px;
+                    border-radius: 100px;
+                    position: absolute;
+                    background-color: $background-color_2;
+                    opacity: 0.4;
+                    box-shadow: 0 0 50px #fff;
+                    filter: blur(10px);
+                    transform-origin: 10%;
+                    top: 0%;
+                    left: 0;
+                    transform: rotate(40deg);
+                }
+
+                .line {
+                    width: 100%;
+                    height: 1px;
+                    position: absolute;
+                    background-color: $background-color_3;
+                }
+
+                .topl {
+                    top: 10%;
+                    background: linear-gradient(90deg, #888888 30%, #1d1f1f 70%);
+                }
+
+                .bottoml {
+                    bottom: 10%;
+                }
+
+                .leftl {
+                    left: 10%;
+                    width: 1px;
+                    height: 100%;
+                    background: linear-gradient(180deg, #747474 30%, #222424 70%);
+                }
+
+                .rightl {
+                    right: 10%;
+                    width: 1px;
+                    height: 100%;
+                }
+
+            }
+        }
+
+    }
+}
+
+
+
+@media (max-width: 700px) {
+    #contact {
+        .contact {
+            flex-direction: column;
+            gap: 10px;
+
+            .left {
+                grid-template-columns: 1fr 1fr;
+
+            }
+
+            .right {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    #contact {
+        .contact {
+            flex-direction: column;
+            gap: 10px;
+
+            .left {
+                grid-template-columns: 1fr 1fr;
+
+                .boxes {
+
+                    .card {
+                        width: 100px;
+                        height: 100px;
+                        background: rgb(103, 225, 255);
+                        transition: all 0.4s;
+                        border-radius: 10px;
+                        box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+                        font-size: 20px;
+                        font-weight: 500;
+
+                        &:hover {
+                            border-radius: 15px;
+                            cursor: pointer;
+                            transform: scale(1.2);
+                            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+                            background: rgb(103, 151, 255);
+
+                            .first-content {
+                                height: 0px;
+                                opacity: 0;
+                            }
+
+                            .second-content {
+                                opacity: 1;
+                                height: 100%;
+                                font-size: 1rem;
+                                transform: rotate(0deg);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .right {
+                grid-template-columns: 1fr 1fr;
+                .boxes {
+
+                    .card {
+                        width: 100px;
+                        height: 100px;
+                        background: rgb(103, 225, 255);
+                        transition: all 0.4s;
+                        border-radius: 10px;
+                        box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+                        font-size: 20px;
+                        font-weight: 500;
+
+                        &:hover {
+                            border-radius: 15px;
+                            cursor: pointer;
+                            transform: scale(1.2);
+                            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+                            background: rgb(103, 151, 255);
+
+                            .first-content {
+                                height: 0px;
+                                opacity: 0;
+                            }
+
+                            .second-content {
+                                opacity: 1;
+                                height: 100%;
+                                font-size: 1rem;
+                                transform: rotate(0deg);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { useSwipeable } from 'react-swipeable'; // Yeni eklendi
+import { useSwipeable } from 'react-swipeable';
 
 const images = [
   "https://cinepoligulf-1.s3.ap-south-1.amazonaws.com/uploads/images/movies/1712210346686blob",
@@ -60,7 +60,7 @@ const Hero = () => {
     onSwipedLeft: () => handleNextClick(),
     onSwipedRight: () => handlePrevClick(),
     preventScrollOnSwipe: true,
-    trackMouse: true // fare ile kaydırmayı da destekler
+    trackMouse: true
   });
 
   return (
