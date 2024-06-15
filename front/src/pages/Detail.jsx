@@ -1,46 +1,45 @@
 import React, { useState } from 'react';
 import "./assets/scss/Detail.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { faTicket } from '@fortawesome/free-solid-svg-icons';
 
 const Detail = () => {
-  
+
 
   return (
     <section id="detail">
-      <div className="container info">
-        <div className="card">
-          <div className="card-inner">
-            <div className="card-front">
-              <div className="img">
-                <img 
-                  src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-poster-template-design-21a1c803fe4ff4b858de24f5c91ec57f_screen.jpg?ts=1636996180" 
-                  alt="Movie Poster" 
-                />
-              </div>
-              <h2>Detail</h2>
+      <div className="container detail">
+        <div className="left">
+          <div className="info">
+          <FontAwesomeIcon className='ticket' icon={faTicket} />
+            <div className="img">
+              <img src="https://m.media-amazon.com/images/I/91iiMiqj6FL._AC_UF894,1000_QL80_.jpg" alt="" />
             </div>
-            <div className="card-back">
+            <div className="infoinfo">
               <div className="name">
                 <h2>Movie :</h2>
-                <p>Alpha</p>
+                <p>Avatar</p>
               </div>
               <div className="genre">
                 <h2>Genre :</h2>
-                <p>Drama, Action, 3D, IMAX</p>
+                <p>Dram,Action,3D,IMAX</p>
               </div>
               <div className="director">
                 <h2>Director :</h2>
-                <p>Kelsey Man</p>
-              </div>
-              <div className="play">
-                <h2>Trailer</h2>
-                <Link to="https://youtu.be/MBTlfH1YIgs?si=nt-C_Z60FeIKOj-k" target='_blank' className="button" >
-                  <FontAwesomeIcon className="svg" icon={faPlay} />
-                </Link>
+                <p>Umud Alizada</p>
               </div>
             </div>
+          </div>
+          <div className="iframe">
+          <iframe  src="https://www.youtube.com/embed/3G6J-ITWekA?si=mQbHvCvXGdY295tI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div className="right">
+          <div className="img">
+            <img src="https://parkcinema.az/uploads/structures/banners/files/Park_Cinema_banner_Az-04.png" alt="" />
+          </div>
+          <div className="img">
+            <img src="https://parkcinema.az/uploads/structures/banners/files/wolt-sayt-baner.png" alt="" />
           </div>
         </div>
       </div>
