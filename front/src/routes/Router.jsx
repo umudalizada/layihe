@@ -1,6 +1,7 @@
 import Layout from "../layout/Layout";
 import About from "../pages/About";
 import Basket from "../pages/Basket";
+import BuyTicket from "../pages/BuyTicket";
 import Contact from "../pages/Contact";
 import Detail from "../pages/Detail";
 import Home from "../pages/Home";
@@ -38,6 +39,12 @@ export const routers = [
       {
         path: '/about',
         element: <About/>
+      },
+      ,
+      
+      {
+        path: '/buyticket',
+        element: <BuyTicket/>
       },
     ]
   },

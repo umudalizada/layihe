@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRightToBracket, faBars, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRightToBracket, faBars, faComments, faUser } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
@@ -10,6 +10,9 @@ const Navbar = () => {
       <Header />
       <nav className='navbarBody'>
         <div className="container navbar">
+          <div className="asistanAbsalute">
+          <FontAwesomeIcon className='asistan' icon={faComments} />
+          </div>
           <div className="logo">
             <h5 className='h5'>
               <FontAwesomeIcon icon={faArrowRightToBracket} />

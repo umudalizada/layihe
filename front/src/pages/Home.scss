@@ -1,5 +1,6 @@
 
 #hero {
+    padding-top: 150px;
     .slider {
         position: relative;
         overflow: hidden; // Slaytların taşmasını önlemek için
@@ -313,6 +314,21 @@
     gap: 20px;
     width: 100%;
 
+    .buyTicket {
+        text-decoration: none;
+        cursor: pointer;
+            transition: 0.5s;
+            width: 90px;
+            padding: 5px;
+            background-color: rgb(174, 0, 0);
+            color: #D6D6D6;
+            border: 1px solid #D6D6D6;
+            border-radius: 4px;
+        }
+        .buyTicket:hover {
+            background-color: #D6D6D6;
+            color: black;
+        }
     .filterButton {
     cursor: pointer;
 

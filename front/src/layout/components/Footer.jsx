@@ -10,8 +10,9 @@ const Footer = () => {
     <section id='footer'>
       <div className='container footer'>
         <div className="footerTop">
-          <ul>
-            <h2>Company</h2>
+          <div className="fotCompany">
+          <h2>Company</h2>
+            <ul>
             <li><Link className='link'>CinePolis Cinema</Link></li>
             <li>
               <button href="#" className="playstore-button">
@@ -54,30 +55,38 @@ const Footer = () => {
                   <span className="text-2">App store</span>
                 </span>
               </button >
-
             </li>
           </ul>
-          <ul>
+          </div>
+          <div className="fotName">
             <h2>Pay Methods</h2>
+          <ul>
             <li><FontAwesomeIcon className='footicon' icon={faCcMastercard} /></li>
             <li><FontAwesomeIcon className='footicon' icon={faCcVisa} /></li>
             <li><FontAwesomeIcon className='footicon' icon={faApplePay} /></li>
             <li><FontAwesomeIcon className='footicon' icon={faGooglePay} /></li>
             <li><FontAwesomeIcon className='footicon' icon={faPaypal} /></li>
           </ul>
+          </div>
+          <div className="fotName">
+          <h2>Social Media</h2>
+
           <ul>
-            <h2>Social Media</h2>
             <li><FontAwesomeIcon className='footicon' icon={faWhatsapp} /></li>
             <li><FontAwesomeIcon className='footicon' icon={faInstagram} /></li>
             <li><FontAwesomeIcon className='footicon' icon={faFacebook} /></li>
             <li><FontAwesomeIcon className='footicon' icon={faTelegram} /></li>
           </ul>
+          </div>
+          <div className="fotName">
+          <h2>Help</h2>
+
           <ul>
-            <h2>Help</h2>
             <ul>
               <li><FontAwesomeIcon className='footicon' icon={faComments} /></li>
             </ul>
           </ul>
+          </div>
         </div>
       </div>
       <div className="autor">

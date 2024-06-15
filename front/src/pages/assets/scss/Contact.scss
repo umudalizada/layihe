@@ -10,6 +10,7 @@ $background-color_3: #64ffda;
 
 
 #contact {
+    padding-top: 150px;
     width: 100%;
     height: 100%;
     --color: rgba(114, 114, 114, 0.3);
@@ -169,7 +170,6 @@ $background-color_3: #64ffda;
                 padding-inline: 2em;
                 padding-bottom: 0.4em;
                 background-color: $background-color_1;
-                //background-color: #0a192f;
                 border-radius: 20px;
             }
 

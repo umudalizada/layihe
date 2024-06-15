@@ -1,6 +1,5 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBorderAll, faFilm } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 
 const FilterComp = () => {
@@ -11,6 +10,8 @@ const FilterComp = () => {
       <button className="filterButton">LaseR</button>
       <button className="filterButton">3D</button>
       <button className="filterButton">2D</button>
+      <Link to="./buyTicket" className='buyTicket'>Buy Ticket
+</Link>
     </div>
   )
 }

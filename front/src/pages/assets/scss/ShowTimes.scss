@@ -43,6 +43,8 @@ $background-color_3: var(--color);
 }
 
 #showTime {
+    padding-top: 150px;
+
     width: 100%;
     height: 100%;
     --color: rgba(46, 46, 46, 0.3);
@@ -189,7 +191,7 @@ $background-color_3: var(--color);
                     position: absolute;
                     inset: 6px;
                     background: rgba(0, 0, 0, 0.6);
-                    z-index: 2;
+                    z-index: 1;
                 }
 
                 .film-poster {
