@@ -6,6 +6,7 @@ import Contact from "../pages/Contact";
 import Detail from "../pages/Detail";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import Movie from "../pages/Movie";
 import ShowTimes from "../pages/ShowTimes";
 
 export const routers = [
@@ -40,7 +41,11 @@ export const routers = [
         path: '/about',
         element: <About/>
       },
-      ,
+      
+      {
+        path: '/table',
+        element: <Movie/>
+      },
       
       {
         path: '/buyticket',

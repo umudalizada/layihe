@@ -33,6 +33,11 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
+              <Link to="./table" className='navLink' smooth={true} duration={500}>
+                Movie Table
+              </Link>
+            </li>
+            <li>
               <Link to="./contact" className='navLink' smooth={true} duration={500}>Contact</Link>
             </li>
             <li>
