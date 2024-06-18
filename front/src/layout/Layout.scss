@@ -424,8 +424,9 @@
 @media (max-width:420px) {
     #footer {
         .footerTop {
-            grid-template-columns: 1fr;
-
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             .footerleft {
                 img {
                     width: 50%;
