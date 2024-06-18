@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./assets/scss/Detail.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicket } from '@fortawesome/free-solid-svg-icons';
-
+import { Link } from 'react-router-dom';
 const Detail = () => {
 
 
@@ -11,7 +11,9 @@ const Detail = () => {
       <div className="container detail">
         <div className="left">
           <div className="info">
-          <FontAwesomeIcon className='ticket' icon={faTicket} />
+            <Link to="/buyticket">
+              <FontAwesomeIcon className='ticket' icon={faTicket} />
+            </Link>
             <div className="img">
               <img src="https://m.media-amazon.com/images/I/91iiMiqj6FL._AC_UF894,1000_QL80_.jpg" alt="" />
             </div>
@@ -31,7 +33,7 @@ const Detail = () => {
             </div>
           </div>
           <div className="iframe">
-          <iframe  src="https://www.youtube.com/embed/3G6J-ITWekA?si=mQbHvCvXGdY295tI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/3G6J-ITWekA?si=mQbHvCvXGdY295tI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
         </div>
         <div className="right">

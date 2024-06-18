@@ -1,5 +1,6 @@
 import Layout from "../layout/Layout";
 import About from "../pages/About";
+import Admin from "../pages/Admin";
 import Basket from "../pages/Basket";
 import BuyTicket from "../pages/BuyTicket";
 import Contact from "../pages/Contact";
@@ -7,6 +8,7 @@ import Detail from "../pages/Detail";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Movie from "../pages/Movie";
+import Profil from "../pages/Profil";
 import ShowTimes from "../pages/ShowTimes";
 
 export const routers = [
@@ -51,11 +53,20 @@ export const routers = [
         path: '/buyticket',
         element: <BuyTicket/>
       },
+      
+      {
+        path: '/profile',
+        element: <Profil/>
+      },
     ]
   },
         
   {
     path: '/login',
     element: <Login />
+  },
+  {
+    path: '/admin',
+    element: <Admin />
   },
 ]

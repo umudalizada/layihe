@@ -1,11 +1,11 @@
-$color_1: #64ffda;
+$color_1: #585a5a;
 $color_2: white;
 $color_3: #ccd6f6;
-$color_4: #000;
+$color_4: #ffffff;
 $font-family_1: inherit;
 $background-color_1: #171717;
 $background-color_2: transparent;
-$background-color_3: #64ffda;
+$background-color_3: #6d6d6d;
 
 
 
@@ -36,7 +36,7 @@ $background-color_3: #64ffda;
                 .card {
                     width: 150px;
                     height: 150px;
-                    background: rgb(103, 225, 255);
+                    background: rgb(97, 98, 98);
                     transition: all 0.4s;
                     border-radius: 10px;
                     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
@@ -215,7 +215,7 @@ $background-color_3: #64ffda;
                 background-color: $background-color_2;
                 color: $color_1;
                 font-weight: bold;
-                outline: 1px solid #64ffda;
+                outline: 1px solid #646464;
                 transition: all ease-in-out 0.3s;
 
                 &:hover {
@@ -228,12 +228,12 @@ $background-color_3: #64ffda;
             }
 
             .form-card1 {
-                background-image: linear-gradient(163deg, #64ffda 0%, #64ffda 100%);
+                background-image: linear-gradient(163deg, #4f4f4f 0%, #9da09f 100%);
                 border-radius: 22px;
                 transition: all 0.3s;
 
                 &:hover {
-                    box-shadow: 0px 0px 30px 1px rgba(100, 255, 218, 0.3);
+                    box-shadow: 0px 0px 30px 1px rgba(67, 67, 67, 0.3);
                 }
             }
 
@@ -261,7 +261,7 @@ $background-color_3: #64ffda;
                 .card {
                     width: 150px;
                     height: 150px;
-                    background: rgb(103, 225, 255);
+                    background: rgb(97, 98, 98);
                     transition: all 0.4s;
                     border-radius: 10px;
                     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);

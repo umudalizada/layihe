@@ -6,6 +6,10 @@ import { Link } from 'react-router-dom'
 import { faApplePay, faCcMastercard, faCcVisa, faFacebook, faGooglePay, faInstagram, faPaypal, faTelegram, faTiktok, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 
 const Footer = () => {
+  const handleExternalLink = (url) => (event) => {
+    event.preventDefault();
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
   return (
     <section id='footer'>
       <div className='container footer'>
@@ -15,7 +19,7 @@ const Footer = () => {
             <ul>
             <li><Link className='link'>CinePolis Cinema</Link></li>
             <li>
-              <button href="#" className="playstore-button">
+              <button onClick={handleExternalLink("https://play.google.com/store/apps/details?id=az.parkcinema.app&hl=en_US&pli=1")} href="#" className="playstore-button">
                 <svg
                   viewBox="0 0 512 512"
                   className="icon"
@@ -31,7 +35,7 @@ const Footer = () => {
               </button>
             </li>
             <li>
-              <button href="#" className="playstore-button">
+              <button onClick={handleExternalLink("https://apps.apple.com/om/app/park-cinema/id1119977600")} href="#" className="playstore-button">
                 <span className="icon">
                   <svg
                     fill="currentcolor"

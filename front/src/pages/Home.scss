@@ -3,7 +3,7 @@
     padding-top: 150px;
     .slider {
         position: relative;
-        overflow: hidden; // Slaytların taşmasını önlemek için
+        overflow: hidden; 
 
         .image {
             position: relative;
@@ -12,16 +12,16 @@
                 width: 100%;
                 height: 800px;
                 display: block;
-                transition: opacity 0.5s ease-in-out; // Geçiş animasyonu
-                opacity: 0; // Başlangıçta görünmez
-                position: absolute; // Mutlak konumlandırma
+                transition: opacity 0.5s ease-in-out;                
+                opacity: 0; 
+                position: absolute; 
                 top: 0;
                 left: 0;
             }
 
             img.active {
-                opacity: 1; // Aktif slayt görünür
-                position: relative; // Aktif slayt yerinde kalır
+                opacity: 1; 
+                position: relative; 
             }
 
             .arrow {
@@ -69,6 +69,7 @@
 
 @media (max-width:600px) {
     #hero {
+        padding-top: 130px;
         .slider {
             .image {
                 img {
@@ -95,9 +96,36 @@
 
 }
 
-@media (max-width:420px) {
+@media (max-width:485px) {
 
     #hero {
+        padding-top: 110px;
+        .slider {
+            .image {
+                img {
+                    height: 200px;
+                }
+
+                .arrow {
+                    font-size: 24px;
+                }
+            }
+
+            .dots {
+                .dot {
+                    width: 8px;
+                    height: 8px;
+                }
+
+            }
+
+        }
+    }
+}
+@media (max-width:340px) {
+
+    #hero {
+        padding-top: 90px;
         .slider {
             .image {
                 img {
