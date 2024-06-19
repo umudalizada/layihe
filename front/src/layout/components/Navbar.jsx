@@ -13,7 +13,7 @@ const Navbar = () => {
   const closeMenu = () => {
     setMenuOpen(false);
   };
-
+  
   return (
     <>
       <nav className='navbarBody'>
