@@ -1,13 +1,12 @@
 #about {
   padding-top: 150px;
-
     position: relative;
     width: 100%;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff; // Text color for contrast
+    color: #fff;
   
     .background-video {
       position: absolute;
@@ -17,7 +16,7 @@
       height: 100%;
       object-fit: cover;
       transform: translate(-50%, -50%);
-      z-index: -1; // Ensure video is behind the content
+      z-index: -1; 
     }
   
     .content {
@@ -25,7 +24,7 @@
       z-index: 1;
       text-align: center;
       padding: 20px;
-      background: rgba(0, 0, 0, 0.5); // Optional: Adds a semi-transparent background to the text for better readability
+      background: rgba(0, 0, 0, 0.5); 
       border-radius: 10px;
       max-width: 80%;
       margin: 0 auto;

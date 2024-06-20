@@ -2,12 +2,20 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useSwipeable } from 'react-swipeable';
+import hero from "../assets/Images/hero.jpg"
+import hero2 from "../assets/Images/hero2.jpg"
+import hero3 from "../assets/Images/hero3.jpg"
+import hero4 from "../assets/Images/hero3.jpg"
+
+
+
 
 const images = [
-  "https://cinepoligulf-1.s3.ap-south-1.amazonaws.com/uploads/images/movies/1712210346686blob",
-  "https://cms-assets.webediamovies.pro/cdn-cgi/image/dpr=1,fit=scale-down,gravity=auto,metadata=none,quality=85,width=2000/production/241/f0b74118c732a5e6188119c8b5fef2bb.jpg",
-  "https://cms-assets.webediamovies.pro/cdn-cgi/image/dpr=1,fit=scale-down,gravity=auto,metadata=none,quality=85,width=2000/production/2/6c54150f09874301dfc2c30136c3388b.jpg",
-  "https://cms-assets.webediamovies.pro/cdn-cgi/image/dpr=1,fit=scale-down,gravity=auto,metadata=none,quality=85,width=2000/production/2/03333239af6186119c38c7298aa3d1cc.jpg"
+  hero,
+  hero2,
+ hero3,
+ hero4,
+
 ];
 
 const Hero = () => {
@@ -55,7 +63,6 @@ const Hero = () => {
     };
   }, [currentIndex, isUserInteracting]);
 
-  // Swipeable handlers
   const handlers = useSwipeable({
     onSwipedLeft: () => handleNextClick(),
     onSwipedRight: () => handlePrevClick(),

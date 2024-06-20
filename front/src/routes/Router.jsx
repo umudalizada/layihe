@@ -21,10 +21,9 @@ export const routers = [
         element: <Home />
       },
       {
-        path: '/detail',
-        element: <Detail />
+        path: "/detail/:id",
+        element: <Detail />,
       },
-      
       {
         path: '/contact',
         element: <Contact />

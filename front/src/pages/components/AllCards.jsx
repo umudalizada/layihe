@@ -1,86 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleInfo, faTicket } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllData } from '../../service/requests'
+import { addTickets } from '../../redux/slice/ticketSlice'
 
 const AllCards = () => {
+    const data = useSelector((state) => state.allTicket.tickets)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        getAllData("tickets").then((res) => {
+            dispatch(addTickets(res));
+        });
+    }, [data])
     return (
         <div className="allCards">
-            
-            <div className="card">
-                <Link to="./detail">
-                    <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
-                </Link>
-                <Link to="./detail">
-                <img src="https://m.media-amazon.com/images/I/71JAK4XJv0L._AC_UF894,1000_QL80_.jpg" alt="" />
-                </Link>
-                
-            </div>
-            
-            <div className="card">
-                <Link to="./detail">
-                    <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
-                </Link>
-                <Link to="./detail">
-                <img src="https://m.media-amazon.com/images/I/71JAK4XJv0L._AC_UF894,1000_QL80_.jpg" alt="" />
-                </Link>
-            </div>
-            
-            <div className="card">
-                <Link to="./detail">
-                    <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
-                </Link>
-                <Link to="./detail">
-                <img src="https://m.media-amazon.com/images/I/71JAK4XJv0L._AC_UF894,1000_QL80_.jpg" alt="" />
-                </Link>
-            </div>
-            
-            <div className="card">
-                <Link to="./detail">
-                    <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
-                </Link>
-                <Link to="./detail">
-                <img src="https://m.media-amazon.com/images/I/71JAK4XJv0L._AC_UF894,1000_QL80_.jpg" alt="" />
-                </Link>
-            </div>
-            
-            <div className="card">
-                <Link to="./detail">
-                    <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
-                </Link>
-                <Link to="./detail">
-                <img src="https://m.media-amazon.com/images/I/71JAK4XJv0L._AC_UF894,1000_QL80_.jpg" alt="" />
-                </Link>
-            </div>
-            
-            <div className="card">
-                <Link to="./detail">
-                    <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
-                </Link>
-                <Link to="./detail">
-                <img src="https://m.media-amazon.com/images/I/71JAK4XJv0L._AC_UF894,1000_QL80_.jpg" alt="" />
-                </Link>
-            </div>
-            
-            <div className="card">
-                <Link to="./detail">
-                    <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
-                </Link>
-                <Link to="./detail">
-                <img src="https://m.media-amazon.com/images/I/71JAK4XJv0L._AC_UF894,1000_QL80_.jpg" alt="" />
-                </Link>
-            </div>
-
-            <div className="card">
-                <Link to="./detail">
-                    <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
-                </Link>
-                <Link to="./detail">
-                <img src="https://m.media-amazon.com/images/I/71JAK4XJv0L._AC_UF894,1000_QL80_.jpg" alt="" />
-                </Link>
-            </div>
-
-
+            {
+                data && data.map((elem, i) => {
+                    return (
+                        <Link to={`/detail/${elem._id}`}>
+                            <div key={i} className="card">
+                                <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
+                                <img src={elem.image} alt="" />
+                            </div>
+                        </Link>
+                    )
+                })
+            }
         </div>
     )
 }

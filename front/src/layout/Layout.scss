@@ -418,6 +418,27 @@
         .footerTop {
             grid-template-columns: 1fr 1fr;
         }
+        .fotName{
+          h2{
+            text-align: center;
+          }
+          ul{
+            li{
+              button{
+                .icon{
+                  
+                width: 20px;
+                height: 20px;
+                }
+              }
+            }
+          }
+        }
+        .fotCompany{
+          h2{
+            text-align: center;
+          }
+        }
     }
 }
 

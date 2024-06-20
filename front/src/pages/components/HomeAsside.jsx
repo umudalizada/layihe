@@ -1,17 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addReklams } from '../../redux/slice/ticketSlice'
+import { getAllData } from '../../service/requests'
 
 const HomeAsside = () => {
+  const data = useSelector((state) => state.allTicket.reklams)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    getAllData("reklams").then((res) => {
+      dispatch(addReklams(res));
+    });
+  }, [data])
+
+
+  const handleExternalLink = (url) => (event) => {
+    event.preventDefault();
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+  
   return (
     <div className='advert'>
-      <div className="reklam">
-      <img src="https://parkcinema.az/uploads/structures/banners/files/Park_Cinema_banner_Az-04.png" alt="" />
+      {
+        data && data.map((elem,i)=>{
+          return(
+            
+      <div key={i} className="reklam" onClick={handleExternalLink(elem.reklamLink)}>
+      <img src={elem.image} alt="reklam" />
       </div>
-      <div className="reklam">
-      <img src="https://parkcinema.az/uploads/structures/banners/files/wolt-sayt-baner.png" alt="" />
-      </div>
-      <div className="reklam">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF1AFkvJkgvMu41pZja4Zgkd4s9yyXTnTmhQ&s" alt="" />
-      </div>
+          )
+        })
+      }
     </div>
   )
 }

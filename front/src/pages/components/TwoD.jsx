@@ -1,62 +1,60 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleInfo, faTicket } from '@fortawesome/free-solid-svg-icons'
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllData } from '../../service/requests'
+import { addReklams } from '../../redux/slice/ticketSlice'
 
 const TwoD = () => {
-    return (
+  const data = useSelector((state) => state.allTicket.tickets)
+  const dispatch = useDispatch()
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-        <section id='twoD'>
-            <div className="container triDinfo">
-                <h2>2D</h2>
+  useEffect(() => {
+    getAllData("tickets")
+      .then((res) => {
+        dispatch(addReklams(res))
+        setLoading(false)
+      })
+      .catch((err) => {
+        setError(err.message)
+        setLoading(false)
+      })
+  }, [dispatch])
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
+
+  if (error) {
+    return <p>Error loading data: {error}</p>
+  }
+
+  const twoDMovies = data ? data.filter(movie => movie.category && movie.category.includes("2D")) : []
+
+  return (
+    <section id='twoD'>
+      <div className="container triDinfo">
+        <h2>2D</h2>
+      </div>
+      <div className="container allCards triD">
+        {twoDMovies.length > 0 ? (
+          twoDMovies.map((movie,i) => (
+            <Link to={`/detail/${movie._id}`}>
+            <div key={i} className="card">
+              <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
+              <img src={movie.image} alt="" />
             </div>
-            <div className="container allCards triD">
-
-                <div className="card">
-                    <Link to="./detail">
-                        <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
-                    </Link>
-                    <Link to="./detail">
-                    <img src="https://parkcinema.az/uploads/structures/movies/images/d4MPhWEMprsrH35D8Yr6ytLK8we_resized.jpg" alt="" />
-
-                    </Link>
-                </div>
-                <div className="card">
-                    <Link to="./detail">
-                        <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
-                    </Link>
-                    <Link to="./detail">
-                    <img src="https://parkcinema.az/uploads/structures/movies/images/d4MPhWEMprsrH35D8Yr6ytLK8we_resized.jpg" alt="" />
-
-                    </Link>
-                </div>
-                
-                <div className="card">
-                    <Link to="./detail">
-                        <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
-                    </Link>
-                    <Link to="./detail">
-                    <img src="https://parkcinema.az/uploads/structures/movies/images/d4MPhWEMprsrH35D8Yr6ytLK8we_resized.jpg" alt="" />
-
-                    </Link>
-                </div>
-                
-                <div className="card">
-                    <Link to="./detail">
-                        <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
-                    </Link>
-                    <Link to="./detail">
-                    <img src="https://parkcinema.az/uploads/structures/movies/images/d4MPhWEMprsrH35D8Yr6ytLK8we_resized.jpg" alt="" />
-
-                    </Link>
-                </div>
-
-
-            </div>
-
-        </section>
-    )
+          </Link>
+          ))
+        ) : (
+          <p>No 2D movies available</p>
+        )}
+      </div>
+    </section>
+  )
 }
 
 export default TwoD

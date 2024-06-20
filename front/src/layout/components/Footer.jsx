@@ -17,7 +17,6 @@ const Footer = () => {
           <div className="fotCompany">
           <h2>Company</h2>
             <ul>
-            <li><Link className='link'>CinePolis Cinema</Link></li>
             <li>
               <button onClick={handleExternalLink("https://play.google.com/store/apps/details?id=az.parkcinema.app&hl=en_US&pli=1")} href="#" className="playstore-button">
                 <svg

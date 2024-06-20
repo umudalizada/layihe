@@ -1,10 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import "./assets/scss/Detail.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicket } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
-const Detail = () => {
+import { Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addReklams } from '../redux/slice/ticketSlice';
+import { getAllData } from '../service/requests';
 
+const Detail = () => {
+  
+  const handleExternalLink = (url) => (event) => {
+    event.preventDefault();
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+  const reklamdata = useSelector((state) => state.allTicket.reklams)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    getAllData("reklams").then((res) => {
+      dispatch(addReklams(res));
+    });
+  }, [reklamdata])
+
+  const { id } = useParams();
+  const data = useSelector(state => state.allTicket.tickets);
+  
+  const control = data.find(el => el._id === id);
+
+  if (!control) {
+    return <div>Movie not found</div>;
+  }
 
   return (
     <section id="detail">
@@ -15,34 +39,47 @@ const Detail = () => {
               <FontAwesomeIcon className='ticket' icon={faTicket} />
             </Link>
             <div className="img">
-              <img src="https://m.media-amazon.com/images/I/91iiMiqj6FL._AC_UF894,1000_QL80_.jpg" alt="" />
+              <img src={control.image} alt={control.name} />
             </div>
             <div className="infoinfo">
               <div className="name">
-                <h2>Movie :</h2>
-                <p>Avatar</p>
+                <h2>Movie:</h2>
+                <p>{control.name}</p>
               </div>
               <div className="genre">
-                <h2>Genre :</h2>
-                <p>Dram,Action,3D,IMAX</p>
+                <h2>Genre:</h2>
+                <p>{control.category.join(', ')}</p>
               </div>
-              <div className="director">
-                <h2>Director :</h2>
-                <p>Umud Alizada</p>
+              <div className="price">
+                <h2>Price:</h2>
+                <p>${control.price}</p>
+              </div>
+              <div className="date">
+                <h2>Date:</h2>
+                <p>{new Date(control.date).toLocaleDateString()}</p>
+              </div>
+              <div className="showtimes">
+                <h2>Showtimes:</h2>
+                <p>{control.seans.join(', ')}</p>
               </div>
             </div>
           </div>
           <div className="iframe">
-            <iframe src="https://www.youtube.com/embed/3G6J-ITWekA?si=mQbHvCvXGdY295tI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe src={control.iframe} title={`${control.name} Trailer`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
           </div>
         </div>
         <div className="right">
-          <div className="img">
-            <img src="https://parkcinema.az/uploads/structures/banners/files/Park_Cinema_banner_Az-04.png" alt="" />
-          </div>
-          <div className="img">
-            <img src="https://parkcinema.az/uploads/structures/banners/files/wolt-sayt-baner.png" alt="" />
-          </div>
+          {
+            reklamdata && reklamdata.map((elem,i)=>{
+              return(
+
+                <div onClick={handleExternalLink(elem.reklamLink)} key={i} className="img">
+                <img src={elem.image} alt="Ad" />
+              </div>
+              )
+            })
+          }
+          
         </div>
       </div>
     </section>
