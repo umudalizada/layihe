@@ -1,6 +1,7 @@
 import Layout from "../layout/Layout";
 import About from "../pages/About";
 import Admin from "../pages/Admin";
+import AsistanChat from "../pages/AsistanChat";
 import Basket from "../pages/Basket";
 import BuyTicket from "../pages/BuyTicket";
 import Contact from "../pages/Contact";
@@ -36,6 +37,10 @@ export const routers = [
       {
         path: '/basket',
         element: <Basket/>
+      },
+      {
+        path: '/chat',
+        element: <AsistanChat/>
       },
       
       {

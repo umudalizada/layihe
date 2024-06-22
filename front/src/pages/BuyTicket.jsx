@@ -8,13 +8,11 @@ const BuyTicket = () => {
   const [quantity, setQuantity] = useState(1);
   const [total, setTotal] = useState(0);
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const ticketPrice = 50; // Example ticket price, adjust as needed
+  const ticketPrice = 50; 
 
-  // Handle quantity change
   const handleQuantityChange = (action) => {
     setQuantity(prev => {
       const newQuantity = action === 'increment' ? Math.min(prev + 1, 60) : Math.max(prev - 1, 1);
-      // Adjust selected seats if new quantity is less than current number of selected seats
       if (newQuantity < selectedSeats.length) {
         setSelectedSeats(prevSelectedSeats => prevSelectedSeats.slice(0, newQuantity));
       }

@@ -31,6 +31,8 @@
     "sass": "^1.77.4",
     "skeleton-css": "^2.0.4",
     "slick-carousel": "^1.8.1",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5",
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
