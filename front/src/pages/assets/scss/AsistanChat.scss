@@ -1,120 +1,125 @@
 .chatContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 180px 20px 50px 180px;
+  background: #f5f5f5;
+
+  .messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+  }
+
+  .message {
+    max-width: 70%; /* Max genişlik ayarı */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    clear: both;
+    position: relative;
+    font-size: 16px;
     display: flex;
-    flex-direction: column;
-    height: 100vh;
-    padding: 180px 20px 50px 180px;
-    background: #f5f5f5;
-  
-    .messages {
-      flex: 1;
-      overflow-y: auto;
-      margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .messageContent {
+      max-width: 90%; /* Max genişlik ayarı */
     }
-  
-    .message {
-      max-width: 70%; /* Max genişlik ayarı */
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 10px;
-      clear: both;
-      position: relative;
-      font-size: 16px;
-  
-      &:after {
-        content: "";
-        clear: both;
-        display: table;
-      }
-    }
-  
-    .sent {
-      float: right;
-      background-color: #007bff;
-      color: white;
-    }
-  
-    .received {
-      float: left;
-      background-color: #4caf50;
-      color: white;
-    }
-  
-    .messageText {
-      margin: 5px 0;
-    }
-  
+
     .messageSender {
       font-weight: bold;
       margin-bottom: 3px;
     }
-  
-    .messageTime {
-      font-size: 12px;
-      color: #777;
-      position: absolute;
-      bottom: -15px;
-      right: 5px;
+
+    .messageText {
+      margin: 5px 0;
     }
-  
-    .inputContainer {
-      display: flex;
-      flex-shrink: 0;
-  
-      input {
-        flex: 1;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px 0 0 5px;
-        outline: none;
-        font-size: 16px;
-      }
-  
-      button {
-        padding: 10px 20px;
-        border: none;
-        background: #007bff;
-        color: #fff;
-        border-radius: 0 5px 5px 0;
-        cursor: pointer;
-  
-        &:hover {
-          background: #0056b3;
-        }
-      }
+
+    &:after {
+      content: "";
+      clear: both;
+      display: table;
     }
-  
-    @media (max-width: 768px) {
-      padding-top: 180px;
-  
-      .inputContainer {
-        input,
-        button {
-          font-size: 14px;
-          padding: 8px;
-        }
-      }
-  
-      .messages .message {
-        font-size: 14px;
-      }
+  }
+
+  .sent {
+    float: right;
+    background-color: #007bff;
+    color: white;
+  }
+
+  .received {
+    float: left;
+    background-color: #4caf50;
+    color: white;
+  }
+
+  .messageTime {
+    font-size: 12px;
+    color: #777;
+    margin-left: 10px;
+    white-space: nowrap;
+  }
+
+  .inputContainer {
+    display: flex;
+    flex-shrink: 0;
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+      font-size: 16px;
     }
-  
-    @media (max-width: 480px) {
-      padding-top: 150px;
-  
-      .inputContainer {
-        flex-direction: column;
-  
-        input {
-          border-radius: 5px;
-          margin-bottom: 5px;
-        }
-  
-        button {
-          border-radius: 5px;
-          width: 100%;
-        }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #007bff;
+      color: #fff;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+
+      &:hover {
+        background: #0056b3;
       }
     }
   }
-  
+
+  @media (max-width: 768px) {
+    padding-top: 180px;
+
+    .inputContainer {
+      input,
+      button {
+        font-size: 14px;
+        padding: 8px;
+      }
+    }
+
+    .messages .message {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding-top: 150px;
+
+    .inputContainer {
+      flex-direction: column;
+
+      input {
+        border-radius: 5px;
+        margin-bottom: 5px;
+      }
+
+      button {
+        border-radius: 5px;
+        width: 100%;
+      }
+    }
+  }
+}

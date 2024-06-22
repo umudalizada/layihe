@@ -4,7 +4,7 @@ import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllData } from '../../service/requests'
-import { addReklams } from '../../redux/slice/ticketSlice'
+import { addReklams } from '../../redux/slice/reklamSlice'
 
 const Laser = () => {
   const data = useSelector((state) => state.allTicket.tickets)

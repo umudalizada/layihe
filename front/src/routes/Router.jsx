@@ -38,10 +38,6 @@ export const routers = [
         path: '/basket',
         element: <Basket/>
       },
-      {
-        path: '/chat',
-        element: <AsistanChat/>
-      },
       
       {
         path: '/about',
@@ -72,5 +68,10 @@ export const routers = [
   {
     path: '/admin',
     element: <Admin />
+  },
+  
+  {
+    path: '/chat',
+    element: <AsistanChat/>
   },
 ]

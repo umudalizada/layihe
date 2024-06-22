@@ -3,16 +3,16 @@ import "./assets/scss/Table.scss";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllData } from '../service/requests';
-import { addReklams } from '../redux/slice/ticketSlice';
+import { addTickets } from '../redux/slice/ticketSlice';
 
 const Movie = () => {
-  const data = useSelector((state) => state.allTicket.reklams);
+  const data = useSelector((state) => state.allTicket.tickets);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getAllData("tickets").then((res) => {
-      dispatch(addReklams(res));
+      dispatch(addTickets(res));
       setLoading(false);
     }).catch((error) => {
       console.error("Error fetching data:", error);

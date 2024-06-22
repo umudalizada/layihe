@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addReklams } from '../../redux/slice/ticketSlice'
 import { getAllData } from '../../service/requests'
+import { addReklams } from '../../redux/slice/reklamSlice'
 
 const HomeAsside = () => {
-  const data = useSelector((state) => state.allTicket.reklams)
+  const data = useSelector((state) => state.allReklam.reklams)
   const dispatch = useDispatch()
   useEffect(() => {
     getAllData("reklams").then((res) => {

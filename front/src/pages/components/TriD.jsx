@@ -4,7 +4,7 @@ import { faCircleInfo, faTicket } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllData } from '../../service/requests'
-import { addReklams } from '../../redux/slice/ticketSlice'
+import { addTickets } from '../../redux/slice/ticketSlice'
 
 const TriD = () => {
   const data = useSelector((state) => state.allTicket.tickets)
@@ -15,7 +15,7 @@ const TriD = () => {
   useEffect(() => {
     getAllData("tickets")
       .then((res) => {
-        dispatch(addReklams(res))
+        dispatch(addTickets(res))
         setLoading(false)
       })
       .catch((err) => {

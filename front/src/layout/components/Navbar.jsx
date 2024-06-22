@@ -26,17 +26,19 @@ const Navbar = () => {
         <div className="asistanAbsalute" onClick={openChat}>
           <FontAwesomeIcon className='asistan' icon={faComments} />
         </div>
-        <Link to="/">
+
           <div className="logo">
             <h5 className='h5' onClick={toggleMenu}>
               <FontAwesomeIcon icon={faBars} />
             </h5>
+            <Link to="/">
             <img src={logo} alt="Logo" />
+            </Link>
             <h5 className='h5'>
               <FontAwesomeIcon icon={faArrowRightToBracket} />
             </h5>
           </div>
-        </Link>
+
         <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
           <li>
             <Link to="/" className='navLink' onClick={closeMenu}>Home</Link>

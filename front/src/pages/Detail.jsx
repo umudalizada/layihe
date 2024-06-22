@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicket } from '@fortawesome/free-solid-svg-icons';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addReklams } from '../redux/slice/ticketSlice';
 import { getAllData } from '../service/requests';
+import { addReklams } from '../redux/slice/reklamSlice';
 
 const Detail = () => {
   
@@ -13,7 +13,7 @@ const Detail = () => {
     event.preventDefault();
     window.open(url, '_blank', 'noopener,noreferrer');
   };
-  const reklamdata = useSelector((state) => state.allTicket.reklams)
+  const reklamdata = useSelector((state) => state.allReklam.reklams)
   const dispatch = useDispatch()
   useEffect(() => {
     getAllData("reklams").then((res) => {
