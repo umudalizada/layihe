@@ -3,7 +3,7 @@ import "./assets/scss/Admin.scss";
 import Modal from './components/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteDataById, getAllData, patchData, postData } from '../service/requests';
-import { addTickets, delTicket, editTicket } from '../redux/slice/ticketSlice';
+import { addTickets, delTicket, editTicket, postTicket } from '../redux/slice/ticketSlice';
 
 const Admin = () => {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
@@ -27,6 +27,14 @@ const Admin = () => {
       });
   }, [dispatch]);
 
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const year = d.getFullYear().toString().slice(2);
+    const month = (d.getMonth() + 1).toString().padStart(2, '0');
+    const day = d.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const handleOpenEditModal = (row) => {
     setFormData({
       _id: row._id,
@@ -35,7 +43,7 @@ const Admin = () => {
       category: row.category.join(', '), 
       price: row.price.toString(), 
       iframe: row.iframe,
-      date: row.date.substring(0, 10), 
+      date: formatDate(row.date), 
       seans: row.seans.join(', ') 
     });
     setEditModalOpen(true);
@@ -67,7 +75,7 @@ const Admin = () => {
     };
   
     try {
-      await dispatch(patchData("tickets", obj._id, obj));
+      await patchData("tickets", obj._id, obj);
       dispatch(editTicket(obj));
       handleCloseModal(); // Close modal after successful edit
     } catch (error) {
@@ -90,7 +98,7 @@ const Admin = () => {
     };
   
     try {
-      await dispatch(postData("tickets", obj));
+      await postData("tickets", obj);
       dispatch(postTicket(obj));
       handleCloseModal(); // Close modal after successful post
     } catch (error) {
@@ -98,10 +106,9 @@ const Admin = () => {
     }
   };
   
-  
   const handleDelete = async (id) => {
     try {
-      await dispatch(deleteDataById("tickets", id));
+      await deleteDataById("tickets", id);
       dispatch(delTicket(id))
     } catch (error) {
       console.error('Error while deleting data:', error);
@@ -111,6 +118,10 @@ const Admin = () => {
   return (
     <section id="admin">
       <div className="container tablee">
+        <div className="buttons">
+          <button className='adminFilter'>User</button>
+          <button className='adminFilter'>Reklam</button>
+        </div>
         {loading ? (
           <p>Loading data...</p>
         ) : (
@@ -135,7 +146,7 @@ const Admin = () => {
                   <td>{row.category.join(', ')}</td>
                   <td>{row.price}</td>
                   <td><a href={row.iframe} target="_blank" rel="noopener noreferrer">Watch</a></td>
-                  <td>{row.date.substring(0, 10)}</td>
+                  <td>{formatDate(row.date)}</td>
                   <td>{row.seans.join(', ')}</td>
                   <td>
                     <button className="action-btn edit" onClick={() => handleOpenEditModal(row)}>Edit</button>
