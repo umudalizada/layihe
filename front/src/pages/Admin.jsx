@@ -4,6 +4,7 @@ import Modal from './components/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteDataById, getAllData, patchData, postData } from '../service/requests';
 import { addTickets, delTicket, editTicket, postTicket } from '../redux/slice/ticketSlice';
+import { Link } from 'react-router-dom';
 
 const Admin = () => {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
@@ -12,8 +13,8 @@ const Admin = () => {
   const [formData, setFormData] = useState(null);
   const data = useSelector((state) => state.allTicket.tickets);
   const dispatch = useDispatch();
-  const editFormRef = useRef(null); // Ref for Edit form
-  const postFormRef = useRef(null); // Ref for Post form
+  const editFormRef = useRef(null); 
+  const postFormRef = useRef(null); 
 
   useEffect(() => {
     getAllData("tickets")
@@ -77,7 +78,7 @@ const Admin = () => {
     try {
       await patchData("tickets", obj._id, obj);
       dispatch(editTicket(obj));
-      handleCloseModal(); // Close modal after successful edit
+      handleCloseModal(); 
     } catch (error) {
       console.error('Veri düzenlenirken hata oluştu:', error);
     }
@@ -100,7 +101,7 @@ const Admin = () => {
     try {
       await postData("tickets", obj);
       dispatch(postTicket(obj));
-      handleCloseModal(); // Close modal after successful post
+      handleCloseModal(); 
     } catch (error) {
       console.error('Veri gönderilirken hata oluştu:', error);
     }
@@ -119,8 +120,9 @@ const Admin = () => {
     <section id="admin">
       <div className="container tablee">
         <div className="buttons">
-          <button className='adminFilter'>User</button>
-          <button className='adminFilter'>Reklam</button>
+        <Link to="/admin" className='adminFilter'>Products</Link>
+                    <Link to="/userAdmin" className='adminFilter'>Users</Link>
+                    <Link to="/reklamAdmin" className='adminFilter'>Reklams</Link>
         </div>
         {loading ? (
           <p>Loading data...</p>
@@ -158,7 +160,7 @@ const Admin = () => {
           </table>
         )}
       </div>
-      <button className="action-btn post" onClick={handleOpenPostModal}>Add New Data</button>
+      <button className="action-btn post add" onClick={handleOpenPostModal}>Add New Data</button>
 
       {/* Edit Modal */}
       <Modal isOpen={isEditModalOpen} onClose={handleCloseModal} title="Edit Data">

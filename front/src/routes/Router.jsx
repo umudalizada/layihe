@@ -10,7 +10,10 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Movie from "../pages/Movie";
 import Profil from "../pages/Profil";
+import ReklamPanel from "../pages/ReklamPanel";
 import ShowTimes from "../pages/ShowTimes";
+import UserPanel from "../pages/UserPanel";
+
 
 export const routers = [
   {
@@ -69,7 +72,16 @@ export const routers = [
     path: '/admin',
     element: <Admin />
   },
-  
+  {
+    path:'/userAdmin',
+    element:<UserPanel/>
+  }
+  ,
+  {
+    path:'/reklamAdmin',
+    element:<ReklamPanel/>
+  }
+  ,
   {
     path: '/chat',
     element: <AsistanChat/>

@@ -13,7 +13,17 @@ $modal-overlay-bg: rgba(0, 0, 0, 0.5);
   width: 90%;
   padding: 20px;
 }
-
+.tablee .buttons .adminFilter{
+  text-decoration: none;
+  padding: 10px ;
+  background-color: orangered;
+  color: white;
+}
+.tablee .buttons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 .responsive-table {
   width: 100%;
   border-collapse: collapse;
@@ -118,6 +128,7 @@ $modal-overlay-bg: rgba(0, 0, 0, 0.5);
     }
   }
 }
+
 
 .modal-overlay {
   position: fixed;
