@@ -1,70 +1,223 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import "./assets/scss/Admin.scss";
 import Modal from './components/Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteDataById, getAllData, patchData, postData } from '../service/requests';
+import { addTickets, delTicket, editTicket } from '../redux/slice/ticketSlice';
 
 const Admin = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [modalTitle, setModalTitle] = useState('');
-  const [modalContent, setModalContent] = useState(null);
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const [isPostModalOpen, setPostModalOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [formData, setFormData] = useState(null);
+  const data = useSelector((state) => state.allTicket.tickets);
+  const dispatch = useDispatch();
+  const editFormRef = useRef(null); // Ref for Edit form
+  const postFormRef = useRef(null); // Ref for Post form
 
-  const handleOpenModal = (type, row) => {
-    setModalTitle(type === 'edit' ? 'Edit Data' : 'Post Data');
-    setModalContent(
-      <form>
-        <div>
-          <label>Name:</label>
-          <input type="text" defaultValue={row.name} />
-        </div>
-        <div>
-          <label>Date:</label>
-          <input type="date" defaultValue={row.date} />
-        </div>
-        <div>
-          <label>Seans:</label>
-          <input type="text" defaultValue={row.seans} />
-        </div>
-        <button type="submit">{type === 'edit' ? 'Save' : 'Post'}</button>
-      </form>
-    );
-    setModalOpen(true);
+  useEffect(() => {
+    getAllData("tickets")
+      .then((res) => {
+        dispatch(addTickets(res));
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error while fetching data:", error);
+        setLoading(false);
+      });
+  }, [dispatch]);
+
+  const handleOpenEditModal = (row) => {
+    setFormData({
+      _id: row._id,
+      name: row.name,
+      image: row.image,
+      category: row.category.join(', '), 
+      price: row.price.toString(), 
+      iframe: row.iframe,
+      date: row.date.substring(0, 10), 
+      seans: row.seans.join(', ') 
+    });
+    setEditModalOpen(true);
   };
+
+  const handleOpenPostModal = () => {
+    setPostModalOpen(true);
+  };
+
   const handleCloseModal = () => {
-    setModalOpen(false);
+    setEditModalOpen(false);
+    setPostModalOpen(false);
+    setFormData(null);
   };
-  const sampleData = [
-    { name: 'John Doe', date: '2024-06-18', seans: 'Morning' },
-    // Add more sample rows as needed
-  ];
+
+  const handleEditSubmit = async e => {
+    e.preventDefault();
+    const form = editFormRef.current;
+    const formData = new FormData(form);
+    const obj = {
+      _id: formData.get('_id'),
+      name: formData.get('name'),
+      image: formData.get('image'),
+      category: formData.get('category').split(',').map(cat => cat.trim()),
+      price: parseInt(formData.get('price')),
+      iframe: formData.get('iframe'),
+      date: new Date(formData.get('date')),
+      seans: formData.get('seans').split(',').map(s => s.trim())
+    };
+  
+    try {
+      await dispatch(patchData("tickets", obj._id, obj));
+      dispatch(editTicket(obj));
+      handleCloseModal(); // Close modal after successful edit
+    } catch (error) {
+      console.error('Veri düzenlenirken hata oluştu:', error);
+    }
+  };
+  
+  const handlePostSubmit = async e => {
+    e.preventDefault();
+    const form = postFormRef.current;
+    const formData = new FormData(form);
+    const obj = {
+      name: formData.get('name'),
+      image: formData.get('image'),
+      category: formData.get('category').split(',').map(cat => cat.trim()),
+      price: parseInt(formData.get('price')),
+      iframe: formData.get('iframe'),
+      date: new Date(formData.get('date')),
+      seans: formData.get('seans').split(',').map(s => s.trim())
+    };
+  
+    try {
+      await dispatch(postData("tickets", obj));
+      dispatch(postTicket(obj));
+      handleCloseModal(); // Close modal after successful post
+    } catch (error) {
+      console.error('Veri gönderilirken hata oluştu:', error);
+    }
+  };
+  
+  
+  const handleDelete = async (id) => {
+    try {
+      await dispatch(deleteDataById("tickets", id));
+      dispatch(delTicket(id))
+    } catch (error) {
+      console.error('Error while deleting data:', error);
+    }
+  };
+
   return (
     <section id="admin">
       <div className="container tablee">
-        <table className="responsive-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Seans</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sampleData.map((row, index) => (
-              <tr key={index}>
-                <td>{row.name}</td>
-                <td>{row.date}</td>
-                <td>{row.seans}</td>
-                <td>
-                  <button className="action-btn edit" onClick={() => handleOpenModal('edit', row)}>Edit</button>
-                  <button className="action-btn delete">Delete</button>
-                  <button className="action-btn post" onClick={() => handleOpenModal('post', row)}>Post</button>
-                </td>
+        {loading ? (
+          <p>Loading data...</p>
+        ) : (
+          <table className="responsive-table">
+            <thead>
+              <tr>
+                <th>Poster</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Iframe</th>
+                <th>Date</th>
+                <th>Seans</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data.map((row, index) => (
+                <tr key={index}>
+                  <td><img style={{ width: "50px" }} src={row.image} alt="Poster" className="poster-image" /></td>
+                  <td>{row.name}</td>
+                  <td>{row.category.join(', ')}</td>
+                  <td>{row.price}</td>
+                  <td><a href={row.iframe} target="_blank" rel="noopener noreferrer">Watch</a></td>
+                  <td>{row.date.substring(0, 10)}</td>
+                  <td>{row.seans.join(', ')}</td>
+                  <td>
+                    <button className="action-btn edit" onClick={() => handleOpenEditModal(row)}>Edit</button>
+                    <button className="action-btn delete" onClick={() => handleDelete(row._id)}>Delete</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal} title={modalTitle}>
-        {modalContent}
+      <button className="action-btn post" onClick={handleOpenPostModal}>Add New Data</button>
+
+      {/* Edit Modal */}
+      <Modal isOpen={isEditModalOpen} onClose={handleCloseModal} title="Edit Data">
+        <form ref={editFormRef} onSubmit={handleEditSubmit}>
+          <div>
+            <label>Name:</label>
+            <input type="text" name="name" defaultValue={formData ? formData.name : ''} required />
+          </div>
+          <div>
+            <label>Poster:</label>
+            <input type="text" name="image" defaultValue={formData ? formData.image : ''} required />
+          </div>
+          <div>
+            <label>Category:</label>
+            <input type="text" name="category" defaultValue={formData ? formData.category : ''} required />
+          </div>
+          <div>
+            <label>Price:</label>
+            <input type="number" name="price" defaultValue={formData ? formData.price : ''} required />
+          </div>
+          <div>
+            <label>Iframe:</label>
+            <input type="text" name="iframe" defaultValue={formData ? formData.iframe : ''} required />
+          </div>
+          <div>
+            <label>Date:</label>
+            <input type="date" name="date" defaultValue={formData ? formData.date : ''} required />
+          </div>
+          <div>
+            <label>Seans:</label>
+            <input type="text" name="seans" defaultValue={formData ? formData.seans : ''} required />
+          </div>
+          <input type="hidden" name="_id" defaultValue={formData ? formData._id : ''} />
+          <button type="submit">Save</button>
+        </form>
+      </Modal>
+
+      {/* Post Modal */}
+      <Modal isOpen={isPostModalOpen} onClose={handleCloseModal} title="Post Data">
+        <form ref={postFormRef} onSubmit={handlePostSubmit}>
+          <div>
+            <label>Name:</label>
+            <input type="text" name="name" defaultValue="" required />
+          </div>
+          <div>
+            <label>Poster:</label>
+            <input type="text" name="image" defaultValue="" required />
+          </div>
+          <div>
+            <label>Category:</label>
+            <input type="text" name="category" defaultValue="" required />
+          </div>
+          <div>
+            <label>Price:</label>
+            <input type="number" name="price" defaultValue="" required />
+          </div>
+          <div>
+            <label>Iframe:</label>
+            <input type="text" name="iframe" defaultValue="" required />
+          </div>
+          <div>
+            <label>Date:</label>
+            <input type="date" name="date" defaultValue="" required />
+          </div>
+          <div>
+            <label>Seans:</label>
+            <input type="text" name="seans" defaultValue="" required />
+          </div>
+          <button type="submit">Send</button>
+        </form>
       </Modal>
     </section>
   );

@@ -18,6 +18,7 @@ export const putData = async (Endpoint, id, obj) => {
     const data = res.data;
     return data;
 };
+
 export const deleteDataById = async (Endpoint, id) => {
     const res = await axios.delete(`${BaseUrl + Endpoint}/${id}`);
     const data = res.data;
