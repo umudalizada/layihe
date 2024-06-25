@@ -4,7 +4,17 @@ const ticketController=require("../controller/ticketController")
 const userController=require("../controller/userController")
 const reklamController=require("../controller/reklamController")
 const heroController=require("../controller/heroController")
+const reservController=require("../controller/reservController")
 
+
+
+
+router.get("/reserv", reservController.getAllReserv);
+router.post("/reserv", reservController.postReserv);
+router.get("/reserv/:id", reservController.getReservById);
+router.delete("/reserv/:id", reservController.deleteReservById);
+router.patch("/reserv/:id", reservController.patchReservById);
+router.put("/reserv/:id", reservController.putReservById);
 
 
 router.get("/heros", heroController.getAllHero)

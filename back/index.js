@@ -3,9 +3,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
-const mongoose = require('mongoose'); // Add this line
-
+const mongoose = require('mongoose');
 require("dotenv/config");
+
 const routes = require("./src/routes/ticketRouters");
 const AuthRouter = require('./src/routes/authRouter');
 
