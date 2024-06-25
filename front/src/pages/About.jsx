@@ -1,6 +1,6 @@
-import React from 'react'
-import './assets/scss/About.scss'
-import backgroundVideo from '../assets/videos/about.mp4'
+import React from 'react';
+import './assets/scss/About.scss';
+import backgroundVideo from '../assets/videos/about.mp4';
 
 const About = () => {
   return (
@@ -31,7 +31,7 @@ const About = () => {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default About
+export default About;

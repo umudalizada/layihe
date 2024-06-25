@@ -34,13 +34,14 @@ const Profil = () => {
         <div className="info">
           <FontAwesomeIcon className='edit' icon={faPen} onClick={toggleModal} />
           <div className="img">
-            <img src={profil} alt="Profile" />
-          </div>
-          <div className="name">
-            <h2>{formData.username}</h2>
-            <h2>{formData.email}</h2>
-            <h2>{formData.number}</h2>
-          </div>
+  <img src={profil} alt="Profile" />
+</div>
+<div className="name">
+  <h2>{formData.username}</h2>
+  <h2>{formData.email}</h2>
+  <h2>{formData.number}</h2>
+</div>
+
           <div className="ticketBox">
             <h3>Your Ticket</h3>
             <div className="tickets">

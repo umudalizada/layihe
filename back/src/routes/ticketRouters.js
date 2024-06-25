@@ -3,6 +3,17 @@ const router = express.Router()
 const ticketController=require("../controller/ticketController")
 const userController=require("../controller/userController")
 const reklamController=require("../controller/reklamController")
+const heroController=require("../controller/heroController")
+
+
+
+router.get("/heros", heroController.getAllHero)
+router.post("/heros", heroController.postHero)
+router.get("/heros/:id", heroController.getHeroById)
+router.delete("/heros/:id", heroController.deleteHeroById)
+router.patch("/heros/:id", heroController.patchgHeroId)
+router.put("/heros/:id", heroController.putHeroById)
+
 
 
 router.get("/reklams", reklamController.getAllReklam)

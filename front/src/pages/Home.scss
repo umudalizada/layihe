@@ -1,5 +1,5 @@
 #hero {
-    padding-top: 150px;
+    padding-top: 130px;
 
     .slider {
         position: relative;
@@ -69,7 +69,7 @@
 
 @media (max-width:600px) {
     #hero {
-        padding-top: 130px;
+        padding-top: 80px;
 
         .slider {
             .image {
@@ -100,12 +100,12 @@
 @media (max-width:485px) {
 
     #hero {
-        padding-top: 110px;
+        padding-top: 70px;
 
         .slider {
             .image {
                 img {
-                    height: 200px;
+                    height: 350px;
                 }
 
                 .arrow {
@@ -128,12 +128,12 @@
 @media (max-width:340px) {
 
     #hero {
-        padding-top: 90px;
+        padding-top: 70px;
 
         .slider {
             .image {
                 img {
-                    height: 200px;
+                    height: 300px;
                 }
 
                 .arrow {
@@ -412,7 +412,7 @@
     .card {
         cursor: pointer;
         width: 100%;
-        height: 310px;
+        height: 350px;
         position: relative;
         transition: 0.5s;
         border-radius: 8px;
@@ -654,7 +654,6 @@
 
 #laser {
     background-color: #333;
-
     .triD {
         padding: 30px 10px;
     }

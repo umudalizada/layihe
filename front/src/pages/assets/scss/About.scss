@@ -1,150 +1,153 @@
 #about {
-  padding-top: 150px;
-    position: relative;
+  padding-top: 120px;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+
+  .background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-  
-    .background-video {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: translate(-50%, -50%);
-      z-index: -1; 
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    filter: brightness(50%); 
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6); 
+    border-radius: 12px;
+    max-width: 80%;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #f8f8f8;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
     }
-  
-    .content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.5); 
-      border-radius: 10px;
-      max-width: 80%;
-      margin: 0 auto;
-  
-      h1 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-      }
-  
-      .about-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr; // Two equal columns
-        gap: 20px; // Space between grid items
-        margin-top: 20px;
-  
-        .about-section {
-          background: rgba(255, 255, 255, 0.1);
-          padding: 20px;
-          border-radius: 10px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-          text-align: left;
-  
-          h2 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-          }
-  
-          p {
-            font-size: 1rem;
-            line-height: 1.5;
-          }
-        }
-      }
-    }
-  
-    // Responsiveness for small screens
-    @media (max-width: 768px) {
-      .content {
-        max-width: 95%; // Increase max-width for better fit
-        padding: 10px; // Reduce padding
-  
-        h1 {
-          font-size: 2rem;
-          margin-bottom: 15px;
-        }
-  
-        .about-grid {
-          grid-template-columns: 1fr; // Stack sections vertically
-          gap: 15px; // Adjust gap for better fit
-  
-          .about-section {
-            padding: 15px; // Adjust padding for better fit
-  
-            h2 {
-              font-size: 1.3rem;
-              margin-bottom: 8px;
-            }
-  
-            p {
-              font-size: 0.9rem;
-            }
-          }
-        }
-      }
-    }
-  
-    @media (max-width: 480px) {
-      .content {
-        padding: 10px; // Further reduce padding
-  
-        h1 {
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+      margin-top: 20px;
+
+      .about-section {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        text-align: left;
+
+        h2 {
           font-size: 1.8rem;
           margin-bottom: 10px;
+          color: #f8f8f8;
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
         }
-  
-        .about-grid {
-          gap: 10px; // Further adjust gap
-  
-          .about-section {
-            padding: 10px; // Further adjust padding
-  
-            h2 {
-              font-size: 1.2rem;
-              margin-bottom: 5px;
-            }
-  
-            p {
-              font-size: 0.85rem;
-            }
-          }
+
+        p {
+          font-size: 1rem;
+          line-height: 1.5;
+          color: #e0e0e0;
         }
       }
     }
-  
-    @media (max-width: 320px) {
-      .content {
-        padding: 5px; // Minimal padding
-  
-        h1 {
-          font-size: 1.5rem;
-          margin-bottom: 10px;
-        }
-  
-        .about-grid {
-          gap: 5px; // Minimal gap
-  
-          .about-section {
-            padding: 8px; // Minimal padding
-  
-            h2 {
-              font-size: 1rem;
-              margin-bottom: 5px;
-            }
-  
-            p {
-              font-size: 0.8rem;
-            }
+  }
+
+  @media (max-width: 768px) {
+    .content {
+      max-width: 95%;
+      padding: 15px; 
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+      }
+
+      .about-grid {
+        gap: 15px; 
+
+        .about-section {
+          padding: 15px;
+
+          h2 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+          }
+
+          p {
+            font-size: 0.95rem;
           }
         }
       }
     }
   }
-  
+
+  @media (max-width: 480px) {
+    .content {
+      padding: 10px;
+
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+      }
+
+      .about-grid {
+        gap: 10px;
+
+        .about-section {
+          padding: 10px;
+
+          h2 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+          }
+
+          p {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 320px) {
+    .content {
+      padding: 5px;
+
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .about-grid {
+        gap: 5px;
+
+        .about-section {
+          padding: 8px;
+
+          h2 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+          }
+
+          p {
+            font-size: 0.85rem;
+          }
+        }
+      }
+    }
+  }
+}
