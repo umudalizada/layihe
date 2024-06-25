@@ -1,15 +1,20 @@
-import { faClock, faComments, faCopyright, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faComments, faCopyright, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-import { Link } from 'react-router-dom'
 import { faApplePay, faCcMastercard, faCcVisa, faFacebook, faGooglePay, faInstagram, faPaypal, faTelegram, faTiktok, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import { useNavigate } from 'react-router-dom'
 
 const Footer = () => {
+  const navigate = useNavigate(); 
+
   const handleExternalLink = (url) => (event) => {
     event.preventDefault();
     window.open(url, '_blank', 'noopener,noreferrer');
   };
+  const openChat = () => {
+    navigate('/chat'); 
+  };
+  
   return (
     <section id='footer'>
       <div className='container footer'>
@@ -75,17 +80,16 @@ const Footer = () => {
           <h2>Social Media</h2>
 
           <ul>
-            <li><FontAwesomeIcon className='footicon' icon={faWhatsapp} /></li>
-            <li><FontAwesomeIcon className='footicon' icon={faInstagram} /></li>
-            <li><FontAwesomeIcon className='footicon' icon={faFacebook} /></li>
-            <li><FontAwesomeIcon className='footicon' icon={faTelegram} /></li>
+            <li><FontAwesomeIcon onClick={handleExternalLink("https://chat.whatsapp.com/KAfqzGzvRET9KWBeP0kzbB")} className='footicon' icon={faWhatsapp} /></li>
+            <li><FontAwesomeIcon onClick={handleExternalLink("https://www.instagram.com/umudlzde/?igsh=MWNsYzlpZTJ6MjV5Nw%3D%3D")} className='footicon' icon={faInstagram} /></li>
+            <li><FontAwesomeIcon onClick={handleExternalLink("https://www.facebook.com/umid.elizade.750?mibextid=ZbWKwL")} className='footicon' icon={faFacebook} /></li>
+            <li><FontAwesomeIcon onClick={handleExternalLink("https://https://t.me/+orkn-5NboT5hM2Yy")} className='footicon' icon={faTelegram} /></li>
           </ul>
           </div>
           <div className="fotName">
           <h2>Help</h2>
-
           <ul>
-            <ul>
+            <ul onClick={()=>openChat()}>
               <li><FontAwesomeIcon className='footicon' icon={faComments} /></li>
             </ul>
           </ul>

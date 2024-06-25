@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightToBracket, faBars, faComments, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faComments, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom'; 
 import logo from "../../assets/images/logo.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate(); 
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -18,6 +19,7 @@ const Navbar = () => {
   const openChat = () => {
     navigate('/chat'); 
   };
+  let user = JSON.parse(localStorage.getItem("user"))
 
   return (
     <nav className='navbarBody'>
@@ -26,17 +28,19 @@ const Navbar = () => {
           <FontAwesomeIcon className='asistan' icon={faComments} />
         </div>
 
-          <div className="logo">
-            <h5 className='h5' onClick={toggleMenu}>
-              <FontAwesomeIcon icon={faBars} />
-            </h5>
-            <Link to="/">
+        <div className="logo">
+          <h5 className='h5' onClick={toggleMenu}>
+            <FontAwesomeIcon icon={faBars} />
+          </h5>
+          <Link to="/">
             <img src={logo} alt="Logo" />
+          </Link>
+          <h5 className='h5' >
+          <Link to={user ? "/profile" : "/login"} className='navLink' onClick={closeMenu}>
+              <FontAwesomeIcon icon={faUser} />
             </Link>
-            <h5 className='h5'>
-              <FontAwesomeIcon icon={faArrowRightToBracket} />
-            </h5>
-          </div>
+          </h5>
+        </div>
 
         <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
           <li>
@@ -55,7 +59,7 @@ const Navbar = () => {
             <Link to="/admin" className='navLink' onClick={closeMenu}>Admin</Link>
           </li>
           <li>
-            <Link to="/profile" className='navLink' onClick={closeMenu}>
+            <Link to={user ? "/profile" : "/login"} className='navLink' onClick={closeMenu}>
               <FontAwesomeIcon icon={faUser} />
             </Link>
           </li>

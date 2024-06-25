@@ -1,5 +1,5 @@
 #profil {
-  padding-top: 180px;
+  padding-top: 120px;
   background-color: #2c2c2c;
 
   .profile {
@@ -22,6 +22,14 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
       .edit {
+        font-size: 20px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        cursor: pointer;
+        color: #d6d6d6;
+      }
+      .logout {
         font-size: 20px;
         position: absolute;
         top: 10px;

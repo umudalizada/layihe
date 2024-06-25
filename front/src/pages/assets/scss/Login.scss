@@ -28,7 +28,7 @@
     --bg-color-alt: #7e7e7e;
     --main-color: #fefefe;
     position: absolute;
-    top: 20%;
+    top: 10%;
 }
 
 .switch {
@@ -206,6 +206,10 @@
     font-weight: 600;
     color: var(--font-color);
     cursor: pointer;
+}
+.forgot{
+    color: white;
+    text-decoration: none;
 }
 
 }

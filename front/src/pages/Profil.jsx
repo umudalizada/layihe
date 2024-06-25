@@ -1,17 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./assets/scss/Profil.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'; 
 import profil from '../assets/images/profil4.png';
 
 const Profil = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [formData, setFormData] = useState({
-    username: 'UserName',
-    email: 'umud@gmail.com',
+    username: '',
+    email: '',
     password: '',
-    number: '+99423326211',
+    number: '',
   });
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      setFormData({
+        username: user.username,
+        email: user.email,
+        number: user.number || '', 
+      });
+      setOrders(user.orders || []);
+    }
+  }, []); 
 
   const toggleModal = () => {
     setModalVisible(!modalVisible);
@@ -28,36 +41,41 @@ const Profil = () => {
     toggleModal();
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    window.location.href = '/'; 
+  };
+  
+
   return (
     <section id='profil'>
       <div className="container profile">
         <div className="info">
           <FontAwesomeIcon className='edit' icon={faPen} onClick={toggleModal} />
+          <FontAwesomeIcon className='logout' icon={faSignOutAlt} onClick={handleLogout} />
           <div className="img">
-  <img src={profil} alt="Profile" />
-</div>
-<div className="name">
-  <h2>{formData.username}</h2>
-  <h2>{formData.email}</h2>
-  <h2>{formData.number}</h2>
-</div>
+            <img src={profil} alt="Profile" />
+          </div>
+          <div className="name">
+            <h2>{formData.username}</h2>
+            <h2>{formData.email}</h2>
+          </div>
 
           <div className="ticketBox">
-            <h3>Your Ticket</h3>
-            <div className="tickets">
-              <div className="ticketCard">
-                <h4>Movie</h4><h4>Date</h4><h4>Seans</h4>
+            <h3>Your Tickets</h3>
+            {orders.length === 0 ? (
+              <p className="empty" style={{color:"white"}}>No tickets yet.</p>
+            ) : (
+              <div className="tickets">
+                {orders.map((order, index) => (
+                  <div className="ticketCard" key={index}>
+                    <h4>Movie: {order.movie}</h4>
+                    <h4>Date: {order.date}</h4>
+                    <h4>Seans: {order.seans}</h4>
+                  </div>
+                ))}
               </div>
-              <div className="ticketCard">
-                <h4>Movie</h4><h4>Date</h4><h4>Seans</h4>
-              </div>
-              <div className="ticketCard">
-                <h4>Movie</h4><h4>Date</h4><h4>Seans</h4>
-              </div>
-              <div className="ticketCard">
-                <h4>Movie</h4><h4>Date</h4><h4>Seans</h4>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

@@ -11,11 +11,6 @@ const MovieDays = () => {
     <section id='movieDays'>
       <div className="container movieDays">
         <div className="allMovies">
-          <div className="days">
-            <button>Today</button>
-            <button>ComingSoon</button>
-            <button>Table</button>
-          </div>
           <div className="filters">
             <FilterComp />
             <SearchBox setSearchQuery={setSearchQuery} />

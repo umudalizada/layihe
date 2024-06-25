@@ -36,29 +36,3 @@ export const patchData = async (Endpoint, id, obj) => {
     const data = res.data;
     return data;
 };
-
-
-
-
-
-export const loginUser = async (email, password) => {
-    try {
-        const response = await axios.post(`${BaseUrl}/login`, { email, password });
-        const token = response.data;
-        return token;
-    } catch (error) {
-        console.error('Login failed:', error);
-        return null;
-    }
-};
-
-export const registerUser = async ({ username, name, lastname, email, password }) => {
-    try {
-        const response = await axios.post(`${BaseUrl}/register`, { username, firstName: name, lastName: lastname, email, password });
-        const token = response.data;
-        return token;
-    } catch (error) {
-        console.error('Registration failed:', error);
-        return null;
-    }
-};
