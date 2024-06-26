@@ -71,9 +71,9 @@ const Footer = () => {
           <ul>
             <li><FontAwesomeIcon className='footicon' icon={faCcMastercard} /></li>
             <li><FontAwesomeIcon className='footicon' icon={faCcVisa} /></li>
-            <li><FontAwesomeIcon className='footicon' icon={faApplePay} /></li>
-            <li><FontAwesomeIcon className='footicon' icon={faGooglePay} /></li>
-            <li><FontAwesomeIcon className='footicon' icon={faPaypal} /></li>
+            {/* <li><FontAwesomeIcon className='footicon' icon={faApplePay} /></li> */}
+            {/* <li><FontAwesomeIcon className='footicon' icon={faGooglePay} /></li>
+            <li><FontAwesomeIcon className='footicon' icon={faPaypal} /></li> */}
           </ul>
           </div>
           <div className="fotName">

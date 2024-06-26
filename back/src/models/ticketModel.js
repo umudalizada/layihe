@@ -9,6 +9,6 @@ const ticketSchema = mongoose.Schema({
     seans: { type: Array, required: true, trim:true  },
     category: { type: Array, required: true, trim:true  },
 
-})
+})  
 
 module.exports = mongoose.model("Ticket", ticketSchema)

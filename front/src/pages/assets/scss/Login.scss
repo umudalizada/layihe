@@ -129,6 +129,8 @@
 
 .flip-card__inner.flipped {
     transform: rotateY(180deg);
+
+
 }
 
 .flip-card__front, .flip-card__back {
@@ -144,6 +146,18 @@
     border-radius: 5px;
     border: 2px solid var(--main-color);
     box-shadow: 4px 4px var(--main-color);
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-toggle-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
 }
 
 .flip-card__back {

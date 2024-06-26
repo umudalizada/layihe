@@ -122,7 +122,8 @@ const Admin = () => {
         <div className="buttons">
         <Link to="/admin" className='adminFilter'>Products</Link>
                     <Link to="/userAdmin" className='adminFilter'>Users</Link>
-                    <Link to="/reklamAdmin" className='adminFilter'>Reklams</Link>
+                    <Link to="/reklamAdmin" className='adminFilter'>Adverts</Link>
+                    <Link to="/advertAdmin" className='adminFilter'>Sliders</Link>
         </div>
         {loading ? (
           <p>Loading data...</p>

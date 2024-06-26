@@ -1,8 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import "./assets/scss/Profil.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'; 
+import { faPen, faSignOutAlt, faQrcode } from '@fortawesome/free-solid-svg-icons'; // QR code icon
 import profil from '../assets/images/profil4.png';
+
+// Function to format date into day-month-year format
+const formatIntoDate = (dateString) => {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.toLocaleString('default', { month: 'short' });
+  const year = date.getFullYear();
+  return `${day} ${month} ${year}`;
+};
+
+// TicketCard component to render each ticket's details
+const TicketCard = ({ order }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
+  return (
+    <div className="ticketCard">
+      <div className="ticketHeader">
+        <h4>Movie: {order.name.slice(0, 10)}</h4> {/* Display first 10 characters of movie name */}
+        <FontAwesomeIcon icon={faQrcode} className="qrIcon" onClick={toggleModal} />
+      </div>
+      <h4>Date: {formatIntoDate(order.date)}</h4> {/* Format date as day-month-year */}
+      <h4>Seans: {order.seans}</h4>
+      <h4>Price: ${order.price}</h4> {/* Assuming 'price' is included in order object */}
+      {/* QR code modal */}
+      {modalVisible && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={toggleModal}>&times;</span>
+            <h2>QR Code</h2>
+            <div className="qrCode">
+              {/* QR code content */}
+              <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${JSON.stringify(order)}`} alt="QR Code" />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Profil = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -37,7 +80,7 @@ const Profil = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    console.log(formData); // Handle form submission logic here
     toggleModal();
   };
 
@@ -45,7 +88,6 @@ const Profil = () => {
     localStorage.removeItem('user');
     window.location.href = '/'; 
   };
-  
 
   return (
     <section id='profil'>
@@ -68,45 +110,14 @@ const Profil = () => {
             ) : (
               <div className="tickets">
                 {orders.map((order, index) => (
-                  <div className="ticketCard" key={index}>
-                    <h4>Movie: {order.movie}</h4>
-                    <h4>Date: {order.date}</h4>
-                    <h4>Seans: {order.seans}</h4>
-                  </div>
+                  <TicketCard key={index} order={order} />
                 ))}
+                {orders.length > 3 && <p>And more...</p>}
               </div>
             )}
           </div>
         </div>
       </div>
-
-      {modalVisible && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={toggleModal}>&times;</span>
-            <h2>Edit Profile</h2>
-            <form onSubmit={handleSubmit}>
-              <label>
-                Username:
-                <input type="text" name="username" value={formData.username} onChange={handleChange} />
-              </label>
-              <label>
-                Email:
-                <input type="email" name="email" value={formData.email} onChange={handleChange} />
-              </label>
-              <label>
-                Password:
-                <input type="password" name="password" value={formData.password} onChange={handleChange} />
-              </label>
-              <label>
-                Number:
-                <input type="tel" name="number" value={formData.number} onChange={handleChange} />
-              </label>
-              <button type="submit">Save</button>
-            </form>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

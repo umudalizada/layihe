@@ -8,22 +8,22 @@ import { getAllData } from '../service/requests';
 import { addReklams } from '../redux/slice/reklamSlice';
 
 const Detail = () => {
-  
   const handleExternalLink = (url) => (event) => {
     event.preventDefault();
     window.open(url, '_blank', 'noopener,noreferrer');
   };
-  const reklamdata = useSelector((state) => state.allReklam.reklams)
-  const dispatch = useDispatch()
+
+  const reklamdata = useSelector((state) => state.allReklam.reklams);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     getAllData("reklams").then((res) => {
       dispatch(addReklams(res));
     });
-  }, [reklamdata])
+  }, [dispatch]);
 
   const { id } = useParams();
   const data = useSelector(state => state.allTicket.tickets);
-  
   const control = data.find(el => el._id === id);
 
   if (!control) {
@@ -35,7 +35,7 @@ const Detail = () => {
       <div className="container detail">
         <div className="left">
           <div className="info">
-            <Link to="/buyticket">
+            <Link to={`/buyticket/${id}`}>
               <FontAwesomeIcon className='ticket' icon={faTicket} />
             </Link>
             <div className="img">
@@ -65,21 +65,24 @@ const Detail = () => {
             </div>
           </div>
           <div className="iframe">
-            <iframe src={control.iframe} title={`${control.name} Trailer`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+            <iframe 
+              src={control.iframe} 
+              title={`${control.name} Trailer`} 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerPolicy="strict-origin-when-cross-origin" 
+              allowFullScreen>
+            </iframe>
           </div>
         </div>
         <div className="right">
           {
-            reklamdata && reklamdata.map((elem,i)=>{
-              return(
-
-                <div onClick={handleExternalLink(elem.reklamLink)} key={i} className="img">
+            reklamdata && reklamdata.map((elem, i) => (
+              <div onClick={handleExternalLink(elem.reklamLink)} key={i} className="img">
                 <img src={elem.image} alt="Ad" />
               </div>
-              )
-            })
+            ))
           }
-          
         </div>
       </div>
     </section>

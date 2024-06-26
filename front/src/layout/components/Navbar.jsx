@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faComments, faUser } from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom';
 import logo from "../../assets/images/logo.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -17,9 +17,10 @@ const Navbar = () => {
   };
 
   const openChat = () => {
-    navigate('/chat'); 
+    navigate('/chat');
   };
-  let user = JSON.parse(localStorage.getItem("user"))
+
+  let user = JSON.parse(localStorage.getItem("user"));
 
   return (
     <nav className='navbarBody'>
@@ -35,8 +36,8 @@ const Navbar = () => {
           <Link to="/">
             <img src={logo} alt="Logo" />
           </Link>
-          <h5 className='h5' >
-          <Link to={user ? "/profile" : "/login"} className='navLink' onClick={closeMenu}>
+          <h5 className='h5'>
+            <Link to={user ? "/profile" : "/login"} className='navLink' onClick={closeMenu}>
               <FontAwesomeIcon icon={faUser} />
             </Link>
           </h5>
@@ -55,9 +56,11 @@ const Navbar = () => {
           <li>
             <Link to="/about" className='navLink' onClick={closeMenu}>About</Link>
           </li>
-          <li>
-            <Link to="/admin" className='navLink' onClick={closeMenu}>Admin</Link>
-          </li>
+          {user && user.user === true ? (
+            <li>
+              <Link to="/admin" className='navLink' onClick={closeMenu}>Admin</Link>
+            </li>
+          ) : null}
           <li>
             <Link to={user ? "/profile" : "/login"} className='navLink' onClick={closeMenu}>
               <FontAwesomeIcon icon={faUser} />

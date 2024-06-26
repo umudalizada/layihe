@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import "./assets/scss/BuyTicket.scss";
 
 const BuyTicket = () => {
+  const { id } = useParams();
   const [movies, setMovies] = useState([]);
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState(id || '');
   const [dates, setDates] = useState([]);
   const [event, setEvent] = useState('');
   const [seans, setSeans] = useState([]);
@@ -17,24 +20,35 @@ const BuyTicket = () => {
   const ticketPrice = price || 50;
   const seats = Array.from({ length: 60 }, (_, i) => i + 1);
 
-  // Kullanıcıyı localStorage'dan al
   const user = JSON.parse(localStorage.getItem('user'));
 
-  // API'den filmleri çekme
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         const response = await axios.get('http://localhost:3000/api/tickets');
         setMovies(response.data);
+        if (id) {
+          const selectedMovie = response.data.find(movie => movie._id === id);
+          if (selectedMovie) {
+            setCategory(id);
+            setDates([selectedMovie.date]);
+            setSeans(selectedMovie.seans);
+            setPrice(selectedMovie.price);
+          }
+        }
       } catch (error) {
-        console.error("API'den filmler çekilemedi:", error);
+        console.error("Failed to fetch movies from API:", error);
+        Swal.fire({
+          icon: 'error',
+          title: 'API Error',
+          text: 'Failed to fetch movies, please try again later.'
+        });
       }
     };
 
     fetchMovies();
-  }, []);
+  }, [id]);
 
-  // Kategori değişimi
   const handleCategoryChange = (e) => {
     const selectedMovieId = e.target.value;
     setCategory(selectedMovieId);
@@ -54,7 +68,6 @@ const BuyTicket = () => {
     setReservedSeats([]);
   };
 
-  // Tarih değişimi
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
     setEvent(selectedDate);
@@ -62,28 +75,51 @@ const BuyTicket = () => {
     setReservedSeats([]);
   };
 
-// Seans değişimi
-const handleSeansChange = async (e) => {
-  const selectedSeans = e.target.value;
-  setTicketType(selectedSeans);
+  const handleSeansChange = async (e) => {
+    const selectedSeans = e.target.value;
+    setTicketType(selectedSeans);
 
-  if (category && event && selectedSeans) {
-    try {
-      const response = await axios.get('http://localhost:3000/api/reserv', {
-        params: { movieId: category, date: event, seans: selectedSeans }
-      });
-      const reservedSeatsData = response.data.reduce((acc, reserv) => acc.concat(reserv.selectedSeats), []);
-      setReservedSeats(reservedSeatsData);
-    } catch (error) {
-      console.error("Rezervasyon verileri çekilemedi:", error);
+    if (category && event && selectedSeans) {
+      try {
+        const response = await axios.get('http://localhost:3000/api/reserv', {
+          params: { movieId: category, date: event, seans: selectedSeans }
+        });
+
+        // Process grouped reservation data
+        const groupedReservations = {};
+        response.data.forEach(reserv => {
+          if (!groupedReservations[reserv.movieId]) {
+            groupedReservations[reserv.movieId] = {};
+          }
+          if (!groupedReservations[reserv.movieId][reserv.seans]) {
+            groupedReservations[reserv.movieId][reserv.seans] = new Set(reserv.selectedSeats);
+          } else {
+            reserv.selectedSeats.forEach(seat => groupedReservations[reserv.movieId][reserv.seans].add(seat));
+          }
+        });
+
+        const selectedMovie = movies.find(movie => movie._id === category);
+        const selectedSeansTime = selectedMovie ? selectedMovie.seans.find(seans => seans === selectedSeans) : '';
+
+        const reservedSeatsData = groupedReservations[category] && groupedReservations[category][selectedSeansTime]
+          ? Array.from(groupedReservations[category][selectedSeansTime])
+          : [];
+
+        setReservedSeats(reservedSeatsData);
+      } catch (error) {
+        console.error("Failed to fetch reservation data:", error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Reservation Error',
+          text: 'Failed to fetch reservation data, please try again later.'
+        });
+        setReservedSeats([]);
+      }
+    } else {
       setReservedSeats([]);
     }
-  } else {
-    setReservedSeats([]);
-  }
-};
+  };
 
-  // Miktar değişimi
   const handleQuantityChange = (action) => {
     setQuantity(prev => {
       const newQuantity = action === 'increment' ? Math.min(prev + 1, 60) : Math.max(prev - 1, 1);
@@ -94,12 +130,10 @@ const handleSeansChange = async (e) => {
     });
   };
 
-  // Toplamı hesaplama
   useEffect(() => {
     setTotal(quantity * ticketPrice);
   }, [quantity, ticketPrice]);
 
-  // Koltuk seçimi
   const handleSeatClick = (seat) => {
     if (selectedSeats.includes(seat)) {
       setSelectedSeats(selectedSeats.filter(s => s !== seat));
@@ -110,34 +144,62 @@ const handleSeansChange = async (e) => {
     }
   };
 
-  // Form gönderimi
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!category || !event || !ticketType || selectedSeats.length !== quantity) {
-      alert('Please fill all fields and select the required number of seats.');
+
+    if (!user) {
+      Swal.fire({
+        title: 'Login Required',
+        text: 'Please login to buy tickets. Would you like to login now?',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = '/login';
+        }
+      });
       return;
     }
-    
+
+    if (!category || !event || !ticketType || selectedSeats.length !== quantity) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Missing Information',
+        text: 'Please fill in all fields and select the correct number of seats.'
+      });
+      return;
+    }
+
+    const selectedMovie = movies.find(movie => movie._id === category);
+    const selectedSeansTime = selectedMovie ? selectedMovie.seans.find(seans => seans === ticketType) : '';
+
     const newReservation = {
       movieId: category,
+      name: selectedMovie?.name,
       date: event,
-      seans: ticketType,
-      selectedSeats
+      seans: selectedSeansTime,
+      selectedSeats,
+      price: total
     };
 
     try {
-      // API'ye rezervasyon gönder
       await axios.post('http://localhost:3000/api/reserv', newReservation);
 
-      // Kullanıcının orders dizisini güncelle
-      const updatedOrders = [...user.orders, newReservation];
+      // Update user orders
+      const updatedOrders = [...(user.orders || []), newReservation];
       await axios.patch(`http://localhost:3000/api/users/${user._id}`, { orders: updatedOrders });
 
-      // Güncellenmiş kullanıcı verilerini localStorage'a kaydet
       const updatedUser = { ...user, orders: updatedOrders };
       localStorage.setItem('user', JSON.stringify(updatedUser));
 
-      alert('Reservation successful!');
+      Swal.fire({
+        icon: 'success',
+        title: 'Reservation Successful',
+        text: 'Reservation successfully completed!'
+      });
+
       setCategory('');
       setEvent('');
       setTicketType('');
@@ -146,8 +208,12 @@ const handleSeansChange = async (e) => {
       setSelectedSeats([]);
       setReservedSeats([]);
     } catch (error) {
-      console.error("Rezervasyon işlemi başarısız:", error);
-      alert('Reservation failed. Please try again.');
+      console.error("Reservation failed:", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Reservation Failed',
+        text: 'Reservation failed, please try again.'
+      });
     }
   };
 

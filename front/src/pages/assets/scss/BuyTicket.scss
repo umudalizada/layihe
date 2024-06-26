@@ -1,5 +1,6 @@
-#buyTicket{
+#buyTicket {
   padding-top: 190px;
+
   .container.buyTicket {
     .ticketForm {
       display: flex;
@@ -9,30 +10,31 @@
       border: 1px solid #ddd;
       border-radius: 8px;
       background-color: #f9f9f9;
-  
+
       .form-group {
         display: flex;
         flex-direction: column;
         margin-bottom: 15px;
-  
+
         label {
           margin-bottom: 5px;
           font-weight: bold;
         }
-  
-        select, input[type="number"] {
-            cursor: pointer;
+
+        select,
+        input[type="number"] {
+          cursor: pointer;
           padding: 10px;
           border: 1px solid #ccc;
           border-radius: 4px;
           font-size: 16px;
         }
       }
-  
+
       .quantity-controls {
         display: flex;
         align-items: center;
-  
+
         button {
           padding: 5px 10px;
           margin: 0 5px;
@@ -42,55 +44,55 @@
           border-radius: 4px;
           cursor: pointer;
           transition: background-color 0.3s;
-  
+
           &:hover {
             background-color: #0056b3;
           }
-  
+
           &:focus {
             outline: none;
           }
         }
-  
+
         input {
           width: 50px;
           text-align: center;
         }
       }
-  
+
       .seats {
         .seat-grid {
           display: grid;
           grid-template-columns: repeat(10, 1fr);
           gap: 5px;
-  
+
           .seat {
-            width: 30px;
-            height: 30px;
+            width: 30px; /* Default size */
+            height: 30px; /* Default size */
             background-color: lightgrey;
             border: 1px solid #ccc;
             text-align: center;
             line-height: 30px;
             cursor: pointer;
             transition: background-color 0.3s, border-color 0.3s;
-  
+
             &.selected {
               background-color: green;
               color: white;
             }
-  
+
             &:disabled {
               background-color: red;
               cursor: not-allowed;
             }
-  
+
             &:hover:not(.selected):not(:disabled) {
               background-color: #e0e0e0;
             }
           }
         }
       }
-  
+
       .buyButton {
         padding: 10px 20px;
         background-color: #28a745;
@@ -100,31 +102,29 @@
         cursor: pointer;
         font-size: 18px;
         transition: background-color 0.3s;
-  
+
         &:hover {
           background-color: #218838;
         }
-  
+
         &:focus {
           outline: none;
         }
       }
     }
-  
-    // Responsive styles for screens less than 330px
+
     @media (max-width: 330px) {
       .ticketForm {
         .seats {
           .seat-grid {
             .seat {
-              width: 20px;
-              height: 20px;
-              line-height: 20px;
+              width: 20px; /* Adjusted size for smaller screens */
+              height: 20px; /* Adjusted size for smaller screens */
+              line-height: 20px; /* Adjusted line height for smaller screens */
             }
           }
         }
       }
     }
   }
-
 }

@@ -38,7 +38,7 @@ const Movie = () => {
                 <th><h1>Movies</h1></th>
                 <th><h1>Date</h1></th>
                 <th><h1>Session</h1></th>
-                <th><h1>Action</h1></th>
+                <th><h1></h1></th>
               </tr>
             </thead>
             <tbody>
@@ -50,7 +50,7 @@ const Movie = () => {
                     <td>{formatDate(elem.date)}</td>
                     <td>{Array.isArray(elem.seans) ? elem.seans.join(', ') : 'No sessions available'}</td>
                     <td>
-                      <Link className='Link'>Buy</Link>
+                      <Link to={`/buyticket/${elem._id}`} className='Link'>Buy</Link>
                     </td>
                   </tr>
                 ))

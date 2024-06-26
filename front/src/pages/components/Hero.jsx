@@ -21,7 +21,7 @@ const Hero = () => {
       try {
         const data = await getAllData('heros');
         if (data) {
-          setMovies(data.slice(0, 4)); 
+          setMovies(data); 
         }
       } catch (error) {
         console.error('Error fetching movies:', error);

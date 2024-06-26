@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from 'yup';
 import backgroundVideo from "../assets/videos/videoplayback.mp4";
-import './assets/scss/Login.scss';
 import { getAllData } from '../service/requests';
 import { addUsers } from '../redux/slice/userSlice';
+import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import './assets/scss/Login.scss';
 
-// Yup validation schema for login form
+// Form validation schemas
 const LoginSchema = Yup.object().shape({
     email: Yup.string()
         .email('Invalid email address')
         .required('Email is required'),
     password: Yup.string()
-        .required('Password is required')
+        .required('Password is required'),
 });
 
-// Yup validation schema for sign-up form
 const SignUpSchema = Yup.object().shape({
     username: Yup.string().required('Username is required'),
     name: Yup.string().required('Name is required'),
@@ -27,69 +29,117 @@ const SignUpSchema = Yup.object().shape({
         .required('Email is required'),
     password: Yup.string()
         .min(6, 'Password must be at least 6 characters')
-        .required('Password is required')
+        .required('Password is required'),
 });
 
 const Login = () => {
     const [isFlipped, setIsFlipped] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    // Fetch all users data on component mount
     useEffect(() => {
         getAllData("users").then((res) => {
             dispatch(addUsers(res));
         });
     }, [dispatch]);
 
+    // Get users from Redux store
     const users = useSelector(state => state.allUser.users);
 
     const handleSubmit = async (values) => {
         try {
+            // Find user by email and password from Redux state
             const user = users.find(elem => (elem.email === values.email) && (elem.password === values.password));
 
             if (user) {
+                // Prepare user data to store in localStorage
                 const userData = {
                     ...user,
-                    user: false,
-                    orders: []
                 };
 
+                // Store user data in localStorage
                 localStorage.setItem("user", JSON.stringify(userData));
+
+                // Redirect to home page
                 navigate("/");
             } else {
-                alert("Error: Invalid email or password");
+                // Show error message if login fails
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed',
+                    text: 'Invalid email or password. Please try again.',
+                });
             }
         } catch (error) {
             console.error("Login error:", error);
-            alert("Login failed. Please try again.");
+            // Show generic error message if login fails unexpectedly
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed',
+                text: 'Login failed. Please try again.',
+            });
         }
     };
 
     const handleSignUp = async (values) => {
         try {
-            // Simulate sign-up API call
-            console.log("Sign up values:", values);
-
+            // Prepare new user object with default values
             const newUser = {
-                ...values,
-                user: false,
-                orders: []
+                username: values.username,
+                name: values.name,
+                lastname: values.lastname,
+                email: values.email,
+                password: values.password,
+                user: false, // Default user value
+                orders: []    // Default orders value
             };
 
-            console.log("New user:", newUser);
+            // Example: Assuming you have an API endpoint to add new users
+            const response = await fetch('http://localhost:3000/api/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newUser),
+            });
 
-            // Here you would typically make an API call to save the new user data
+            // Example code if you have an API response:
+            const data = await response.json();
+            console.log("New user:", data);
 
-            alert("Sign up successful! Redirecting to login.");
-            setIsFlipped(false); // Flip back to login side
+            // Update Redux store with the newly registered user
+            dispatch(addUsers([data])); // Assuming addUsers expects an array of users
+
+            // Show success message and flip back to login form
+            Swal.fire({
+                icon: 'success',
+                title: 'Sign Up Successful',
+                text: 'Registration completed successfully! Redirecting to login.',
+            }).then(() => {
+                setIsFlipped(false); // Flip back to login after successful signup
+            });
         } catch (error) {
             console.error("Sign up error:", error);
-            alert("Sign up failed. Please try again.");
+            // Show error message if sign up fails
+            Swal.fire({
+                icon: 'error',
+                title: 'Sign Up Failed',
+                text: 'Registration failed. Please try again.',
+            });
         }
     };
 
+    // Toggle between login and sign up forms
     const handleToggle = () => {
         setIsFlipped(!isFlipped);
+    };
+
+    // Toggle password visibility
+    const togglePasswordVisibility = (e) => {
+        e.stopPropagation();
+        setShowPassword(!showPassword);
     };
 
     return (
@@ -121,7 +171,10 @@ const Login = () => {
                                         <Form onSubmit={handleSubmit} className="flip-card__form" style={{ color: 'white' }}>
                                             <Field type="email" name="email" placeholder="Email" className="flip-card__input" required />
                                             <ErrorMessage name="email" component="div" className="error" />
-                                            <Field type="password" name="password" placeholder="Password" className="flip-card__input" required />
+                                            <div className="password-field">
+                                                <Field type={showPassword ? "text" : "password"} name="password" placeholder="Password" className="flip-card__input" required />
+                                                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} onClick={(e) => togglePasswordVisibility(e)} className="password-toggle-icon" />
+                                            </div>
                                             <ErrorMessage name="password" component="div" className="error" />
                                             <Link className='forgot'>Forgot password?</Link>
                                             <button type="submit" className="flip-card__btn">Log in</button>

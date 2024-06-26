@@ -12,6 +12,7 @@ import Movie from "../pages/Movie";
 import Profil from "../pages/Profil";
 import ReklamPanel from "../pages/ReklamPanel";
 import ShowTimes from "../pages/ShowTimes";
+import SliderSlice from "../pages/SliderSlice";
 import UserPanel from "../pages/UserPanel";
 
 
@@ -53,6 +54,10 @@ export const routers = [
       },
       
       {
+        path: '/buyticket/:id',
+        element: <BuyTicket/>
+      },
+      {
         path: '/buyticket',
         element: <BuyTicket/>
       },
@@ -80,6 +85,11 @@ export const routers = [
   {
     path:'/reklamAdmin',
     element:<ReklamPanel/>
+  }
+  ,
+  {
+    path:'/advertAdmin',
+    element:<SliderSlice/>
   }
   ,
   {
