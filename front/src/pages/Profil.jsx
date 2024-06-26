@@ -93,7 +93,6 @@ const Profil = () => {
     <section id='profil'>
       <div className="container profile">
         <div className="info">
-          <FontAwesomeIcon className='edit' icon={faPen} onClick={toggleModal} />
           <FontAwesomeIcon className='logout' icon={faSignOutAlt} onClick={handleLogout} />
           <div className="img">
             <img src={profil} alt="Profile" />

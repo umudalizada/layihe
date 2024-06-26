@@ -137,81 +137,88 @@ const Login = () => {
     };
 
     // Toggle password visibility
-    const togglePasswordVisibility = (e) => {
-        e.stopPropagation();
-        setShowPassword(!showPassword);
-    };
+// Toggle password visibility
+const togglePasswordVisibility = (e) => {
+    e.preventDefault(); // FontAwesomeIcon'un varsayılan davranışını engelle
+    e.stopPropagation(); // Event yığınındaki diğer eventlerin tetiklenmesini durdur
 
-    return (
-        <section id='login'>
-            <video autoPlay muted loop>
-                <source src={backgroundVideo} type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
-            <div className="wrapper">
-                <div className="card-switch">
-                    <label className="switch">
-                        <input
-                            className="toggle"
-                            type="checkbox"
-                            checked={isFlipped}
-                            onChange={handleToggle}
-                        />
-                        <span className="slider"></span>
-                        <span className="card-side"></span>
-                        <div className={`flip-card__inner ${isFlipped ? 'flipped' : ''}`}>
-                            <div className="flip-card__front">
-                                <div className="title">Log in</div>
-                                <Formik
-                                    initialValues={{ email: '', password: '' }}
-                                    validationSchema={LoginSchema}
-                                    onSubmit={handleSubmit}
-                                >
-                                    {({ handleSubmit }) => (
-                                        <Form onSubmit={handleSubmit} className="flip-card__form" style={{ color: 'white' }}>
-                                            <Field type="email" name="email" placeholder="Email" className="flip-card__input" required />
-                                            <ErrorMessage name="email" component="div" className="error" />
-                                            <div className="password-field">
-                                                <Field type={showPassword ? "text" : "password"} name="password" placeholder="Password" className="flip-card__input" required />
-                                                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} onClick={(e) => togglePasswordVisibility(e)} className="password-toggle-icon" />
-                                            </div>
-                                            <ErrorMessage name="password" component="div" className="error" />
-                                            <Link className='forgot'>Forgot password?</Link>
-                                            <button type="submit" className="flip-card__btn">Log in</button>
-                                        </Form>
-                                    )}
-                                </Formik>
-                            </div>
-                            <div className="flip-card__back">
-                                <div className="title">Sign up</div>
-                                <Formik
-                                    initialValues={{ username: '', name: '', lastname: '', email: '', password: '' }}
-                                    validationSchema={SignUpSchema}
-                                    onSubmit={handleSignUp}
-                                >
-                                    {({ handleSubmit }) => (
-                                        <Form onSubmit={handleSubmit} className="flip-card__form" style={{ color: 'white' }}>
-                                            <Field type="text" name="username" placeholder="Username" className="flip-card__input" required />
-                                            <ErrorMessage name="username" component="div" className="error" />
-                                            <Field type="text" name="name" placeholder="Name" className="flip-card__input" required />
-                                            <ErrorMessage name="name" component="div" className="error" />
-                                            <Field type="text" name="lastname" placeholder="Lastname" className="flip-card__input" required />
-                                            <ErrorMessage name="lastname" component="div" className="error" />
-                                            <Field type="email" name="email" placeholder="Email" className="flip-card__input" required />
-                                            <ErrorMessage name="email" component="div" className="error" />
-                                            <Field type="password" name="password" placeholder="Password" className="flip-card__input" required />
-                                            <ErrorMessage name="password" component="div" className="error" />
-                                            <button type="submit" className="flip-card__btn">Sign up</button>
-                                        </Form>
-                                    )}
-                                </Formik>
-                            </div>
+    setShowPassword(!showPassword); // Şifre görünürlüğünü değiştir
+};
+
+
+return (
+    <section id='login'>
+        <video autoPlay muted loop>
+            <source src={backgroundVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        <div className="wrapper">
+            <div className="card-switch">
+                <label className="switch">
+                    <input
+                        className="toggle"
+                        type="checkbox"
+                        checked={isFlipped}
+                        onChange={handleToggle}
+                    />
+                    <span className="slider"></span>
+                    <span className="card-side"></span>
+                    <div className={`flip-card__inner ${isFlipped ? 'flipped' : ''}`}>
+                        <div className="flip-card__front">
+                            <div className="title">Log in</div>
+                            <Formik
+                                initialValues={{ email: '', password: '' }}
+                                validationSchema={LoginSchema}
+                                onSubmit={handleSubmit}
+                            >
+                                {({ handleSubmit }) => (
+                                    <Form onSubmit={handleSubmit} className="flip-card__form" style={{ color: 'white' }}>
+                                        <Field type="email" name="email" placeholder="Email" className="flip-card__input" required />
+                                        <ErrorMessage name="email" component="div" className="error" />
+                                        <div className="password-field">
+                                            <Field type={showPassword ? "text" : "password"} name="password" placeholder="Password" className="flip-card__input" required />
+                                            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} onClick={(e) => togglePasswordVisibility(e)} className="password-toggle-icon" />
+                                        </div>
+                                        <ErrorMessage name="password" component="div" className="error" />
+                                        <Link className='forgot'>Forgot password?</Link>
+                                        <button type="submit" className="flip-card__btn">Log in</button>
+                                    </Form>
+                                )}
+                            </Formik>
                         </div>
-                    </label>
-                </div>
+                        <div className="flip-card__back">
+                            <div className="title">Sign up</div>
+                            <Formik
+                                initialValues={{ username: '', name: '', lastname: '', email: '', password: '' }}
+                                validationSchema={SignUpSchema}
+                                onSubmit={handleSignUp}
+                            >
+                                {({ handleSubmit }) => (
+                                    <Form onSubmit={handleSubmit} className="flip-card__form" style={{ color: 'white' }}>
+                                        <Field type="text" name="username" placeholder="Username" className="flip-card__input" required />
+                                        <ErrorMessage name="username" component="div" className="error" />
+                                        <Field type="text" name="name" placeholder="Name" className="flip-card__input" required />
+                                        <ErrorMessage name="name" component="div" className="error" />
+                                        <Field type="text" name="lastname" placeholder="Lastname" className="flip-card__input" required />
+                                        <ErrorMessage name="lastname" component="div" className="error" />
+                                        <Field type="email" name="email" placeholder="Email" className="flip-card__input" required />
+                                        <ErrorMessage name="email" component="div" className="error" />
+                                        <div className="password-field">
+                                            <Field type={showPassword ? "text" : "password"} name="password" placeholder="Password" className="flip-card__input" required />
+                                            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} onClick={(e) => togglePasswordVisibility(e)} className="password-toggle-icon" />
+                                        </div>
+                                        <ErrorMessage name="password" component="div" className="error" />
+                                        <button type="submit" className="flip-card__btn">Sign up</button>
+                                    </Form>
+                                )}
+                            </Formik>
+                        </div>
+                    </div>
+                </label>
             </div>
-        </section>
-    );
+        </div>
+    </section>
+);
 };
 
 export default Login;

@@ -1,98 +1,133 @@
-import React from 'react'
-import "./assets/scss/Contact.scss"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faTelegram } from '@fortawesome/free-brands-svg-icons'
-import { faMapPin, faPhone } from '@fortawesome/free-solid-svg-icons'
-
-
+import React, { useState } from 'react';
+import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './assets/scss/Contact.scss';
+import { faMapPin } from '@fortawesome/free-solid-svg-icons';
+import { faInstagram, faTelegram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 const Contact = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [subject, setSubject] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleExternalLink = (url) => (event) => {
+        event.preventDefault();
+        window.open(url, '_blank', 'noopener,noreferrer');
+      };
+
+    const handleSendMessage = (e) => {
+        e.preventDefault();
+        
+        // Store contact details in localStorage
+        localStorage.setItem('contactEmail', email);
+        localStorage.setItem('contactMessage', message);
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Başarılı!',
+            text: 'Mesaj başarıyla gönderildi.',
+            confirmButtonText: 'Tamam'
+        });
+
+        // Clear form
+        setName('');
+        setEmail('');
+        setSubject('');
+        setMessage('');
+    };
+
     return (
         <section id="contact">
             <div className="container contact">
                 <div className="left">
-                    <div className="boxes">
+                    <div  className="boxes" onClick={() => handleExternalLink('https://chat.whatsapp.com/KAfqzGzvRET9KWBeP0kzbB')} >
                         <div className="card">
-                            <div className="first-content">
-                            <FontAwesomeIcon className='span' icon={faPhone} />
+                            <div  className="first-content">
+                                <FontAwesomeIcon icon={faWhatsapp} />
                             </div>
                             <div className="second-content">
-                                <span>+222 333 22</span>
+                                <span>wp</span>
                             </div>
                         </div>
                     </div>
-                    <div className="boxes">
+                    <div className="boxes" onClick={() => handleExternalLink('https://t.me/+orkn-5NboT5hM2Yy')} >
                         <div className="card">
                             <div className="first-content">
-                            <FontAwesomeIcon icon={faTelegram} />
+                                <FontAwesomeIcon icon={faTelegram} />
                             </div>
                             <div className="second-content">
                                 <span>t.me/cine</span>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div className="conatctBox">
                     <div className="form-card1">
                         <div className="form-card2">
-                            <form className="form">
+                            <form className="form" onSubmit={handleSendMessage}>
                                 <p className="form-heading">Get In Touch</p>
                                 <div className="form-field">
                                     <input
-                                        required=""
+                                        required
                                         placeholder="Name"
                                         className="input-field"
                                         type="text"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-field">
                                     <input
-                                        required=""
+                                        required
                                         placeholder="Email"
                                         className="input-field"
                                         type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-field">
                                     <input
-                                        required=""
+                                        required
                                         placeholder="Subject"
                                         className="input-field"
                                         type="text"
+                                        value={subject}
+                                        onChange={(e) => setSubject(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-field">
                                     <textarea
-                                        required=""
+                                        required
                                         placeholder="Message"
                                         cols={30}
                                         rows={3}
                                         className="input-field"
-                                        defaultValue={""}
+                                        value={message}
+                                        onChange={(e) => setMessage(e.target.value)}
                                     />
                                 </div>
-                                <button className="sendMessage-btn">Send Message</button>
+                                <button className="sendMessage-btn" type="submit">Send Message</button>
                             </form>
                         </div>
                     </div>
-
                 </div>
                 <div className="right">
-                    <div className="boxes">
+                    <div className="boxes" onClick={() => handleExternalLink('https://www.instagram.com/umudlzde/?igsh=MWNsYzlpZTJ6MjV5Nw%3D%3D')}>
                         <div className="card">
-                            <div className="first-content">
-                            <FontAwesomeIcon icon={faInstagram} />
+                            <div  className="first-content">
+                                <FontAwesomeIcon icon={faInstagram} />
                             </div>
                             <div className="second-content">
-                                <span>@cinepolos</span>
+                                <span>@cinepolis</span>
                             </div>
                         </div>
                     </div>
                     <div className="boxes">
                         <div className="card">
                             <div className="first-content">
-                            <FontAwesomeIcon icon={faMapPin} />
+                                <FontAwesomeIcon icon={faMapPin} />
                             </div>
                             <div className="second-content">
                                 <span>M/s Khalglar</span>
@@ -100,10 +135,9 @@ const Contact = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default Contact
+export default Contact;

@@ -1,6 +1,7 @@
 import Layout from "../layout/Layout";
 import About from "../pages/About";
 import Admin from "../pages/Admin";
+import Asistan from "../pages/Asistan";
 import AsistanChat from "../pages/AsistanChat";
 import Basket from "../pages/Basket";
 import BuyTicket from "../pages/BuyTicket";
@@ -95,5 +96,10 @@ export const routers = [
   {
     path: '/chat',
     element: <AsistanChat/>
+  },
+  
+  {
+    path: '/asistan',
+    element: <Asistan/>
   },
 ]

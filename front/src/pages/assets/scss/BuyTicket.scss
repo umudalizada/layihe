@@ -1,5 +1,5 @@
 #buyTicket {
-  padding-top: 190px;
+  padding-top: 150px;
 
   .container.buyTicket {
     .ticketForm {
@@ -113,14 +113,15 @@
       }
     }
 
-    @media (max-width: 330px) {
+    @media (max-width: 490px) {
       .ticketForm {
+        gap: 5px;
         .seats {
           .seat-grid {
             .seat {
-              width: 20px; /* Adjusted size for smaller screens */
-              height: 20px; /* Adjusted size for smaller screens */
-              line-height: 20px; /* Adjusted line height for smaller screens */
+              width: 10px; /* Adjusted size for smaller screens */
+              height: 10px; /* Adjusted size for smaller screens */
+              line-height: 0px; /* Adjusted line height for smaller screens */
             }
           }
         }
@@ -128,3 +129,19 @@
     }
   }
 }
+
+    @media (max-width: 400px) {
+      .ticketForm {
+        gap: 0;
+        .seats {
+          .seat-grid {
+            .seat {
+              width: 5px; /* Adjusted size for smaller screens */
+              height: 5px; /* Adjusted size for smaller screens */
+              line-height: 10px; /* Adjusted line height for smaller screens */
+            }
+          }
+        }
+      }
+    }
+

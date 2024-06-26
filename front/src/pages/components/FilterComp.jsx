@@ -16,7 +16,7 @@
         <button className="filterButton" onClick={() => scrollToSection('laser')}>IMAX</button>
         <button className="filterButton" onClick={() => scrollToSection('triD')}>3D</button>
         <button className="filterButton" onClick={() => scrollToSection('twoD')}>2D</button>
-        <Link to="/buyticket/" className='buyTicket'>Buy Ticket</Link>
+        <Link to="/buyticket/"> <button  className='buyTicket'>Buy Ticket</button></Link>
 
       </div>
     );
