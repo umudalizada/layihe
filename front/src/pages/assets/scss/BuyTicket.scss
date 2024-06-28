@@ -1,5 +1,6 @@
 #buyTicket {
   padding-top: 150px;
+  background-color: #333;
 
   .container.buyTicket {
     .ticketForm {
@@ -35,8 +36,19 @@
         display: flex;
         align-items: center;
 
+        .butl{
+          padding: 8px 10px;
+          margin: 0 5px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+
+        }
         button {
-          padding: 5px 10px;
+          padding: 0;
           margin: 0 5px;
           background-color: #007bff;
           color: #fff;
@@ -73,8 +85,9 @@
             border: 1px solid #ccc;
             text-align: center;
             line-height: 30px;
+            font-size: 14px; /* Default font size */
             cursor: pointer;
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.3s, border-color 0.3s, font-size 0.3s;
 
             &.selected {
               background-color: green;
@@ -115,13 +128,118 @@
 
     @media (max-width: 490px) {
       .ticketForm {
-        gap: 5px;
+        gap: 10px; // Daha az boşluk bırak
+        padding: 10px; // İç kenar boşluğunu azalt
+
+        .form-group {
+          margin-bottom: 10px; // Grup arasındaki boşluğu azalt
+          
+          select,
+          input[type="number"] {
+            padding: 5px; // Form öğelerinin iç kenar boşluğunu azalt
+            font-size: 14px; // Yazı tipini küçült
+          }
+        }
+
+        .quantity-controls {
+          button {
+            padding: 3px 7px; // Düğme iç kenar boşluğunu azalt
+          }
+
+          input {
+            width: 40px; // Genişliği azalt
+          }
+        }
+
         .seats {
           .seat-grid {
+            gap: 3px; // Koltuklar arasındaki boşluğu azalt
+
             .seat {
-              width: 10px; /* Adjusted size for smaller screens */
-              height: 10px; /* Adjusted size for smaller screens */
-              line-height: 0px; /* Adjusted line height for smaller screens */
+              width: 20px; /* Orta boyut */
+              height: 20px; /* Orta boyut */
+              line-height: 20px; /* Orta boyut */
+              font-size: 10px; /* Orta yazı boyutu */
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: 400px) {
+      .ticketForm {
+        gap: 5px; // Daha az boşluk bırak
+        padding: 5px; // İç kenar boşluğunu azalt
+
+        .form-group {
+          margin-bottom: 5px; // Grup arasındaki boşluğu azalt
+
+          select,
+          input[type="number"] {
+            padding: 3px; // Form öğelerinin iç kenar boşluğunu azalt
+            font-size: 12px; // Yazı tipini küçült
+          }
+        }
+
+        .quantity-controls {
+          button {
+            padding: 2px 5px; // Düğme iç kenar boşluğunu azalt
+          }
+
+          input {
+            width: 30px; // Genişliği azalt
+          }
+        }
+
+        .seats {
+          .seat-grid {
+            gap: 2px; // Koltuklar arasındaki boşluğu azalt
+
+            .seat {
+              width: 15px; /* Küçük boyut */
+              height: 15px; /* Küçük boyut */
+              line-height: 15px; /* Küçük boyut */
+              font-size: 8px; /* Küçük yazı boyutu */
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: 300px) {
+      .ticketForm {
+        gap: 3px; // Daha az boşluk bırak
+        padding: 3px; // İç kenar boşluğunu azalt
+
+        .form-group {
+          margin-bottom: 3px; // Grup arasındaki boşluğu azalt
+
+          select,
+          input[type="number"] {
+            padding: 2px; // Form öğelerinin iç kenar boşluğunu azalt
+            font-size: 10px; // Yazı tipini küçült
+          }
+        }
+
+        .quantity-controls {
+          button {
+            padding: 1px 3px; // Düğme iç kenar boşluğunu azalt
+          }
+
+          input {
+            width: 20px; // Genişliği azalt
+          }
+        }
+
+        .seats {
+          .seat-grid {
+            gap: 1px; // Koltuklar arasındaki boşluğu azalt
+
+            .seat {
+              width: 10px; /* Çok küçük boyut */
+              height: 10px; /* Çok küçük boyut */
+              line-height: 10px; /* Çok küçük boyut */
+              font-size: 6px; /* Çok küçük yazı boyutu */
             }
           }
         }
@@ -129,19 +247,4 @@
     }
   }
 }
-
-    @media (max-width: 400px) {
-      .ticketForm {
-        gap: 0;
-        .seats {
-          .seat-grid {
-            .seat {
-              width: 5px; /* Adjusted size for smaller screens */
-              height: 5px; /* Adjusted size for smaller screens */
-              line-height: 10px; /* Adjusted line height for smaller screens */
-            }
-          }
-        }
-      }
-    }
-
+    

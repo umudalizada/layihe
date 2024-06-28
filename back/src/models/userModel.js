@@ -6,8 +6,8 @@ const userSchema = mongoose.Schema({
     lastname: { type: String, required: true, trim:true  },
     email: { type: String, required: true, trim:true  },
     password: { type: String, required: true, trim:true  },
-    orders: { type: Array, required: true, trim:true  },
-    user: { type: Boolean, required: true, trim:true  },
+    orders: { type: Array, required: true, trim:true, default: []  },
+    user: { type: Boolean, required: true, trim:true, default: false  },
 })
 
 module.exports = mongoose.model("User", userSchema)

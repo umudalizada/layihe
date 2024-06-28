@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './assets/scss/Contact.scss';
@@ -11,39 +12,63 @@ const Contact = () => {
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
 
+    const defaultEmail = 'umudtrend1@gmail.com';
+
     const handleExternalLink = (url) => (event) => {
         event.preventDefault();
         window.open(url, '_blank', 'noopener,noreferrer');
-      };
-
+    };
     const handleSendMessage = (e) => {
         e.preventDefault();
-        
-        // Store contact details in localStorage
-        localStorage.setItem('contactEmail', email);
-        localStorage.setItem('contactMessage', message);
-
-        Swal.fire({
-            icon: 'success',
-            title: 'Başarılı!',
-            text: 'Mesaj başarıyla gönderildi.',
-            confirmButtonText: 'Tamam'
-        });
-
-        // Clear form
-        setName('');
-        setEmail('');
-        setSubject('');
-        setMessage('');
+    
+        // Prepare email parameters
+        const templateParams = {
+            from_name: name,
+            reply_to: email,
+            to_email: defaultEmail,
+            subject: subject,
+            message: message
+        };
+    
+        // Send email using emailjs
+        emailjs.send('service_4xdex65', 'template_tyc49au', templateParams, '43oi_U7RtguYqureE')
+            .then((response) => {
+                console.log('E-posta gönderildi:', response.status, response.text);
+    
+                // Show success message
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Başarılı!',
+                    text: 'Mesaj başarıyla gönderildi.',
+                    confirmButtonText: 'Tamam'
+                });
+    
+                // Clear form
+                setName('');
+                setEmail('');
+                setSubject('');
+                setMessage('');
+            }, (error) => {
+                console.error('E-posta gönderilirken hata oluştu:', error);
+    
+                // Show error message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata!',
+                    text: 'Mesaj gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.',
+                    confirmButtonText: 'Tamam'
+                });
+            });
     };
+    
 
     return (
         <section id="contact">
             <div className="container contact">
                 <div className="left">
-                    <div  className="boxes" onClick={() => handleExternalLink('https://chat.whatsapp.com/KAfqzGzvRET9KWBeP0kzbB')} >
+                    <div className="boxes" onClick={() => handleExternalLink('https://chat.whatsapp.com/KAfqzGzvRET9KWBeP0kzbB')}>
                         <div className="card">
-                            <div  className="first-content">
+                            <div className="first-content">
                                 <FontAwesomeIcon icon={faWhatsapp} />
                             </div>
                             <div className="second-content">
@@ -51,7 +76,7 @@ const Contact = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="boxes" onClick={() => handleExternalLink('https://t.me/+orkn-5NboT5hM2Yy')} >
+                    <div className="boxes" onClick={() => handleExternalLink('https://t.me/+orkn-5NboT5hM2Yy')}>
                         <div className="card">
                             <div className="first-content">
                                 <FontAwesomeIcon icon={faTelegram} />
@@ -114,9 +139,9 @@ const Contact = () => {
                     </div>
                 </div>
                 <div className="right">
-                    <div className="boxes" onClick={() => handleExternalLink('https://www.instagram.com/umudlzde/?igsh=MWNsYzlpZTJ6MjV5Nw%3D%3D')}>
+                    <div className="boxes" onClick={() => handleExternalLink('https://www.instagram.com/umudlzde/?igsh=MWNsYzlpZTJ6M2Yy')}>
                         <div className="card">
-                            <div  className="first-content">
+                            <div className="first-content">
                                 <FontAwesomeIcon icon={faInstagram} />
                             </div>
                             <div className="second-content">

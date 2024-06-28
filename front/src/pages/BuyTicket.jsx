@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import "./assets/scss/BuyTicket.scss";
+import PaymentModal from './PaymentModal';
 
 const BuyTicket = () => {
   const { id } = useParams();
@@ -17,6 +18,8 @@ const BuyTicket = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [reservedSeats, setReservedSeats] = useState([]);
   const [price, setPrice] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const ticketPrice = price || 50;
   const seats = Array.from({ length: 60 }, (_, i) => i + 1);
 
@@ -85,7 +88,6 @@ const BuyTicket = () => {
           params: { movieId: category, date: event, seans: selectedSeans }
         });
 
-        // Process grouped reservation data
         const groupedReservations = {};
         response.data.forEach(reserv => {
           if (!groupedReservations[reserv.movieId]) {
@@ -144,9 +146,7 @@ const BuyTicket = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const openPaymentModal = () => {
     if (!user) {
       Swal.fire({
         title: 'Login Required',
@@ -172,6 +172,10 @@ const BuyTicket = () => {
       return;
     }
 
+    setIsModalOpen(true);
+  };
+
+  const handlePaymentSuccess = async () => {
     const selectedMovie = movies.find(movie => movie._id === category);
     const selectedSeansTime = selectedMovie ? selectedMovie.seans.find(seans => seans === ticketType) : '';
 
@@ -220,7 +224,7 @@ const BuyTicket = () => {
   return (
     <section id="buyTicket">
       <div className="container buyTicket">
-        <form className="ticketForm" onSubmit={handleSubmit}>
+        <form className="ticketForm" onSubmit={(e) => e.preventDefault()}>
           <div className="form-group">
             <label htmlFor="category">Movie</label>
             <select id="category" name="category" value={category} onChange={handleCategoryChange}>
@@ -254,9 +258,9 @@ const BuyTicket = () => {
           <div className="form-group">
             <label>Quantity</label>
             <div className="quantity-controls">
-              <button type="button" onClick={() => handleQuantityChange('decrement')}>-</button>
+              <button type="button" className='butl' onClick={() => handleQuantityChange('decrement')}>-</button>
               <input type="number" value={quantity} readOnly />
-              <button type="button" onClick={() => handleQuantityChange('increment')}>+</button>
+              <button type="button" className='butl' onClick={() => handleQuantityChange('increment')}>+</button>
             </div>
           </div>
 
@@ -281,8 +285,14 @@ const BuyTicket = () => {
             </div>
           </div>
 
-          <button type="submit" className="buyButton">Buy Now</button>
+          <button type="button" className="buyButton" onClick={openPaymentModal}>Buy Now</button>
         </form>
+
+        <PaymentModal
+          isOpen={isModalOpen}
+          onRequestClose={() => setIsModalOpen(false)}
+          onPaymentSuccess={handlePaymentSuccess}
+        />
       </div>
     </section>
   );

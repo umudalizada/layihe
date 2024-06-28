@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faSignOutAlt, faQrcode } from '@fortawesome/free-solid-svg-icons'; // QR code icon
 import profil from '../assets/images/profil4.png';
 
-// Function to format date into day-month-year format
+// Component code here...
+
+
 const formatIntoDate = (dateString) => {
   const date = new Date(dateString);
   const day = date.getDate();
@@ -13,7 +15,6 @@ const formatIntoDate = (dateString) => {
   return `${day} ${month} ${year}`;
 };
 
-// TicketCard component to render each ticket's details
 const TicketCard = ({ order }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -24,7 +25,7 @@ const TicketCard = ({ order }) => {
   return (
     <div className="ticketCard">
       <div className="ticketHeader">
-        <h4>Movie: {order.name.slice(0, 10)}</h4> {/* Display first 10 characters of movie name */}
+        <h4>Movie: {order.name && order.name.slice(0, 10)}</h4> {/* Check if order.name exists */}
         <FontAwesomeIcon icon={faQrcode} className="qrIcon" onClick={toggleModal} />
       </div>
       <h4>Date: {formatIntoDate(order.date)}</h4> {/* Format date as day-month-year */}
@@ -111,7 +112,7 @@ const Profil = () => {
                 {orders.map((order, index) => (
                   <TicketCard key={index} order={order} />
                 ))}
-                {orders.length > 3 && <p>And more...</p>}
+                {orders.length > 3 && <p></p>}
               </div>
             )}
           </div>

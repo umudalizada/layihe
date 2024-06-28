@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 require("dotenv/config");
 
 const routes = require("./src/routes/ticketRouters");
-const AuthRouter = require('./src/routes/authRouter');
+const authRouter = require('./src/routes/authRouter');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -16,13 +16,13 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(cors());
 require("./src/config/db");
-app.use("/api", AuthRouter);
+app.use("/auth", authRouter);
 app.use("/api", routes);
 app.get('/api/reserv', async (req, res) => {
   try {
     const { movieId, date, seans } = req.query;
 
-    // Fetch reservations for the same movie, date, and seans
+
     const reservations = await Reservation.find({ movieId, date, seans });
     res.json(reservations);
   } catch (error) {

@@ -176,7 +176,11 @@ const Admin = () => {
           </div>
           <div>
             <label>Category:</label>
-            <input type="text" name="category" defaultValue={formData ? formData.category : ''} required />
+            <select name="category" defaultValue={formData ? formData.category : ''} required>
+              <option value="IMAX">IMAX</option>
+              <option value="3D">3D</option>
+              <option value="2D">2D</option>
+            </select>
           </div>
           <div>
             <label>Price:</label>
@@ -212,7 +216,11 @@ const Admin = () => {
           </div>
           <div>
             <label>Category:</label>
-            <input type="text" name="category" defaultValue="" required />
+            <select name="category" defaultValue="" required>
+              <option value="IMAX">IMAX</option>
+              <option value="3D">3D</option>
+              <option value="2D">2D</option>
+            </select>
           </div>
           <div>
             <label>Price:</label>

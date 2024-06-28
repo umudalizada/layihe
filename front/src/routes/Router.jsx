@@ -1,7 +1,6 @@
 import Layout from "../layout/Layout";
 import About from "../pages/About";
 import Admin from "../pages/Admin";
-import Asistan from "../pages/Asistan";
 import AsistanChat from "../pages/AsistanChat";
 import Basket from "../pages/Basket";
 import BuyTicket from "../pages/BuyTicket";
@@ -10,11 +9,13 @@ import Detail from "../pages/Detail";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Movie from "../pages/Movie";
+import NotFound from "../pages/NotFound";
 import Profil from "../pages/Profil";
 import ReklamPanel from "../pages/ReklamPanel";
 import ShowTimes from "../pages/ShowTimes";
 import SliderSlice from "../pages/SliderSlice";
 import UserPanel from "../pages/UserPanel";
+import { ProtectedAdmin, ProtectedProfil } from "./Protected";
 
 
 export const routers = [
@@ -65,7 +66,10 @@ export const routers = [
       
       {
         path: '/profile',
-        element: <Profil/>
+        element:(
+
+          <ProtectedProfil element={<Profil/>} profile={true} />
+        )
       },
     ]
   },
@@ -76,7 +80,11 @@ export const routers = [
   },
   {
     path: '/admin',
-    element: <Admin />
+    element:(
+
+      <ProtectedAdmin element={<Admin/>} admin={true} />
+    )
+
   },
   {
     path:'/userAdmin',
@@ -97,9 +105,10 @@ export const routers = [
     path: '/chat',
     element: <AsistanChat/>
   },
-  
   {
-    path: '/asistan',
-    element: <Asistan/>
+    path: '/404',
+    element: <NotFound/>
   },
+  
+
 ]

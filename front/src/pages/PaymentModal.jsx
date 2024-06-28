@@ -1,0 +1,132 @@
+import React, { useState } from 'react';
+import Modal from 'react-modal';
+import Swal from 'sweetalert2';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import './assets/scss/PaymentModal.scss'; // SCSS for modal
+import visaImage from "./assets/Images/visa.png";
+import masterImage from "./assets/Images/master.png";
+
+Modal.setAppElement('#root'); // This is important for accessibility
+
+const PaymentModal = ({ isOpen, onRequestClose, onPaymentSuccess }) => {
+  const [cardType, setCardType] = useState(null); // State to track card type
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiryDate, setExpiryDate] = useState(null); // Date state for expiry
+  const [cvc, setCvc] = useState('');
+
+  const handlePayment = () => {
+    if (cardNumber.length === 16 && expiryDate && cvc.length === 3) {
+      // Simulate payment processing
+      setTimeout(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Payment Successful',
+          text: 'Your payment has been processed successfully!'
+        });
+        onPaymentSuccess();
+        onRequestClose();
+      }, 1000);
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Payment Failed',
+        text: 'Please fill in all card details correctly.'
+      });
+    }
+  };
+
+  const handleCardNumberChange = (e) => {
+    const value = e.target.value.replace(/\D/g, ''); // Only allow digits
+    setCardNumber(value);
+
+    // Determine card type based on first digit
+    if (value.startsWith('4')) {
+      setCardType('visa');
+    } else if (value.startsWith('5')) {
+      setCardType('mastercard');
+    } else {
+      setCardType(null);
+    }
+  };
+
+  const handleExpiryDateChange = (date) => {
+    setExpiryDate(date);
+  };
+
+  const handleCvcChange = (e) => {
+    const value = e.target.value.replace(/\D/g, ''); // Only allow digits
+    if (value.length <= 3) {
+      setCvc(value);
+    }
+  };
+
+  // Function to check if date is after 2024
+  const isAfter2024 = (date) => {
+    const year = date.getFullYear();
+    return year >= 2024;
+  };
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      contentLabel="Payment Modal"
+      className="payment-modal"
+      overlayClassName="payment-modal-overlay"
+    >
+      {cardType && (
+        <div className="card-type-icon">
+          <img style={{ width: "40px" }} src={cardType === 'visa' ? visaImage : masterImage} alt={cardType === 'visa' ? 'Visa Card' : 'MasterCard'} />
+        </div>
+      )}
+
+      <h2>Payment Information</h2>
+      <form>
+        <div className="form-group">
+          <label htmlFor="cardNumber">Card Number</label>
+          <input
+            type="text"
+            id="cardNumber"
+            value={cardNumber}
+            onChange={handleCardNumberChange}
+            maxLength="16"
+            placeholder="1234 5678 9012 3456"
+            pattern="\d{16}"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Expiry Date</label>
+          <DatePicker
+            selected={expiryDate}
+            onChange={handleExpiryDateChange}
+            dateFormat="MM/yyyy"
+            showMonthYearPicker
+            placeholderText="MM/YYYY"
+            className="form-control"
+            required
+            minDate={new Date(2024, 0, 1)} // Minimum date is 2024
+            filterDate={isAfter2024} // Only allow dates after 2024
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="cvc">CVC</label>
+          <input
+            type="text"
+            id="cvc"
+            value={cvc}
+            onChange={handleCvcChange}
+            maxLength="3"
+            placeholder="123"
+            pattern="\d{3}"
+            required
+          />
+        </div>
+        <button type="button" onClick={handlePayment}>OK</button>
+      </form>
+    </Modal>
+  );
+};
+
+export default PaymentModal;
