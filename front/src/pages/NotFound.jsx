@@ -1,5 +1,6 @@
 import React from 'react';
 import "./assets/scss/NotFound.scss"
+import { Link } from 'react-router-dom';
 
 const NotFound = () => {
   return (
@@ -36,6 +37,9 @@ const NotFound = () => {
           <div className="screen_out1">
             <div className="screen">
               <span className="notfound_text"> NOT FOUND</span>
+              <Link to="/">
+              <span className="notfound_text"> Back To Home</span>
+              </Link>
             </div>
           </div>
         </div>

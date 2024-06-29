@@ -146,6 +146,7 @@ const BuyTicket = () => {
     }
   };
 
+
   const openPaymentModal = () => {
     if (!user) {
       Swal.fire({

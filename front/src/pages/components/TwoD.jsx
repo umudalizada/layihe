@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllData } from '../../service/requests'
 import { addTickets } from '../../redux/slice/ticketSlice'
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const TwoD = () => {
   const data = useSelector((state) => state.allTicket.tickets)
@@ -25,7 +27,20 @@ const TwoD = () => {
   }, [dispatch])
 
   if (loading) {
-    return <p>Loading...</p>
+    return (
+      <section id='twoD'>
+        <div className="container triDinfo">
+          <h2>2D</h2>
+        </div>
+        <div className="container allCards triD">
+          {[1, 2, 3, 4].map((item, index) => (
+            <div key={index} className="card">
+              <Skeleton  style={{backgroundColor:"whitesmoke"}} height={250} />
+            </div>
+          ))}
+        </div>
+      </section>
+    )
   }
 
   if (error) {
@@ -41,13 +56,13 @@ const TwoD = () => {
       </div>
       <div className="container allCards triD">
         {twoDMovies.length > 0 ? (
-          twoDMovies.map((movie,i) => (
-            <Link to={`/detail/${movie._id}`}>
-            <div key={i} className="card">
-              <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
-              <img src={movie.image} alt="" />
-            </div>
-          </Link>
+          twoDMovies.map((movie, i) => (
+            <Link key={i} to={`/detail/${movie._id}`}>
+              <div className="card">
+                <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
+                <img src={movie.image} alt="" />
+              </div>
+            </Link>
           ))
         ) : (
           <p>No 2D movies available</p>

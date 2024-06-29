@@ -21,7 +21,6 @@ const Contact = () => {
     const handleSendMessage = (e) => {
         e.preventDefault();
     
-        // Prepare email parameters
         const templateParams = {
             from_name: name,
             reply_to: email,
@@ -30,12 +29,10 @@ const Contact = () => {
             message: message
         };
     
-        // Send email using emailjs
         emailjs.send('service_4xdex65', 'template_tyc49au', templateParams, '43oi_U7RtguYqureE')
             .then((response) => {
                 console.log('E-posta gönderildi:', response.status, response.text);
     
-                // Show success message
                 Swal.fire({
                     icon: 'success',
                     title: 'Başarılı!',
@@ -43,7 +40,6 @@ const Contact = () => {
                     confirmButtonText: 'Tamam'
                 });
     
-                // Clear form
                 setName('');
                 setEmail('');
                 setSubject('');
@@ -51,7 +47,6 @@ const Contact = () => {
             }, (error) => {
                 console.error('E-posta gönderilirken hata oluştu:', error);
     
-                // Show error message
                 Swal.fire({
                     icon: 'error',
                     title: 'Hata!',
@@ -72,7 +67,7 @@ const Contact = () => {
                                 <FontAwesomeIcon icon={faWhatsapp} />
                             </div>
                             <div className="second-content">
-                                <span>wp</span>
+                                <span>+9942823828</span>
                             </div>
                         </div>
                     </div>
@@ -155,7 +150,7 @@ const Contact = () => {
                                 <FontAwesomeIcon icon={faMapPin} />
                             </div>
                             <div className="second-content">
-                                <span>M/s Khalglar</span>
+                                <span>B.N street</span>
                             </div>
                         </div>
                     </div>

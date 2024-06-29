@@ -6,7 +6,10 @@ import TriD from './components/TriD';
 import Laser from './components/Laser';
 import TwoD from './components/TwoD';
 
+
 const Home = () => {
+
+
   return (
     <>
         <Hero />

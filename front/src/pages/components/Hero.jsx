@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useSwipeable } from 'react-swipeable';
 import { getAllData } from '../../service/requests';
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const Hero = () => {
   const [movies, setMovies] = useState([]);
@@ -15,6 +17,7 @@ const Hero = () => {
   const [dragStartX, setDragStartX] = useState(0);
   const [dragCurrentX, setDragCurrentX] = useState(0);
   const [isMouseOverSlider, setIsMouseOverSlider] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // State for loading indicator
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -22,9 +25,11 @@ const Hero = () => {
         const data = await getAllData('heros');
         if (data) {
           setMovies(data); 
+          setIsLoading(false); // Set loading state to false when data is fetched
         }
       } catch (error) {
         console.error('Error fetching movies:', error);
+        setIsLoading(false); // Handle loading state in case of error
       }
     };
 
@@ -121,25 +126,33 @@ const Hero = () => {
         onMouseUp={handleMouseUp}
       >
         <div className="image">
-          {movies.map((movie, index) => (
-            <img
-              key={index}
-              src={movie.image}
-              alt={`Slide ${index + 1}`}
-              className={currentIndex === index ? 'active' : ''}
-            />
-          ))}
+          {isLoading ? ( // Check if loading, display skeleton
+            <div className="skeleton-wrapper">
+              <Skeleton style={{backgroundColor:"whitesmoke"}} height={800} />
+            </div>
+          ) : (
+            movies.map((movie, index) => (
+              <img
+                key={index}
+                src={movie.image}
+                alt={`Slide ${index + 1}`}
+                className={currentIndex === index ? 'active' : ''}
+              />
+            ))
+          )}
           <FontAwesomeIcon className='arrow leftArr' icon={faAngleLeft} onClick={handlePrevClick} />
           <FontAwesomeIcon className='arrow rightArr' icon={faChevronRight} onClick={handleNextClick} />
         </div>
         <div className="dots">
-          {movies.map((_, index) => (
-            <div
-              key={index}
-              className={`dot ${currentIndex === index ? 'active' : ''}`}
-              onClick={() => handleDotClick(index)}
-            />
-          ))}
+          {isLoading ? null : ( // Render dots only when not loading
+            movies.map((_, index) => (
+              <div
+                key={index}
+                className={`dot ${currentIndex === index ? 'active' : ''}`}
+                onClick={() => handleDotClick(index)}
+              />
+            ))
+          )}
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@ import Layout from "../layout/Layout";
 import About from "../pages/About";
 import Admin from "../pages/Admin";
 import AsistanChat from "../pages/AsistanChat";
+import AsistanPage from "../pages/AsistanPage";
 import Basket from "../pages/Basket";
 import BuyTicket from "../pages/BuyTicket";
 import Contact from "../pages/Contact";
@@ -15,7 +16,7 @@ import ReklamPanel from "../pages/ReklamPanel";
 import ShowTimes from "../pages/ShowTimes";
 import SliderSlice from "../pages/SliderSlice";
 import UserPanel from "../pages/UserPanel";
-import { ProtectedAdmin, ProtectedProfil } from "./Protected";
+import { ProtectedAdmin, ProtectedAdminAsistan, ProtectedProfil } from "./Protected";
 
 
 export const routers = [
@@ -106,9 +107,16 @@ export const routers = [
     element: <AsistanChat/>
   },
   {
-    path: '/404',
+    path: '/*',
     element: <NotFound/>
   },
-  
+
+{
+  path: '/help',
+  element:(
+
+    <ProtectedAdminAsistan element={<AsistanPage/>} admin={true} />
+  )
+},
 
 ]

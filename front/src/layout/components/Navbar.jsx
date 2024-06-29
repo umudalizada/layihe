@@ -16,16 +16,21 @@ const Navbar = () => {
     setMenuOpen(false);
   };
 
-  const openChat = () => {
-    navigate('/chat');
+  const openChatOrHelp = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user && user.user === true) {
+      navigate('/help');
+    } else {
+      navigate('/chat');
+    }
   };
 
-  let user = JSON.parse(localStorage.getItem("user"));
+  let user = JSON.parse(localStorage.getItem("user")) || {};
 
   return (
     <nav className='navbarBody'>
       <div className="container navbar">
-        <div className="asistanAbsalute" onClick={openChat}>
+        <div className="asistanAbsalute" onClick={openChatOrHelp}>
           <FontAwesomeIcon className='asistan' icon={faComments} />
         </div>
 
@@ -37,7 +42,7 @@ const Navbar = () => {
             <img src={logo} alt="Logo" />
           </Link>
           <h5 className='h5'>
-            <Link to={user ? "/profile" : "/login"} className='navLink' onClick={closeMenu}>
+            <Link to={user.user ? "/profile" : "/login"} className='navLink' onClick={closeMenu}>
               <FontAwesomeIcon icon={faUser} />
             </Link>
           </h5>
@@ -56,13 +61,13 @@ const Navbar = () => {
           <li>
             <Link to="/about" className='navLink' onClick={closeMenu}>About</Link>
           </li>
-          {user && user.user === true ? (
+          {user.user && user.user === true ? (
             <li>
               <Link to="/admin" className='navLink' onClick={closeMenu}>Admin</Link>
             </li>
           ) : null}
           <li>
-            <Link to={user ? "/profile" : "/login"} className='navLink' onClick={closeMenu}>
+            <Link to={user.user ? "/profile" : "/login"} className='navLink' onClick={closeMenu}>
               <FontAwesomeIcon icon={faUser} />
             </Link>
           </li>

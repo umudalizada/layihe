@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import "./assets/scss/Profil.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen, faSignOutAlt, faQrcode } from '@fortawesome/free-solid-svg-icons'; // QR code icon
+import { faPen, faSignOutAlt, faQrcode } from '@fortawesome/free-solid-svg-icons'; 
 import profil from '../assets/images/profil4.png';
 
-// Component code here...
 
 
 const formatIntoDate = (dateString) => {
@@ -25,20 +24,18 @@ const TicketCard = ({ order }) => {
   return (
     <div className="ticketCard">
       <div className="ticketHeader">
-        <h4>Movie: {order.name && order.name.slice(0, 10)}</h4> {/* Check if order.name exists */}
+        <h4>Movie: {order.name && order.name.slice(0, 10)}</h4>
         <FontAwesomeIcon icon={faQrcode} className="qrIcon" onClick={toggleModal} />
       </div>
-      <h4>Date: {formatIntoDate(order.date)}</h4> {/* Format date as day-month-year */}
+      <h4>Date: {formatIntoDate(order.date)}</h4> 
       <h4>Seans: {order.seans}</h4>
-      <h4>Price: ${order.price}</h4> {/* Assuming 'price' is included in order object */}
-      {/* QR code modal */}
+      <h4>Price: ${order.price}</h4> 
       {modalVisible && (
         <div className="modal">
           <div className="modal-content">
             <span className="close" onClick={toggleModal}>&times;</span>
             <h2>QR Code</h2>
             <div className="qrCode">
-              {/* QR code content */}
               <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${JSON.stringify(order)}`} alt="QR Code" />
             </div>
           </div>
