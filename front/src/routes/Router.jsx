@@ -3,7 +3,6 @@ import About from "../pages/About";
 import Admin from "../pages/Admin";
 import AsistanChat from "../pages/AsistanChat";
 import AsistanPage from "../pages/AsistanPage";
-import Basket from "../pages/Basket";
 import BuyTicket from "../pages/BuyTicket";
 import Contact from "../pages/Contact";
 import Detail from "../pages/Detail";
@@ -39,11 +38,6 @@ export const routers = [
       {
         path: '/showTime',
         element: <ShowTimes />
-      },
-      
-      {
-        path: '/basket',
-        element: <Basket/>
       },
       
       {

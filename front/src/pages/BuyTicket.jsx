@@ -192,7 +192,6 @@ const BuyTicket = () => {
     try {
       await axios.post('http://localhost:3000/api/reserv', newReservation);
 
-      // Update user orders
       const updatedOrders = [...(user.orders || []), newReservation];
       await axios.patch(`http://localhost:3000/api/users/${user._id}`, { orders: updatedOrders });
 

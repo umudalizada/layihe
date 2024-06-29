@@ -44,7 +44,7 @@ const TwoD = () => {
   }
 
   if (error) {
-    return <p>Error loading data: {error}</p>
+    return <p>Error loading data...</p>
   }
 
   const twoDMovies = data ? data.filter(movie => movie.category && movie.category.includes("2D")) : []

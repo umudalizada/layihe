@@ -46,7 +46,7 @@ const Laser = () => {
   }
 
   if (error) {
-    return <p>Error loading data: {error}</p>
+    return <p>Error loading data...</p>
   }
 
   const imaxMovies = data ? data.filter(movie => movie.category && movie.category.includes("IMAX")) : []

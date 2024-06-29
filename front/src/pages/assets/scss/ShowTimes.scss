@@ -164,7 +164,6 @@ $background-color_3: var(--color);
                 justify-content: center;
                 align-items: center;
                 overflow: hidden;
-                /* Ensure the image does not overflow the card */
 
                 &::before {
                     content: '';
@@ -197,11 +196,8 @@ $background-color_3: var(--color);
                 .film-poster {
                     position: absolute;
                     width: 100%;
-                    /* Adjust as needed */
                     height: auto;
-                    /* Adjust as needed */
                     z-index: 1;
-                    /* Ensure it appears below other elements */
                     transition: 0.5s;
                 }
 
@@ -227,7 +223,6 @@ $background-color_3: var(--color);
 
                     .film-poster {
                         opacity: 0.5;
-                        /* Add a hover effect to the image if needed */
                     }
                 }
 

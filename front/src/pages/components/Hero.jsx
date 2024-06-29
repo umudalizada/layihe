@@ -17,7 +17,7 @@ const Hero = () => {
   const [dragStartX, setDragStartX] = useState(0);
   const [dragCurrentX, setDragCurrentX] = useState(0);
   const [isMouseOverSlider, setIsMouseOverSlider] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // State for loading indicator
+  const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -25,11 +25,11 @@ const Hero = () => {
         const data = await getAllData('heros');
         if (data) {
           setMovies(data); 
-          setIsLoading(false); // Set loading state to false when data is fetched
+          setIsLoading(false); 
         }
       } catch (error) {
         console.error('Error fetching movies:', error);
-        setIsLoading(false); // Handle loading state in case of error
+        setIsLoading(false); 
       }
     };
 
@@ -126,7 +126,7 @@ const Hero = () => {
         onMouseUp={handleMouseUp}
       >
         <div className="image">
-          {isLoading ? ( // Check if loading, display skeleton
+          {isLoading ? (
             <div className="skeleton-wrapper">
               <Skeleton style={{backgroundColor:"whitesmoke"}} height={800} />
             </div>
@@ -144,7 +144,7 @@ const Hero = () => {
           <FontAwesomeIcon className='arrow rightArr' icon={faChevronRight} onClick={handleNextClick} />
         </div>
         <div className="dots">
-          {isLoading ? null : ( // Render dots only when not loading
+          {isLoading ? null : (
             movies.map((_, index) => (
               <div
                 key={index}

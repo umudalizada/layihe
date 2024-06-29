@@ -172,7 +172,6 @@ const SliderSlice = () => {
                 </form>
             </Modal>
 
-            {/* Post Modal */}
             <Modal isOpen={isPostModalOpen} onClose={handleCloseModal} title="Post Slider">
                 <form ref={postFormRef} onSubmit={handlePostSubmit}>
                     <div>

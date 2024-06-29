@@ -11,9 +11,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 200px; // Adjust based on your design
-      border: 16px solid #f3f3f3; /* Light grey */
-      border-top: 16px solid #3498db; /* Blue */
+      height: 200px; 
+      border: 16px solid #f3f3f3; 
+      border-top: 16px solid #3498db; 
       border-radius: 50%;
       width: 120px;
       height: 120px;
@@ -89,44 +89,48 @@
       }
 
       @media (max-width: 800px) {
-          .movie-table {
-              thead {
-                  display: none;
-              }
-
-              tbody {
-                  display: block;
-                  width: 100%;
-
-                  tr {
-                      display: block;
-                      margin-bottom: 10px;
-                      border-bottom: 2px solid #323C50;
-
-                      &:last-child {
-                          border-bottom: none;
-                      }
-                  }
-
-                  td {
-                      display: block;
-                      text-align: right;
-                      padding-left: 50%;
-                      position: relative;
-
-                      &:before {
-                          content: attr(data-label);
-                          position: absolute;
-                          left: 0;
-                          width: 50%;
-                          padding-left: 15px;
-                          font-weight: bold;
-                          text-align: left;
-                      }
-                  }
-              }
+        .movie-table {
+          thead {
+            display: none;
           }
+      
+          tbody {
+            display: block;
+            width: 100%;
+      
+            tr {
+              display: block;
+              margin-bottom: 10px;
+              border-bottom: 2px solid #323C50;
+      
+              &:last-child {
+                border-bottom: none;
+              }
+            }
+      
+            td {
+              display: block;
+              text-align: center; 
+              padding-left: 0; 
+              padding: 10px; 
+              width: 100%; 
+      
+              &:before {
+                content: attr(data-label);
+                display: block;
+                font-weight: bold;
+                text-align: center; 
+                margin-bottom: 5px; 
+              }
+      
+              &:last-child {
+                border-bottom: none;
+              }
+            }
+          }
+        }
       }
+      
   }
 }
 

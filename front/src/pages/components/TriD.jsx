@@ -45,7 +45,7 @@ const TriD = () => {
   }
 
   if (error) {
-    return <p>Error loading data: {error}</p>
+    return <p>Error loading data...</p>
   }
 
   const twoDMovies = data ? data.filter(movie => movie.category && movie.category.includes("3D")) : []
@@ -66,7 +66,7 @@ const TriD = () => {
             </Link>
           ))
         ) : (
-          <p>No 2D movies available</p>
+          <p>No 3D movies available</p>
         )}
       </div>
     </section>

@@ -10,7 +10,7 @@ const UserPanel = () => {
     const [isPostModalOpen, setPostModalOpen] = useState(false);
     const [loading, setLoading] = useState(true);
     const [formData, setFormData] = useState(null);
-    const [selectedUserType, setSelectedUserType] = useState(true); // Default to true for 'Admin'
+    const [selectedUserType, setSelectedUserType] = useState(true); 
     const data = useSelector((state) => state.allUser.users);
     const dispatch = useDispatch();
     const editFormRef = useRef(null);
@@ -36,7 +36,7 @@ const UserPanel = () => {
             lastname: row.lastname,
             email: row.email,
             password: row.password,
-            user: row.user // Set user type for editing
+            user: row.user 
         });
         setEditModalOpen(true);
     };
@@ -62,7 +62,7 @@ const UserPanel = () => {
             lastname: formData.get('lastname'),
             email: formData.get('email'),
             password: formData.get('password'),
-            user: selectedUserType // Use selected user type (Admin or User)
+            user: selectedUserType 
         };
 
         try {
@@ -84,7 +84,7 @@ const UserPanel = () => {
             lastname: formData.get('lastname'),
             email: formData.get('email'),
             password: formData.get('password'),
-            user: selectedUserType // Use selected user type (Admin or User)
+            user: selectedUserType 
         };
 
         try {

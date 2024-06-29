@@ -3,21 +3,20 @@ import Modal from 'react-modal';
 import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import './assets/scss/PaymentModal.scss'; // SCSS for modal
+import './assets/scss/PaymentModal.scss'; 
 import visaImage from "./assets/Images/visa.png";
 import masterImage from "./assets/Images/master.png";
 
-Modal.setAppElement('#root'); // This is important for accessibility
+Modal.setAppElement('#root'); 
 
 const PaymentModal = ({ isOpen, onRequestClose, onPaymentSuccess }) => {
-  const [cardType, setCardType] = useState(null); // State to track card type
+  const [cardType, setCardType] = useState(null); 
   const [cardNumber, setCardNumber] = useState('');
-  const [expiryDate, setExpiryDate] = useState(null); // Date state for expiry
+  const [expiryDate, setExpiryDate] = useState(null); 
   const [cvc, setCvc] = useState('');
 
   const handlePayment = () => {
     if (cardNumber.length === 16 && expiryDate && cvc.length === 3) {
-      // Simulate payment processing
       setTimeout(() => {
         Swal.fire({
           icon: 'success',
@@ -37,10 +36,9 @@ const PaymentModal = ({ isOpen, onRequestClose, onPaymentSuccess }) => {
   };
 
   const handleCardNumberChange = (e) => {
-    const value = e.target.value.replace(/\D/g, ''); // Only allow digits
+    const value = e.target.value.replace(/\D/g, ''); 
     setCardNumber(value);
 
-    // Determine card type based on first digit
     if (value.startsWith('4')) {
       setCardType('visa');
     } else if (value.startsWith('5')) {
@@ -55,13 +53,12 @@ const PaymentModal = ({ isOpen, onRequestClose, onPaymentSuccess }) => {
   };
 
   const handleCvcChange = (e) => {
-    const value = e.target.value.replace(/\D/g, ''); // Only allow digits
+    const value = e.target.value.replace(/\D/g, ''); 
     if (value.length <= 3) {
       setCvc(value);
     }
   };
 
-  // Function to check if date is after 2024
   const isAfter2024 = (date) => {
     const year = date.getFullYear();
     return year >= 2024;
@@ -106,8 +103,8 @@ const PaymentModal = ({ isOpen, onRequestClose, onPaymentSuccess }) => {
             placeholderText="MM/YYYY"
             className="form-control"
             required
-            minDate={new Date(2024, 0, 1)} // Minimum date is 2024
-            filterDate={isAfter2024} // Only allow dates after 2024
+            minDate={new Date(2024, 0, 1)} 
+            filterDate={isAfter2024} 
           />
         </div>
         <div className="form-group">

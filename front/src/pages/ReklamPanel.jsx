@@ -127,7 +127,6 @@ const ReklamPanel = () => {
             </div>
             <button className="action-btn post add" onClick={handleOpenPostModal}>Add New Data</button>
 
-            {/* Edit Modal */}
             <Modal isOpen={isEditModalOpen} onClose={handleCloseModal} title="Edit Data">
                 <form ref={editFormRef} onSubmit={handleEditSubmit}>
                     <div>
@@ -143,7 +142,6 @@ const ReklamPanel = () => {
                 </form>
             </Modal>
 
-            {/* Post Modal */}
             <Modal isOpen={isPostModalOpen} onClose={handleCloseModal} title="Post Data">
                 <form ref={postFormRef} onSubmit={handlePostSubmit}>
                     <div>

@@ -67,7 +67,7 @@ const Navbar = () => {
             </li>
           ) : null}
           <li>
-            <Link to={user.user ? "/profile" : "/login"} className='navLink' onClick={closeMenu}>
+            <Link to={user ? "/profile" : "/login"} className='navLink' onClick={closeMenu}>
               <FontAwesomeIcon icon={faUser} />
             </Link>
           </li>

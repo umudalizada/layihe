@@ -80,7 +80,7 @@ const Admin = () => {
       dispatch(editTicket(obj));
       handleCloseModal(); 
     } catch (error) {
-      console.error('Veri düzenlenirken hata oluştu:', error);
+      console.error('Error while editing data:', error);
     }
   };
   
@@ -103,7 +103,7 @@ const Admin = () => {
       dispatch(postTicket(obj));
       handleCloseModal(); 
     } catch (error) {
-      console.error('Veri gönderilirken hata oluştu:', error);
+      console.error('Error while sending data:', error);
     }
   };
   
@@ -163,7 +163,6 @@ const Admin = () => {
       </div>
       <button className="action-btn post add" onClick={handleOpenPostModal}>Add New Data</button>
 
-      {/* Edit Modal */}
       <Modal isOpen={isEditModalOpen} onClose={handleCloseModal} title="Edit Data">
         <form ref={editFormRef} onSubmit={handleEditSubmit}>
           <div>
@@ -203,7 +202,6 @@ const Admin = () => {
         </form>
       </Modal>
 
-      {/* Post Modal */}
       <Modal isOpen={isPostModalOpen} onClose={handleCloseModal} title="Post Data">
         <form ref={postFormRef} onSubmit={handlePostSubmit}>
           <div>

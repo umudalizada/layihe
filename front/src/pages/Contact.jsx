@@ -14,13 +14,13 @@ const Contact = () => {
 
     const defaultEmail = 'umudtrend1@gmail.com';
 
-    const handleExternalLink = (url) => (event) => {
-        event.preventDefault();
+    const handleExternalLink = (url) => {
         window.open(url, '_blank', 'noopener,noreferrer');
     };
+
     const handleSendMessage = (e) => {
         e.preventDefault();
-    
+
         const templateParams = {
             from_name: name,
             reply_to: email,
@@ -28,34 +28,33 @@ const Contact = () => {
             subject: subject,
             message: message
         };
-    
+
         emailjs.send('service_4xdex65', 'template_tyc49au', templateParams, '43oi_U7RtguYqureE')
             .then((response) => {
-                console.log('E-posta gönderildi:', response.status, response.text);
-    
+                console.log('Email sent:', response.status, response.text);
+
                 Swal.fire({
                     icon: 'success',
-                    title: 'Başarılı!',
-                    text: 'Mesaj başarıyla gönderildi.',
-                    confirmButtonText: 'Tamam'
+                    title: 'Successful!',
+                    text: 'The message was sent successfully.',
+                    confirmButtonText: 'Ok'
                 });
-    
+
                 setName('');
                 setEmail('');
                 setSubject('');
                 setMessage('');
             }, (error) => {
-                console.error('E-posta gönderilirken hata oluştu:', error);
-    
+                console.error('Error sending email:', error);
+
                 Swal.fire({
                     icon: 'error',
-                    title: 'Hata!',
-                    text: 'Mesaj gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.',
-                    confirmButtonText: 'Tamam'
+                    title: 'Mistake!',
+                    text: 'An error occurred while sending the message. Please try again later.',
+                    confirmButtonText: 'Ok'
                 });
             });
     };
-    
 
     return (
         <section id="contact">
@@ -144,7 +143,7 @@ const Contact = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="boxes">
+                    <div className="boxes" onClick={()=>handleExternalLink('https://maps.app.goo.gl/nSGV96tBGXQeC4cH7')}>
                         <div className="card">
                             <div className="first-content">
                                 <FontAwesomeIcon icon={faMapPin} />
