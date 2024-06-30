@@ -130,7 +130,8 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleForgotPassword = () => {
+  const handleForgotPassword = (e) => {
+    e.preventDefault()
     setIsModalOpen(true);
   };
 
@@ -303,7 +304,7 @@ const Login = () => {
                     </Form>
                   )}
                 </Formik>
-                <div className="forgot-password" onClick={handleForgotPassword}>
+                <div className="forgot-password" onClick={(e)=>handleForgotPassword(e)}>
                   <FontAwesomeIcon icon={faKey} /> Forgot Password?
                 </div>
               </div>
