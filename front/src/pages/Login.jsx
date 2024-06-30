@@ -73,7 +73,7 @@ const Login = () => {
       console.error("Login error:", error);
       Swal.fire({
         icon: "error",
-        title: "Login Failed",
+        title: "Invalid email or password.",
         text: "Login failed. Please try again.",
       });
     }

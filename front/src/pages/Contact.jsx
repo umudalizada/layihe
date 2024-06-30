@@ -66,7 +66,7 @@ const Contact = () => {
                                 <FontAwesomeIcon icon={faWhatsapp} />
                             </div>
                             <div className="second-content">
-                                <span>+9942823828</span>
+                                <span>Whatsapp</span>
                             </div>
                         </div>
                     </div>

@@ -59,7 +59,7 @@ const Detail = () => {
                 <p>{new Date(control.date).toLocaleDateString()}</p>
               </div>
               <div className="showtimes">
-                <h2>Showtimes:</h2>
+                <h2>Seans:</h2>
                 <p>{control.seans.join(', ')}</p>
               </div>
             </div>
