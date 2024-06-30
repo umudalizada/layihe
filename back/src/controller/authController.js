@@ -85,15 +85,45 @@ const loginController = async (req, res) => {
             { expiresIn: "1h" }
         );
 
-        return res.status(200).json({ message: "Password reset email sent." });
+        return res.status(200).json({ message: "Password reset code sent." });
     } catch (error) {
         console.error("Reset password error:", error);
-        res.status(500).json({ message: "Failed to send reset email." });
+        res.status(500).json({ message: "Failed to send reset code." });
     }
 };
+const updatePassword = async (req, res) => {
+  const { email, newPass } = req.body;
+
+  try {
+    const user = await userModel.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found. Please check your email address.",
+      });
+    }
+
+    user.password = newPass; 
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Password updated successfully.",
+    });
+  } catch (error) {
+    console.error("Error updating password:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error. Please try again later.",
+    });
+  }
+};
+
 
 module.exports = {
     registerController,
     loginController,
     resetPasswordController,
+    updatePassword
 };
