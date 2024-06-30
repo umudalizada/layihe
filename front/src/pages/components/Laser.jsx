@@ -34,7 +34,7 @@ const Laser = () => {
         <div className="container triDinfo" ref={ref}>
           <h2>IMAX</h2>
         </div>
-        <div  style={{ margin: "6px" }} className="container allCards triD" ref={ref}>
+        <div   className="container allCards triD" ref={ref}>
           {[1, 2, 3, 4].map((item, index) => (
             <div  key={index} className="card">
               <Skeleton  style={{backgroundColor:"whitesmoke"}} height={250} />
@@ -59,7 +59,7 @@ const Laser = () => {
       <div className="container allCards triD">
         {imaxMovies.length > 0 ? (
           imaxMovies.map((movie, i) => (
-            <Link key={i} to={`/detail/${movie._id}`}>
+            <Link onClick={()=> window.scroll(0,0)} key={i} to={`/detail/${movie._id}`}>
               <div className="card" ref={ref}>
                 <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
                 <img src={movie.image} alt="" />

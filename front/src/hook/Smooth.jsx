@@ -22,7 +22,7 @@ const Smooth = () => {
 
     if (element) {
       element.style.opacity = 0;
-      element.style.transform = 'translateY(100px)';
+      element.style.transform = 'translateY(20px)';
       observer.observe(element);
     }
 

@@ -13,6 +13,7 @@ const Navbar = () => {
   };
 
   const closeMenu = () => {
+    window.scroll(0,0) 
     setMenuOpen(false);
   };
 
@@ -38,11 +39,11 @@ const Navbar = () => {
           <h5 className='h5' onClick={toggleMenu}>
             <FontAwesomeIcon icon={faBars} />
           </h5>
-          <Link to="/">
+          <Link onClick={()=> window.scroll(0,0)}  to="/">
             <img src={logo} alt="Logo" />
           </Link>
           <h5 className='h5'>
-            <Link to={user.user ? "/profile" : "/login"} className='navLink' onClick={closeMenu}>
+            <Link  to={user.user ? "/profile" : "/login"} className='navLink' onClick={closeMenu}>
               <FontAwesomeIcon icon={faUser} />
             </Link>
           </h5>

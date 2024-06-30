@@ -36,15 +36,23 @@ const PaymentModal = ({ isOpen, onRequestClose, onPaymentSuccess }) => {
   };
 
   const handleCardNumberChange = (e) => {
-    const value = e.target.value.replace(/\D/g, ''); 
-    setCardNumber(value);
+    let value = e.target.value.replace(/\D/g, ''); // Sadece rakamları al
 
-    if (value.startsWith('4')) {
-      setCardType('visa');
-    } else if (value.startsWith('5')) {
-      setCardType('mastercard');
+    // Sadece 16 haneli ve 4 veya 5 ile başlayan kart numaralarını kabul et
+    if (value.length <= 16 && (value.startsWith('4') || value.startsWith('5'))) {
+      setCardNumber(value);
+
+      if (value.startsWith('4')) {
+        setCardType('visa');
+      } else if (value.startsWith('5')) {
+        setCardType('mastercard');
+      } else {
+        setCardType(null);
+      }
     } else {
-      setCardType(null);
+      // Kart numarası geçersiz ise boş bırak
+      setCardNumber('');
+      setCardType(null); // Kart tipini sıfırla
     }
   };
 
@@ -91,6 +99,13 @@ const PaymentModal = ({ isOpen, onRequestClose, onPaymentSuccess }) => {
             placeholder="1234 5678 9012 3456"
             pattern="\d{16}"
             required
+            onKeyDown={(e) => {
+              // Sadece rakam veya delete/backspace tuşlarını kabul et
+              const allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'Delete', 'Backspace'];
+              if (!allowedKeys.includes(e.key)) {
+                e.preventDefault();
+              }
+            }}
           />
         </div>
         <div className="form-group">

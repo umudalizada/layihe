@@ -5,6 +5,9 @@ import { deleteDataById, getAllData, patchData, postData } from '../service/requ
 import { Link } from 'react-router-dom';
 import { addSliders, delSlider, editSlider, postSlider } from '../redux/slice/sliderSlice';
 import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faDatabase, faFilePen, faSquareMinus } from '@fortawesome/free-solid-svg-icons';
+
 
 const SliderSlice = () => {
     const [isEditModalOpen, setEditModalOpen] = useState(false);
@@ -129,10 +132,12 @@ const SliderSlice = () => {
         <section id="slider">
             <div className="container tablee">
                 <div className="buttons">
-                    <Link to="/admin" className='adminFilter'>Products</Link>
-                    <Link to="/userAdmin" className='adminFilter'>Users</Link>
-                    <Link to="/reklamAdmin" className='adminFilter'>Adverts</Link>
-                    <Link to="/advertAdmin" className='adminFilter'>Sliders</Link>
+                    <Link onClick={() => window.scroll(0, 0)} to="/admin" className='adminFilter'>Products</Link>
+                    <Link onClick={() => window.scroll(0, 0)} to="/userAdmin" className='adminFilter'>Users</Link>
+                    <Link onClick={() => window.scroll(0, 0)} to="/reklamAdmin" className='adminFilter'>Adverts</Link>
+                    <Link onClick={() => window.scroll(0, 0)} to="/advertAdmin" className='adminFilter'>Sliders</Link>
+                    <Link  onClick={() => window.scroll(0, 0)}  to="/" className='adminFilter backtohome'>Home <FontAwesomeIcon icon={faArrowLeft} /></Link>
+
                 </div>
                 {loading ? (
                     <p>Loading data...</p>
@@ -149,18 +154,19 @@ const SliderSlice = () => {
                                 <tr key={index}>
                                     <td><img style={{ width: "100px" }} src={row.image} alt="Slider Image" /></td>
                                     <td>
-                                        <button className="action-btn edit" onClick={() => handleOpenEditModal(row)}>Edit</button>
-                                        <button className="action-btn delete" onClick={() => handleDelete(row._id)}>Delete</button>
+                                        <button className="action-btn edit" onClick={() => handleOpenEditModal(row)}><FontAwesomeIcon icon={faFilePen} /></button>
+                                        <button className="action-btn delete" onClick={() => handleDelete(row._id)}><FontAwesomeIcon icon={faSquareMinus} /></button>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 )}
-            </div>
-            <button className="action-btn post add" onClick={handleOpenPostModal}>Add New Slider</button>
+                <button className="action-btn post add" onClick={handleOpenPostModal}><FontAwesomeIcon icon={faDatabase} /></button>
 
-            {/* Edit Modal */}
+            </div>
+
+
             <Modal isOpen={isEditModalOpen} onClose={handleCloseModal} title="Edit Slider">
                 <form ref={editFormRef} onSubmit={handleEditSubmit}>
                     <div>

@@ -29,26 +29,16 @@ const Footer = () => {
   const openChat = () => {
     navigate("/chat");
   };
+  const openBuyticket = () => {
+    window.scroll(0,0)
+    navigate("/buyticket");
+  };
 
   return (
     <section id="footer">
       <div className="container footer">
         <div className="footerTop">
-          <div className="usefulLinks">
-            <h2>Useful Links</h2>
-            <ul>
-              <li>
-                <Link to="/contact" className="link">Contact</Link>
-              </li>
-              <li>
-                <Link to="/about" className="link">About Us</Link>
-              </li>
-              <li>
-                <Link to="/table" className="link">Buy Tickets</Link>
-              </li>
-            </ul>
-          </div>
-          <div className="fotCompany">
+        <div className="fotCompany">
             <h2>Company</h2>
             <ul>
               <li>
@@ -107,23 +97,34 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+          <div className="usefulLinks">
+            <h2>Useful Links</h2>
+            <ul>
+              <li>
+                <Link onClick={()=> window.scroll(0,0)} to="/contact" className="link">Contact</Link>
+              </li>
+              <li>
+                <Link onClick={()=> window.scroll(0,0)} to="/about" className="link">About Us</Link>
+              </li>
+              <li>
+                <Link onClick={()=> window.scroll(0,0)} to="/table" className="link">Buy Tickets</Link>
+              </li>
+            </ul>
+          </div>
+
           <div className="fotName">
             <h2>Pay Methods</h2>
             <ul>
               <li>
-                <FontAwesomeIcon className="footicon" icon={faCcMastercard} />
+                <FontAwesomeIcon onClick={openBuyticket} className="footicon" icon={faCcMastercard} />
               </li>
               <li>
-                <FontAwesomeIcon className="footicon" icon={faCcVisa} />
+                <FontAwesomeIcon onClick={openBuyticket} className="footicon" icon={faCcVisa} />
               </li>
-              {/* <li><FontAwesomeIcon className='footicon' icon={faApplePay} /></li> */}
-              {/* <li><FontAwesomeIcon className='footicon' icon={faGooglePay} /></li>
-            <li><FontAwesomeIcon className='footicon' icon={faPaypal} /></li> */}
             </ul>
           </div>
           <div className="fotName">
             <h2>Social Media</h2>
-
             <ul>
               <li>
                 <FontAwesomeIcon

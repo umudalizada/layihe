@@ -70,6 +70,30 @@ const loginController = async (req, res) => {
   };
  
   
- 
+  const resetPasswordController = async (req, res) => {
+    try {
+        const { email } = req.body;
 
-module.exports={registerController, loginController}
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: "User not found!" });
+        }
+
+        const resetToken = jwt.sign(
+            { userId: user._id },
+            process.env.JWT_SECRET_KEY,
+            { expiresIn: "1h" }
+        );
+
+        return res.status(200).json({ message: "Password reset email sent." });
+    } catch (error) {
+        console.error("Reset password error:", error);
+        res.status(500).json({ message: "Failed to send reset email." });
+    }
+};
+
+module.exports = {
+    registerController,
+    loginController,
+    resetPasswordController,
+};

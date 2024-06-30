@@ -12,6 +12,50 @@ $modal-overlay-bg: rgba(0, 0, 0, 0.5);
 .tablee {
   width: 90%;
   padding: 20px;
+  position: relative;
+  background-color: $table-border-color;
+  .action-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: $action-btn-bg;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: $action-btn-hover-bg;
+    }
+  
+    &.edit {
+      background-color: $action-btn-edit-bg;
+      color: #fff;
+  
+      &:hover {
+        background-color: darken($action-btn-edit-bg, 10%);
+      }
+    }
+  
+    &.delete {
+      background-color: rgb(211, 47, 47);
+      color: white;
+  
+      &:hover {
+        background-color: $action-btn-hover-bg;
+      }
+    }
+  
+    &.post {
+      background-color:  green;
+      color: #fff;
+
+  
+      &:hover {
+        background-color: darken($action-btn-post-bg, 10%);
+      }
+    }
+  }
+  
+  
 }
 .tablee .buttons .adminFilter{
   text-decoration: none;
@@ -19,6 +63,13 @@ $modal-overlay-bg: rgba(0, 0, 0, 0.5);
   background-color: orangered;
   color: white;
 }
+.tablee .buttons .backtohome{
+  text-decoration: none;
+  padding: 10px ;
+  background-color: #2196f3;
+  color: white;
+}
+
 .tablee .buttons {
   display: flex;
   align-items: center;
@@ -84,47 +135,6 @@ $modal-overlay-bg: rgba(0, 0, 0, 0.5);
         font-weight: bold;
         text-align: left;
       }
-    }
-  }
-}
-
-.action-btn {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: $action-btn-bg;
-  color: #333;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: $action-btn-hover-bg;
-  }
-
-  &.edit {
-    background-color: $action-btn-edit-bg;
-    color: #fff;
-
-    &:hover {
-      background-color: darken($action-btn-edit-bg, 10%);
-    }
-  }
-
-  &.delete {
-    background-color: $action-btn-bg;
-    color: #333;
-
-    &:hover {
-      background-color: $action-btn-hover-bg;
-    }
-  }
-
-  &.post {
-    background-color: $action-btn-post-bg;
-    color: #fff;
-
-    &:hover {
-      background-color: darken($action-btn-post-bg, 10%);
     }
   }
 }

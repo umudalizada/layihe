@@ -24,6 +24,7 @@ const AllCards = ({ searchQuery }) => {
   const filteredData = data.filter((ticket) =>
     ticket.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  
 
   const skeletonCount = filteredData.length > 0 ? filteredData.length : 12;
 
@@ -38,7 +39,7 @@ const AllCards = ({ searchQuery }) => {
       ) : (
         filteredData.length > 0 ? (
           filteredData.map((elem, i) => (
-            <Link key={i} to={`/detail/${elem._id}`}>
+            <Link onClick={()=> window.scroll(0,0)} key={i} to={`/detail/${elem._id}`}>
               <div className="card">
                 <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
                 <img src={elem.image} alt={elem.name} />

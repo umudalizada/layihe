@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Modal from './components/Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteDataById, getAllData, patchData, postData } from '../service/requests';
 import { Link } from 'react-router-dom';
 import { addUsers, delUsers, editUser, postUser } from '../redux/slice/userSlice';
+import { faArrowLeft, faDatabase, faFilePen, faSquareMinus } from '@fortawesome/free-solid-svg-icons';
 
 const UserPanel = () => {
     const [isEditModalOpen, setEditModalOpen] = useState(false);
@@ -109,10 +112,12 @@ const UserPanel = () => {
         <section id="admin">
             <div className="container tablee">
                 <div className="buttons">
-        <Link to="/admin" className='adminFilter'>Products</Link>
-                    <Link to="/userAdmin" className='adminFilter'>Users</Link>
-                    <Link to="/reklamAdmin" className='adminFilter'>Adverts</Link>
-                    <Link to="/advertAdmin" className='adminFilter'>Sliders</Link>
+        <Link onClick={()=> window.scroll(0,0)} to="/admin" className='adminFilter'>Products</Link>
+                    <Link onClick={()=> window.scroll(0,0)} to="/userAdmin" className='adminFilter'>Users</Link>
+                    <Link onClick={()=> window.scroll(0,0)} to="/reklamAdmin" className='adminFilter'>Adverts</Link>
+                    <Link onClick={()=> window.scroll(0,0)} to="/advertAdmin" className='adminFilter'>Sliders</Link>
+                    <Link onClick={()=> window.scroll(0,0)}  to="/" className='adminFilter backtohome'>Home <FontAwesomeIcon icon={faArrowLeft} /></Link>
+
                 </div>
                 {loading ? (
                     <p>Loading data...</p>
@@ -137,16 +142,18 @@ const UserPanel = () => {
                                     <td>{row.email}</td>
                                     <td>{row.user ? 'Admin' : 'User'}</td>
                                     <td>
-                                        <button className="action-btn edit" onClick={() => handleOpenEditModal(row)}>Edit</button>
-                                        <button className="action-btn delete" onClick={() => handleDelete(row._id)}>Delete</button>
+                                    <button className="action-btn edit" onClick={() => handleOpenEditModal(row)}><FontAwesomeIcon icon={faFilePen} /></button>
+                    <button className="action-btn delete" onClick={() => handleDelete(row._id)}><FontAwesomeIcon icon={faSquareMinus} /></button>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 )}
+      <button className="action-btn post add" onClick={handleOpenPostModal}><FontAwesomeIcon icon={faDatabase} /></button>
+
+
             </div>
-            <button className="action-btn post add" onClick={handleOpenPostModal}>Add New User</button>
 
             <Modal isOpen={isEditModalOpen} onClose={handleCloseModal} title="Edit User">
                 <form ref={editFormRef} onSubmit={handleEditSubmit}>

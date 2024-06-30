@@ -58,7 +58,7 @@ const TriD = () => {
       <div className="container allCards triD">
         {twoDMovies.length > 0 ? (
           twoDMovies.map((movie, i) => (
-            <Link key={i} to={`/detail/${movie._id}`}>
+            <Link onClick={()=> window.scroll(0,0)} key={i} to={`/detail/${movie._id}`}>
               <div className="card">
                 <FontAwesomeIcon className='infoIcon' icon={faCircleInfo} />
                 <img src={movie.image} alt="" />

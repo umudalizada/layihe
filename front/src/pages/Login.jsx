@@ -8,7 +8,7 @@ import { getAllData } from '../service/requests';
 import { addUsers } from '../redux/slice/userSlice';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faKey } from '@fortawesome/free-solid-svg-icons';
 import './assets/scss/Login.scss';
 import axios from 'axios';
 
@@ -35,6 +35,7 @@ const SignUpSchema = Yup.object().shape({
 const Login = () => {
     const [isFlipped, setIsFlipped] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -95,14 +96,13 @@ const Login = () => {
                 title: 'Sign Up Successful',
                 text: 'Registration completed successfully! Redirecting to login.',
             }).then(() => {
-                setIsFlipped(false); // Return to login screen
-                // If the user is not redirected directly for login, manually reload
+                setIsFlipped(false); 
                 window.location.reload();
             });
         } catch (error) {
             console.error("Sign up error:", error);
     
-            if (error.response && error.response.status === 409) { // Assuming 409 Conflict for existing user
+            if (error.response && error.response.status === 409) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Sign Up Failed',
@@ -126,6 +126,37 @@ const Login = () => {
     const togglePasswordVisibility = (e) => {
         e.preventDefault();
         setShowPassword(!showPassword);
+    };
+
+    const handleForgotPassword = (e) => {
+        e.preventDefault();
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleResetPassword = async (values) => {
+        try {
+            await axios.post('http://localhost:3000/auth/reset-password', {
+                email: values.email
+            });
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Email Sent',
+                text: 'A password reset email has been sent. Please check your inbox.',
+            });
+            setIsModalOpen(false);
+        } catch (error) {
+            console.error("Reset password error:", error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Reset Password Failed',
+                text: 'Failed to send reset email. Please try again.',
+            });
+        }
     };
 
     return (
@@ -163,6 +194,9 @@ const Login = () => {
                                             </div>
                                             <ErrorMessage name="password" component="div" className="error" />
                                             <button type="submit" className="flip-card__btn">Log in</button>
+                                            <div className="forgot-password" onClick={(e)=>handleForgotPassword(e)}>
+                                                <FontAwesomeIcon icon={faKey} /> Forgot Password?
+                                            </div>
                                         </Form>
                                     )}
                                 </Formik>
@@ -198,6 +232,35 @@ const Login = () => {
                     </label>
                 </div>
             </div>
+
+            {isModalOpen && (
+                <>
+                    <div className="modal-overlay" onClick={handleCloseModal}></div>
+                    <div className="modal">
+                        <div className="modal-content">
+                            <div className="modal-close" onClick={handleCloseModal}>✖</div>
+                            <h2>Reset Password</h2>
+                            <Formik
+                                initialValues={{ email: '' }}
+                                validationSchema={Yup.object({
+                                    email: Yup.string()
+                                        .email('Invalid email address')
+                                        .required('Email is required')
+                                })}
+                                onSubmit={handleResetPassword}
+                            >
+                                {({ handleSubmit }) => (
+                                    <Form onSubmit={handleSubmit}>
+                                        <Field type="email" name="email" placeholder="Email" required />
+                                        <ErrorMessage name="email" component="div" className="error" />
+                                        <button type="submit">Send Reset Link</button>
+                                    </Form>
+                                )}
+                            </Formik>
+                        </div>
+                    </div>
+                </>
+            )}
         </section>
     );
 };
